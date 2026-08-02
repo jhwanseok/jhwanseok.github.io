@@ -33,6 +33,16 @@ Defines how this project is implemented.
 
 These documents should guide implementation decisions.
 
+## Decisions
+
+Records the reasoning behind significant architectural and technology decisions, as ADRs (Architecture Decision Records).
+
+- `docs/decisions/`
+
+Read relevant ADRs before revisiting a decision that has already been made. If new information overturns a past decision, add a new ADR rather than silently deviating from it.
+
+Not every implementation detail needs an ADR. Record one when a decision is significant, hard to reverse, or involved real alternatives — following the same `Observe → Establish → Document` workflow used for Project-Specific Conventions below.
+
 ---
 
 # Working Principles
@@ -155,7 +165,7 @@ When making decisions, follow this order:
 
 1. Constitution
 2. Playbook
-3. Existing architecture
+3. Existing architecture, including recorded decisions in `docs/decisions/`
 4. Project-specific conventions in this document
 
 Higher levels always take precedence.
