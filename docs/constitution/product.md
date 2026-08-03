@@ -6,7 +6,7 @@
 
 # Overview
 
-This website is the central hub of the Project JH brand.
+This website is the central hub of the Project HS brand.
 
 Its purpose is to connect projects, technical articles, and engineering documentation into a single, coherent experience.
 

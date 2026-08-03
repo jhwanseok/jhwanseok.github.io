@@ -2,7 +2,7 @@
 
 # Project Overview
 
-This repository is part of **Project JH**, a long-term initiative to build a trusted AI engineering brand through public engineering evidence.
+This repository is part of **Project HS**, a long-term initiative to build a trusted AI engineering brand through public engineering evidence.
 
 The goal of this repository is not simply to build software, but to create maintainable engineering work that demonstrates real-world engineering capability.
 
