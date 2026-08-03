@@ -1,16 +1,58 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sections = [
+	{
+		href: '/about',
+		label: 'About',
+		description: '제가 어떤 엔지니어인지, 그리고 어떤 방식으로 문제를 해결하는지 소개합니다.',
+	},
+	{
+		href: '/projects',
+		label: 'Projects',
+		description: '설계부터 구현, 운영까지. 프로젝트를 진행하는 과정과 기술적 의사결정을 기록합니다.',
+		inProgress: true,
+	},
+	{
+		href: '/articles',
+		label: 'Articles',
+		description: 'AI 시스템 개발 과정에서의 기술적 고민과 선택, 그리고 그 과정에서 얻은 배움을 기록합니다.',
+		inProgress: true,
+	},
+	{
+		href: '/resume',
+		label: 'Resume',
+		description: '경력과 기술, 그리고 지금까지의 경험을 정리했습니다.',
+	},
+	{
+		href: '/contact',
+		label: 'Contact',
+		description: '협업이나 기술적인 이야기를 나누고 싶다면 언제든 연락해 주세요.',
+	},
+];
 ---
 
-<BaseLayout title="Home" description="Building a trusted AI engineering brand through public engineering evidence.">
-	<h1 class="text-2xl font-semibold text-slate-900">Jayden</h1>
+<BaseLayout title="Home" description="공개된 엔지니어링 증거로 신뢰받는 AI 엔지니어 브랜드를 만듭니다.">
+	<h1 class="text-2xl font-semibold text-slate-900">정환석</h1>
 	<p class="mt-4 text-slate-600">
-		Enterprise AI Engineer. I design, build, and operate production-oriented AI systems, and
-		publish the engineering decisions behind them as public evidence.
+		음성 AI, LLM, AI 플랫폼을 중심으로, 실제 운영 가능한 AI 시스템을 설계하고 구축하며 운영합니다.
+		이곳에는 프로젝트와 엔지니어링 기록을 꾸준히 쌓아갑니다.
 	</p>
-	<p class="mt-8 flex gap-4 text-sm">
-		<a href="/about" class="text-slate-900 underline underline-offset-4">About</a>
-		<a href="/projects" class="text-slate-900 underline underline-offset-4">Projects</a>
-		<a href="/articles" class="text-slate-900 underline underline-offset-4">Articles</a>
-	</p>
+
+	<section class="mt-16">
+		<h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">이곳에서 기록하는 것들</h2>
+		<ul class="mt-6 space-y-5">
+			{
+				sections.map((section) => (
+					<li>
+						<a href={section.href} class="font-medium text-slate-900 underline underline-offset-4">
+							{section.label}
+						</a>
+						{section.inProgress && <span class="ml-2 text-xs text-slate-400">(준비 중)</span>}
+						<p class="text-slate-600">{section.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
 </BaseLayout>
