@@ -8,17 +8,17 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = 'Project JH — public engineering evidence.' } = Astro.props;
+const { title, description = 'Project HS — 공개 엔지니어링 증거.' } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="ko">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<title>{title} · Jayden</title>
+		<title>{title} · 정환석</title>
 	</head>
 	<body class="flex min-h-screen flex-col bg-white text-slate-800 antialiased">
 		<Header />
