@@ -216,6 +216,15 @@ Acronyms, dataset names, and model/tool names a general engineering reader won't
 - **Never use `<abbr>` inside a `<table>` cell.** The table's own `overflow-x: auto` (see Diagram Palette's sibling rule in `ContentLayout.astro`) clips an absolutely-positioned popover that tries to render above/below a cell. Tag the term at its first mention in the surrounding prose instead — `sommelier-full-duplex-audio-preprocessing.md` does this for "DER": tagged with `<abbr>` in the sentence introducing the Pyannote/Sortformer comparison table, left as plain text inside the table's own header row. If a term only ever appears inside a table with no prose mention at all, expand it as a plain parenthetical in the sentence introducing the table instead of using `<abbr>`.
 - **Keep definitions to one short phrase.** `attr()` renders plain text only (no line breaks, no formatting) into a `max-w-64` popover — write a single clause, not a sentence with its own sub-clauses.
 
+## Commit Staging
+
+Established when committing the tts-sentence-preprocessor Projects entry (2026-08-07): the working tree had pre-existing, unrelated uncommitted changes (a `docs/playbook/design.md` edit and a new `docs/decisions/0008-...` ADR, both from an earlier, separate piece of work) sitting alongside the actual task's changes.
+
+- **Stage files explicitly by path, never `git add -A` / `git add .`.** Bundling unrelated uncommitted work into a commit makes that commit's diff misrepresent what it's actually about, and risks pushing changes the user hasn't reviewed as part of the current task.
+- **When unrelated uncommitted changes exist in the working tree, leave them unstaged and tell the user explicitly what was excluded and why**, rather than silently including them or silently discarding them. The user commits those separately when ready.
+
+This applies every time a commit is made in this repo, not just when something unrelated happens to be sitting in the working tree — check `git status` before staging and confirm every staged file is actually part of the current task.
+
 ---
 
 # Decision Hierarchy
