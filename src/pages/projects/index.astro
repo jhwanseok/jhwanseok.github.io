@@ -1,8 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentList from '../../components/ContentList.astro';
+import { sortByDateDesc } from '../../utils/content';
+
+const modules = import.meta.glob('./*.md', { eager: true });
+const projects = sortByDateDesc(modules);
 ---
 
 <BaseLayout title="Projects">
 	<h1 class="text-2xl font-semibold text-slate-900">Projects</h1>
-	<p class="mt-4 text-slate-600">프로젝트를 준비하고 있습니다.</p>
+	<ContentList items={projects} emptyMessage="프로젝트를 준비하고 있습니다." />
 </BaseLayout>

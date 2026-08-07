@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* Site brand accent — see CLAUDE.md "Site Accent Color". Coral, used sparingly
+   against the gray/white base as the one ownable "point color" (in the spirit
+   of Kakao yellow / Naver green / Karrot orange). */
+@theme {
+	--color-coral-50: #fff5f2;
+	--color-coral-100: #ffe4de;
+	--color-coral-300: #ffab91;
+	--color-coral-500: #ef5b3f;
+	--color-coral-600: #e34a33;
+	--color-coral-700: #c13a26;
+}

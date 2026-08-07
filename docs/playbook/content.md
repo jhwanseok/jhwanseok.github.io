@@ -115,6 +115,27 @@ The structure should make it easy for readers to understand both the implementat
 
 ---
 
+# Review Article Structure
+
+Some articles review external technical material — a blog post, a paper, or a conference talk — rather than describing original work. These articles should still interpret, not introduce.
+
+The goal is to explain how the reviewed material's engineering decisions apply to real systems, not to summarize what it says.
+
+Review articles should follow this structure:
+
+1. Summary
+2. What Problem?
+3. Engineering Decisions
+4. Trade-offs
+5. Production Perspective
+6. My Takeaways
+
+This differs from the general Article Structure above because the source material already documents the problem and solution — the value of a review article is in the interpretation layered on top of it: what was gained and lost by the reviewed design, what it means for a production system, and what the author would carry forward into their own work.
+
+Every review article must cite what it reviews. Link back to the original source(s) — paper, blog post, repository, talk — so the reader can always find and verify what is being interpreted. Place these links near the top of the article, before the interpretation begins.
+
+---
+
 # Writing Style
 
 The writing style should be:

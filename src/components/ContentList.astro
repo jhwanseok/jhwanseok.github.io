@@ -1,0 +1,46 @@
+---
+import type { ContentEntry } from '../utils/content';
+
+interface Props {
+	items: ContentEntry[];
+	emptyMessage: string;
+}
+
+const { items, emptyMessage } = Astro.props;
+
+const tagClass =
+	'inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600';
+
+function formatDate(date: string) {
+	return new Date(date).toLocaleDateString('ko-KR', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+}
+---
+
+{
+	items.length === 0 ? (
+		<p class="mt-4 text-slate-600">{emptyMessage}</p>
+	) : (
+		<div class="mt-8 divide-y divide-slate-200">
+			{items.map((item) => (
+				<article class="py-6 first:pt-0 last:pb-0">
+					<div class="flex flex-wrap items-center gap-2">
+						<span class="text-sm text-slate-500">{formatDate(item.frontmatter.date)}</span>
+						{item.frontmatter.category && <span class={tagClass}>{item.frontmatter.category}</span>}
+					</div>
+					<h3 class="mt-2 text-base font-semibold text-slate-900">
+						<a href={item.url} class="hover:underline">
+							{item.frontmatter.title}
+						</a>
+					</h3>
+					{item.frontmatter.description && (
+						<p class="mt-2 text-slate-600">{item.frontmatter.description}</p>
+					)}
+				</article>
+			))}
+		</div>
+	)
+}

@@ -1,0 +1,176 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+	frontmatter: {
+		title: string;
+		date: string;
+		category?: string;
+		description?: string;
+	};
+}
+
+const { frontmatter } = Astro.props;
+const { title, date, category, description } = frontmatter;
+
+const tagClass =
+	'inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600';
+
+function formatDate(value: string) {
+	return new Date(value).toLocaleDateString('ko-KR', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+}
+---
+
+<BaseLayout title={title} description={description}>
+	<h1 class="text-2xl font-semibold text-slate-900">{title}</h1>
+	<div class="mt-2 flex flex-wrap items-center gap-2">
+		<span class="text-sm text-slate-500">{formatDate(date)}</span>
+		{category && <span class={tagClass}>{category}</span>}
+	</div>
+
+	<div class="content-body mt-8">
+		<slot />
+	</div>
+</BaseLayout>
+
+<style>
+	@reference '../styles/global.css';
+
+	.content-body {
+		counter-reset: section;
+	}
+	.content-body :global(> *:first-child) {
+		margin-top: 0;
+	}
+	/* Review articles open with a "source" block (see docs/playbook/content.md
+	   Review Article Structure) — a "리뷰 대상" label paragraph followed by a
+	   list of source links, before the first heading. Style both as muted
+	   metadata, not body prose, and keep the list tighter than normal content
+	   lists. */
+	.content-body :global(> p:first-child) {
+		@apply text-sm text-slate-500;
+	}
+	.content-body :global(> p:first-child a) {
+		@apply text-slate-600;
+	}
+	.content-body :global(> p:first-child + ul) {
+		@apply mt-2 list-disc space-y-1 pl-5 text-sm text-slate-500 marker:text-slate-300;
+	}
+	.content-body :global(> p:first-child + ul a) {
+		@apply text-slate-600;
+	}
+
+	/* h1 marks a major section (per docs/playbook/content.md Article/Review Article
+	   Structure). Numbering gives readers a landmark to track progress through a
+	   long article without relying on prose alone. */
+	.content-body :global(h1) {
+		counter-increment: section;
+		@apply mt-16 border-b border-slate-200 pb-3 text-xl font-semibold tracking-tight text-slate-900;
+	}
+	.content-body :global(h1)::before {
+		content: counter(section, decimal-leading-zero) '  ';
+		@apply font-normal text-slate-400;
+	}
+	.content-body :global(h2) {
+		@apply mt-10 text-base font-semibold text-slate-900;
+	}
+	.content-body :global(h3) {
+		@apply mt-8 text-[15px] font-semibold text-slate-900;
+	}
+	.content-body :global(p) {
+		@apply mt-5 text-[17px] leading-relaxed text-slate-600;
+	}
+	/* Lead paragraph: the first paragraph right after a section title reads
+	   slightly darker to draw the eye into each new section. */
+	.content-body :global(h1 + p) {
+		@apply text-slate-700;
+	}
+	.content-body :global(ul) {
+		@apply mt-5 list-disc space-y-2 pl-5 text-[17px] leading-relaxed text-slate-600;
+	}
+	.content-body :global(ol) {
+		@apply mt-5 list-decimal space-y-2 pl-5 text-[17px] leading-relaxed text-slate-600;
+	}
+	.content-body :global(li > strong) {
+		@apply text-slate-900;
+	}
+	.content-body :global(strong) {
+		@apply font-semibold text-slate-900;
+	}
+	.content-body :global(em) {
+		@apply text-slate-700 italic;
+	}
+	.content-body :global(a) {
+		@apply text-slate-900 underline underline-offset-2;
+	}
+	/* Highlight emphasis: the site's single accent color (coral), used sparingly
+	   to flag the one claim in a paragraph that matters most. Markdown has no
+	   native highlight syntax, so authors write raw <mark>...</mark> inline. A
+	   translucent coral wash sits behind slate-900 text, like a highlighter
+	   pen — box-decoration-break keeps the padding consistent if it wraps
+	   across lines. */
+	.content-body :global(mark) {
+		@apply rounded-sm bg-coral-300/40 px-1 py-0.5 text-slate-900 [box-decoration-break:clone];
+	}
+	/* Blockquote doubles as a callout for pull-quotes and standout figures,
+	   not just quoted text. The left accent bar uses the site's coral accent. */
+	.content-body :global(blockquote) {
+		@apply mt-6 rounded-lg border border-slate-200 border-l-4 border-l-coral-600 bg-slate-50 px-5 py-4 text-[17px] leading-relaxed text-slate-700;
+	}
+	.content-body :global(blockquote > *:first-child) {
+		margin-top: 0;
+	}
+	.content-body :global(blockquote p) {
+		@apply text-slate-700;
+	}
+	.content-body :global(code) {
+		@apply rounded bg-slate-100 px-1.5 py-0.5 text-sm text-slate-800;
+	}
+	.content-body :global(pre) {
+		@apply mt-5 overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm;
+	}
+	.content-body :global(pre code) {
+		@apply bg-transparent p-0;
+	}
+	.content-body :global(hr) {
+		@apply mt-16 border-slate-100;
+	}
+	.content-body :global(table) {
+		@apply mt-6 block w-full overflow-x-auto border-collapse text-left text-sm;
+	}
+	.content-body :global(th) {
+		@apply border-b border-slate-300 bg-slate-50 px-3 py-2 font-semibold whitespace-nowrap text-slate-900;
+	}
+	.content-body :global(td) {
+		@apply border-b border-slate-100 px-3 py-2 whitespace-nowrap text-slate-600;
+	}
+	.content-body :global(img) {
+		@apply mt-6 rounded-lg border border-slate-200;
+	}
+	/* Glossary tooltip: acronyms, dataset names, and other jargon a general
+	   engineering reader won't know. Authors write raw <abbr title="설명"
+	   tabindex="0">TERM</abbr> inline — only at a term's first mention per
+	   article, not every repeat. Pure CSS, no JS: the definition lives in the
+	   title attribute and is rendered via ::after/attr(), positioned above the
+	   term so it never pushes surrounding text around. Native title tooltip is
+	   an intentional accessibility fallback (screen readers, no-CSS). Avoid
+	   using this inside <table> — the table's own overflow-x:auto clips an
+	   absolutely-positioned popover; expand those terms inline in prose instead
+	   (see "DER" in the Sortformer section for the pattern). */
+	.content-body :global(abbr[title]) {
+		@apply relative cursor-help decoration-slate-400 decoration-dotted underline-offset-4;
+		text-decoration-line: underline;
+	}
+	.content-body :global(abbr[title])::after {
+		content: attr(title);
+		@apply pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 w-max max-w-64 -translate-x-1/2 rounded-md bg-slate-900 px-2.5 py-1.5 text-left text-xs leading-snug font-normal text-white opacity-0 transition-opacity duration-150;
+	}
+	.content-body :global(abbr[title]:hover)::after,
+	.content-body :global(abbr[title]:focus)::after {
+		@apply opacity-100;
+	}
+</style>
