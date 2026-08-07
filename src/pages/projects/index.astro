@@ -7,7 +7,10 @@ const modules = import.meta.glob('./*.md', { eager: true });
 const projects = sortByDateDesc(modules);
 ---
 
-<BaseLayout title="Projects">
+<BaseLayout
+	title="Projects"
+	description="설계부터 구현, 운영까지 — 정환석이 진행한 프로젝트와 그 과정의 기술적 의사결정을 기록합니다."
+>
 	<h1 class="text-2xl font-semibold text-slate-900">Projects</h1>
 	<ContentList items={projects} emptyMessage="프로젝트를 준비하고 있습니다." />
 </BaseLayout>

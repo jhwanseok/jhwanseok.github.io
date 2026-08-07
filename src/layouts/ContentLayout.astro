@@ -23,9 +23,26 @@ function formatDate(value: string) {
 		day: 'numeric',
 	});
 }
+
+const publishedTime = new Date(date).toISOString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const jsonLd = {
+	'@context': 'https://schema.org',
+	'@type': 'BlogPosting',
+	headline: title,
+	description,
+	datePublished: publishedTime,
+	url: canonicalURL,
+	author: {
+		'@type': 'Person',
+		name: '정환석',
+	},
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} type="article" publishedTime={publishedTime}>
+	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 	<h1 class="text-2xl font-semibold text-slate-900">{title}</h1>
 	<div class="mt-2 flex flex-wrap items-center gap-2">
 		<span class="text-sm text-slate-500">{formatDate(date)}</span>
@@ -64,21 +81,23 @@ function formatDate(value: string) {
 		@apply text-slate-600;
 	}
 
-	/* h1 marks a major section (per docs/playbook/content.md Article/Review Article
+	/* h2 marks a major section (per docs/playbook/content.md Article/Review Article
 	   Structure). Numbering gives readers a landmark to track progress through a
-	   long article without relying on prose alone. */
-	.content-body :global(h1) {
+	   long article without relying on prose alone. Section headings use h2, not
+	   h1 — the page's own <h1> (the article title, rendered above .content-body)
+	   must stay the only h1 on the page. Authors write these as `##` in Markdown. */
+	.content-body :global(h2) {
 		counter-increment: section;
 		@apply mt-16 border-b border-slate-200 pb-3 text-xl font-semibold tracking-tight text-slate-900;
 	}
-	.content-body :global(h1)::before {
+	.content-body :global(h2)::before {
 		content: counter(section, decimal-leading-zero) '  ';
 		@apply font-normal text-slate-400;
 	}
-	.content-body :global(h2) {
+	.content-body :global(h3) {
 		@apply mt-10 text-base font-semibold text-slate-900;
 	}
-	.content-body :global(h3) {
+	.content-body :global(h4) {
 		@apply mt-8 text-[15px] font-semibold text-slate-900;
 	}
 	.content-body :global(p) {
@@ -86,7 +105,7 @@ function formatDate(value: string) {
 	}
 	/* Lead paragraph: the first paragraph right after a section title reads
 	   slightly darker to draw the eye into each new section. */
-	.content-body :global(h1 + p) {
+	.content-body :global(h2 + p) {
 		@apply text-slate-700;
 	}
 	.content-body :global(ul) {
