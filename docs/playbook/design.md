@@ -80,6 +80,10 @@ Animations should communicate state changes or provide subtle feedback.
 
 Avoid animations whose only purpose is visual novelty.
 
+Within content figures, motion is justified when the idea being explained is
+itself a progression over time — and only then. If a static frame conveys
+the same understanding, use the static frame. See ADR 0008.
+
 ---
 
 # Engineering-Oriented Design
@@ -130,7 +134,12 @@ Accessibility should be considered from the beginning, not added later.
 
 # Visual Restraint
 
-Avoid visual elements that distract from the content, including:
+This section governs the interface — layout, navigation, backgrounds, and
+every surface surrounding the content. It does not govern the content
+itself. Diagrams, charts, and figures are the primary focus per Design
+Philosophy above, and are held to "Motion has purpose" instead.
+
+Avoid interface elements that distract from the content, including:
 
 - Excessive animations
 - Decorative 3D effects
