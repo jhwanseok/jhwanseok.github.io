@@ -98,6 +98,8 @@ The primary content categories include:
 
 These categories may evolve alongside the project.
 
+An article or project may cite more than one category as tags, when its content genuinely spans them — see ADR 0009. Tag values should still come from this list rather than ad hoc terms, so the vocabulary stays controlled.
+
 ---
 
 # Article Structure

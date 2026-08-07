@@ -55,3 +55,9 @@ If the number of articles/projects grows large enough that manual
 requirements grow more complex (e.g., tags, related content, draft status),
 this decision should be revisited in favor of Astro Content Collections —
 at that point with real schema requirements to design against.
+
+**Update (ADR 0009):** the `category` field described above was replaced by
+a plural `tags: string[]` field, shared by Articles and Projects, once real
+content showed a single category per entry was too narrow. This was a small
+enough change to make within the plain-Markdown approach; it did not trigger
+the Content Collections revisit described above.

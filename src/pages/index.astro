@@ -11,13 +11,11 @@ const sections = [
 		href: '/projects',
 		label: 'Projects',
 		description: '설계부터 구현, 운영까지. 프로젝트를 진행하는 과정과 기술적 의사결정을 기록합니다.',
-		inProgress: true,
 	},
 	{
 		href: '/articles',
 		label: 'Articles',
 		description: 'AI 시스템 개발 과정에서의 기술적 고민과 선택, 그리고 그 과정에서 얻은 배움을 기록합니다.',
-		inProgress: true,
 	},
 	{
 		href: '/resume',
@@ -48,7 +46,6 @@ const sections = [
 						<a href={section.href} class="font-medium text-slate-900 underline underline-offset-4">
 							{section.label}
 						</a>
-						{section.inProgress && <span class="ml-2 text-xs text-slate-400">(준비 중)</span>}
 						<p class="text-slate-600">{section.description}</p>
 					</li>
 				))

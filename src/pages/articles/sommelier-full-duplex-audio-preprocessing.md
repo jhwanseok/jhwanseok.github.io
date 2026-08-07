@@ -2,7 +2,7 @@
 layout: ../../layouts/ContentLayout.astro
 title: "Sommelier: Full-Duplex 음성 대화 모델을 위한 데이터 전처리 파이프라인"
 date: 2026-08-06
-category: "Voice AI"
+tags: ["Voice AI", "System Architecture", "Production Engineering"]
 ---
 
 리뷰 대상

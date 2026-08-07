@@ -1,7 +1,7 @@
 export interface ContentFrontmatter {
 	title: string;
 	date: string;
-	category?: string;
+	tags?: string[];
 	description?: string;
 }
 
