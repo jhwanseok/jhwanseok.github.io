@@ -11,3 +11,12 @@
 	--color-coral-600: #e34a33;
 	--color-coral-700: #c13a26;
 }
+
+/* Korean text wraps at any syllable by default, which can split a word
+   (어절) mid-way. keep-all restricts breaks to spaces, like Latin text;
+   overflow-wrap is the safety net so a single long unbreakable token (a
+   URL, a hyphenated English term) still wraps instead of overflowing. */
+body {
+	word-break: keep-all;
+	overflow-wrap: break-word;
+}
