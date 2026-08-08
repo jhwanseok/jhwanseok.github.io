@@ -3,6 +3,6 @@
 // repo and installing the giscus GitHub App. Leave GISCUS_REPO_ID and
 // GISCUS_CATEGORY_ID empty to disable the comments widget entirely.
 export const GISCUS_REPO = 'jhwanseok/jhwanseok.github.io';
-export const GISCUS_REPO_ID = '';
-export const GISCUS_CATEGORY = '';
-export const GISCUS_CATEGORY_ID = '';
+export const GISCUS_REPO_ID = 'R_kgDOTrBGUQ';
+export const GISCUS_CATEGORY = 'Comments';
+export const GISCUS_CATEGORY_ID = 'DIC_kwDOTrBGUc4DC8Av';
