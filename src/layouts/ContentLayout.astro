@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Comments from '../components/Comments.astro';
+import ViewCounter from '../components/ViewCounter.astro';
 import { sortByDateDesc } from '../utils/content';
 
 interface Props {
@@ -62,6 +63,7 @@ const jsonLd = {
 	<h1 class="text-2xl font-semibold text-slate-900">{title}</h1>
 	<div class="mt-2 flex flex-wrap items-center gap-2">
 		<span class="text-sm text-slate-500">{formatDate(date)}</span>
+		<ViewCounter mode="page" />
 		{tags?.map((tag) => <span class={tagClass}>{tag}</span>)}
 	</div>
 
