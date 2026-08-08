@@ -33,7 +33,10 @@ const label = mode === 'total' ? '전체 방문' : '조회수';
 				if (!el) return;
 				try {
 					const res = await fetch(endpoint);
-					if (!res.ok) throw new Error('goatcounter request failed');
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
 					const data = await res.json();
 					const digits = String(data.count ?? '').replace(/\D/g, '');
 					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
