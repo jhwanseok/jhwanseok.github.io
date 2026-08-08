@@ -203,14 +203,22 @@ const jsonLd = {
 	.content-body :global(hr) {
 		@apply mt-16 border-slate-100;
 	}
+	/* Cells wrap normally rather than whitespace-nowrap: a short numeric/label
+	   table (e.g. a metrics comparison) stays on one line on its own since the
+	   content is already short, but a table with a prose column (e.g. a
+	   terminology table) wraps within its column instead of forcing the whole
+	   row onto one line — which was stretching the table past the content
+	   width and triggering overflow-x-auto's scrollbar even though the table
+	   didn't actually need to scroll. overflow-x-auto stays as a fallback for
+	   tables that are genuinely wide (many columns). */
 	.content-body :global(table) {
 		@apply mt-6 block w-full overflow-x-auto border-collapse text-left text-sm;
 	}
 	.content-body :global(th) {
-		@apply border-b border-slate-300 bg-slate-50 px-3 py-2 font-semibold whitespace-nowrap text-slate-900;
+		@apply border-b border-slate-300 bg-slate-50 px-3 py-2 font-semibold text-slate-900;
 	}
 	.content-body :global(td) {
-		@apply border-b border-slate-100 px-3 py-2 whitespace-nowrap text-slate-600;
+		@apply border-b border-slate-100 px-3 py-2 text-slate-600;
 	}
 	.content-body :global(img) {
 		@apply mt-6 rounded-lg border border-slate-200;
