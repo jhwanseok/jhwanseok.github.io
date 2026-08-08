@@ -7,26 +7,23 @@ const enabled = GISCUS_REPO_ID.length > 0 && GISCUS_CATEGORY_ID.length > 0;
 {
 	enabled && (
 		<section class="mt-16 border-t border-slate-200 pt-10">
-			<h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">댓글</h2>
-			<div class="mt-6">
-				<script
-					is:inline
-					src="https://giscus.app/client.js"
-					data-repo={GISCUS_REPO}
-					data-repo-id={GISCUS_REPO_ID}
-					data-category={GISCUS_CATEGORY}
-					data-category-id={GISCUS_CATEGORY_ID}
-					data-mapping="pathname"
-					data-strict="0"
-					data-reactions-enabled="1"
-					data-emit-metadata="0"
-					data-input-position="bottom"
-					data-theme="light"
-					data-lang="ko"
-					crossorigin="anonymous"
-					async
-				/>
-			</div>
+			<script
+				is:inline
+				src="https://giscus.app/client.js"
+				data-repo={GISCUS_REPO}
+				data-repo-id={GISCUS_REPO_ID}
+				data-category={GISCUS_CATEGORY}
+				data-category-id={GISCUS_CATEGORY_ID}
+				data-mapping="pathname"
+				data-strict="0"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="bottom"
+				data-theme="light"
+				data-lang="ko"
+				crossorigin="anonymous"
+				async
+			/>
 		</section>
 	)
 }
