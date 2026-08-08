@@ -1,0 +1,46 @@
+---
+import { GOATCOUNTER_CODE } from '../config/analytics';
+
+interface Props {
+	mode: 'page' | 'total';
+}
+
+const { mode } = Astro.props;
+const enabled = GOATCOUNTER_CODE.length > 0;
+
+const endpoint =
+	mode === 'total'
+		? `https://${GOATCOUNTER_CODE}.goatcounter.com/counter/TOTAL.json`
+		: `https://${GOATCOUNTER_CODE}.goatcounter.com/counter/${encodeURIComponent(Astro.url.pathname)}.json`;
+
+const elementId = mode === 'total' ? 'view-counter-total' : 'view-counter-page';
+const label = mode === 'total' ? '전체 방문' : '조회수';
+---
+
+{
+	enabled && (
+		<span id={elementId} class="tabular-nums">
+			{label} 집계 중…
+		</span>
+	)
+}
+
+{
+	enabled && (
+		<script define:vars={{ elementId, endpoint, label }}>
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					if (!res.ok) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		</script>
+	)
+}
