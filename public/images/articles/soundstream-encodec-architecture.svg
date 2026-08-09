@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="soundstreamEncodecTitle">
+  <title id="soundstreamEncodecTitle">SoundStream과 EnCodec의 아키텍처 비교. 두 모델 모두 인코더-RVQ-디코더 구조를 공유한다. EnCodec은 인코더와 디코더에 LSTM 두 층을 추가하고, RVQ 뒤에 5-layer Transformer LM 기반 엔트로피 코딩 단계를 더해 3kbps를 약 1.9kbps까지 한 번 더 압축한다. SoundStream은 3kbps로 Opus 12kbps를 능가하고, EnCodec은 같은 3kbps에서 Lyra-v2 6kbps와 Opus 12kbps를 모두 앞지른다.</title>
+
+  <defs>
+    <marker id="arrowSE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .col-header { font-weight: 700; font-size: 18px; fill: #292524; }
+    .box-title { font-weight: 700; font-size: 14px; fill: #292524; }
+    .box-sub { font-size: 12px; fill: #8a7f72; }
+    .box-title-amber { font-weight: 700; font-size: 14px; fill: #92400e; }
+    .box-sub-amber { font-size: 12px; fill: #92400e; }
+    .box-title-out { font-weight: 700; font-size: 14px; fill: #fffaf4; }
+    .box-sub-out { font-size: 12px; fill: #ecfdf5; }
+    .caption-text { font-size: 13.5px; fill: #292524; }
+  </style>
+
+  <rect width="900" height="700" fill="#fdf6ec" />
+
+  <text x="450" y="28" text-anchor="middle" class="title-text">같은 뼈대, 다른 단계 수 — SoundStream vs EnCodec</text>
+  <text x="450" y="48" text-anchor="middle" class="subtitle-text">인코더–RVQ–디코더는 공유하되, EnCodec은 두 곳을 더 얹는다</text>
+
+  <!-- Divider -->
+  <line x1="450" y1="70" x2="450" y2="640" stroke="#b3a08c" stroke-width="2" stroke-dasharray="6 6" />
+
+  <!-- Column headers -->
+  <text x="225" y="94" text-anchor="middle" class="col-header">SoundStream</text>
+  <text x="675" y="94" text-anchor="middle" class="col-header">EnCodec</text>
+
+  <!-- ===== Left column: SoundStream ===== -->
+  <!-- Row 1: Input -->
+  <rect x="65" y="112" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="225" y="134" text-anchor="middle" class="box-title">오디오 입력</text>
+  <text x="225" y="153" text-anchor="middle" class="box-sub">24kHz</text>
+
+  <line x1="225" y1="168" x2="225" y2="202" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 2: Encoder -->
+  <rect x="65" y="202" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="225" y="224" text-anchor="middle" class="box-title">인코더</text>
+  <text x="225" y="243" text-anchor="middle" class="box-sub">완전 합성곱(Conv)</text>
+
+  <line x1="225" y1="258" x2="225" y2="292" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 3: RVQ -->
+  <rect x="65" y="292" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="225" y="314" text-anchor="middle" class="box-title">RVQ 양자화</text>
+  <text x="225" y="333" text-anchor="middle" class="box-sub">3~18kbps</text>
+
+  <line x1="225" y1="348" x2="225" y2="382" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 4: Decoder -->
+  <rect x="65" y="382" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="225" y="404" text-anchor="middle" class="box-title">디코더</text>
+  <text x="225" y="423" text-anchor="middle" class="box-sub">완전 합성곱(Conv)</text>
+
+  <line x1="225" y1="438" x2="225" y2="472" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 5: Output -->
+  <rect x="65" y="472" width="320" height="56" rx="12" fill="#10b981" stroke="#059669" stroke-width="2" />
+  <text x="225" y="494" text-anchor="middle" class="box-title-out">복원 오디오</text>
+  <text x="225" y="513" text-anchor="middle" class="box-sub-out">3kbps로 Opus 12kbps 능가</text>
+
+  <!-- ===== Right column: EnCodec ===== -->
+  <!-- Row 1: Input -->
+  <rect x="515" y="112" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="675" y="134" text-anchor="middle" class="box-title">오디오 입력</text>
+  <text x="675" y="153" text-anchor="middle" class="box-sub">24kHz</text>
+
+  <line x1="675" y1="168" x2="675" y2="202" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 2: Encoder -->
+  <rect x="515" y="202" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="675" y="224" text-anchor="middle" class="box-title">인코더</text>
+  <text x="675" y="243" text-anchor="middle" class="box-sub">Conv + LSTM×2</text>
+
+  <line x1="675" y1="258" x2="675" y2="292" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 3: RVQ -->
+  <rect x="515" y="292" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="675" y="314" text-anchor="middle" class="box-title">RVQ 양자화</text>
+  <text x="675" y="333" text-anchor="middle" class="box-sub">SoundStream과 동일 구조</text>
+
+  <line x1="675" y1="348" x2="675" y2="382" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 4: Entropy coding (EnCodec only) -->
+  <rect x="515" y="382" width="320" height="56" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
+  <text x="675" y="404" text-anchor="middle" class="box-title-amber">엔트로피 코딩</text>
+  <text x="675" y="423" text-anchor="middle" class="box-sub-amber">3kbps → 약 1.9kbps (+13ms)</text>
+
+  <line x1="675" y1="438" x2="675" y2="472" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 5: Decoder -->
+  <rect x="515" y="472" width="320" height="56" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="675" y="494" text-anchor="middle" class="box-title">디코더</text>
+  <text x="675" y="513" text-anchor="middle" class="box-sub">Conv + LSTM×2</text>
+
+  <line x1="675" y1="528" x2="675" y2="562" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowSE)" />
+
+  <!-- Row 6: Output -->
+  <rect x="515" y="562" width="320" height="56" rx="12" fill="#10b981" stroke="#059669" stroke-width="2" />
+  <text x="675" y="584" text-anchor="middle" class="box-title-out">복원 오디오</text>
+  <text x="675" y="603" text-anchor="middle" class="box-sub-out">3kbps에서 Lyra-v2·Opus 압도</text>
+
+  <text x="450" y="662" text-anchor="middle" class="caption-text">EnCodec은 인코더·디코더에 LSTM을, RVQ 뒤에 엔트로피 코딩 한 단계를 더 얹어 비트레이트를 한 번 더 줄인다.</text>
+</svg>

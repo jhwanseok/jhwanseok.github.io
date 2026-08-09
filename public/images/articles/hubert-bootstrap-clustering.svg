@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" role="img" aria-labelledby="hubertBootstrapTitle">
+  <title id="hubertBootstrapTitle">HuBERT의 부트스트랩 클러스터링: 오디오에서 특징을 추출해 k-means로 가짜 라벨을 만들고, 그 라벨로 마스킹 예측을 학습시킨 뒤, 학습된 모델의 레이어 표현을 다시 다음 라운드의 특징으로 사용하는 순환 구조. 1차는 MFCC·K=100, 2차는 6번째 레이어·K=500, 3차는 9번째 레이어·K=500을 쓰며, 그 결과 라벨 품질(PNMI)이 0.563에서 0.686으로 개선된다.</title>
+
+  <defs>
+    <marker id="arrowH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .box-title { font-weight: 700; font-size: 13px; fill: #292524; }
+    .loop-label { font-size: 12px; fill: #8a7f72; }
+    .chip-text { font-size: 12.5px; font-weight: 700; }
+    .pnmi-title { font-weight: 700; font-size: 14px; }
+    .pnmi-sub { font-size: 12px; }
+    .caption-text { font-size: 14px; fill: #292524; }
+    .section-label { font-size: 12px; fill: #8a7f72; font-style: italic; }
+
+    .chip-1 rect { animation: chip1Fill 8s linear infinite; }
+    .chip-1 text { animation: chip1Text 8s linear infinite; }
+    .chip-2 rect { animation: chip2Fill 8s linear infinite; }
+    .chip-2 text { animation: chip2Text 8s linear infinite; }
+    .chip-3 rect { animation: chip3Fill 8s linear infinite; }
+    .chip-3 text { animation: chip3Text 8s linear infinite; }
+
+    @keyframes chip1Fill {
+      0%     { fill: #e34a33; stroke: #c13a26; }
+      30%    { fill: #e34a33; stroke: #c13a26; }
+      30.1%  { fill: #fffaf4; stroke: #e7dfd3; }
+      100%   { fill: #fffaf4; stroke: #e7dfd3; }
+    }
+    @keyframes chip1Text {
+      0%     { fill: #fdf6ec; }
+      30%    { fill: #fdf6ec; }
+      30.1%  { fill: #292524; }
+      100%   { fill: #292524; }
+    }
+    @keyframes chip2Fill {
+      0%     { fill: #fffaf4; stroke: #e7dfd3; }
+      29.9%  { fill: #fffaf4; stroke: #e7dfd3; }
+      30%    { fill: #e34a33; stroke: #c13a26; }
+      63%    { fill: #e34a33; stroke: #c13a26; }
+      63.1%  { fill: #fffaf4; stroke: #e7dfd3; }
+      100%   { fill: #fffaf4; stroke: #e7dfd3; }
+    }
+    @keyframes chip2Text {
+      0%     { fill: #292524; }
+      29.9%  { fill: #292524; }
+      30%    { fill: #fdf6ec; }
+      63%    { fill: #fdf6ec; }
+      63.1%  { fill: #292524; }
+      100%   { fill: #292524; }
+    }
+    @keyframes chip3Fill {
+      0%     { fill: #fffaf4; stroke: #e7dfd3; }
+      62.9%  { fill: #fffaf4; stroke: #e7dfd3; }
+      63%    { fill: #e34a33; stroke: #c13a26; }
+      97%    { fill: #e34a33; stroke: #c13a26; }
+      97.1%  { fill: #fffaf4; stroke: #e7dfd3; }
+      100%   { fill: #fffaf4; stroke: #e7dfd3; }
+    }
+    @keyframes chip3Text {
+      0%     { fill: #292524; }
+      62.9%  { fill: #292524; }
+      63%    { fill: #fdf6ec; }
+      97%    { fill: #fdf6ec; }
+      97.1%  { fill: #292524; }
+      100%   { fill: #292524; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chip-1 rect { animation: none; fill: #fffaf4; stroke: #e7dfd3; }
+      .chip-1 text { animation: none; fill: #292524; }
+      .chip-2 rect { animation: none; fill: #fffaf4; stroke: #e7dfd3; }
+      .chip-2 text { animation: none; fill: #292524; }
+      .chip-3 rect { animation: none; fill: #e34a33; stroke: #c13a26; }
+      .chip-3 text { animation: none; fill: #fdf6ec; }
+    }
+  </style>
+
+  <rect width="880" height="430" fill="#fdf6ec" />
+
+  <text x="440" y="28" text-anchor="middle" class="title-text">HuBERT의 부트스트랩: 스스로 만든 라벨이 스스로 좋아진다</text>
+  <text x="440" y="48" text-anchor="middle" class="subtitle-text">학습된 표현이 다음 라운드의 클러스터링 입력이 된다</text>
+
+  <!-- Loop-back arc (drawn first, behind boxes) -->
+  <path d="M 764,110 C 700,80 342,80 278,110" fill="none" stroke="#b3a08c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowH)" />
+  <text x="521" y="72" text-anchor="middle" class="loop-label">학습된 레이어 표현을 다음 라운드의 특징으로</text>
+
+  <!-- Static process loop -->
+  <rect x="60" y="110" width="112" height="60" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="116" y="145" text-anchor="middle" class="box-title">오디오</text>
+
+  <line x1="172" y1="140" x2="217" y2="140" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowH)" />
+
+  <rect x="222" y="110" width="112" height="60" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="278" y="145" text-anchor="middle" class="box-title">특징 추출</text>
+
+  <line x1="334" y1="140" x2="379" y2="140" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowH)" />
+
+  <rect x="384" y="110" width="112" height="60" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="440" y="145" text-anchor="middle" class="box-title">k-means</text>
+
+  <line x1="496" y1="140" x2="541" y2="140" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowH)" />
+
+  <rect x="546" y="110" width="112" height="60" rx="12" fill="#ffe4de" stroke="#ffab91" stroke-width="2" />
+  <text x="602" y="145" text-anchor="middle" class="box-title" fill="#c13a26">가짜 라벨</text>
+
+  <line x1="658" y1="140" x2="703" y2="140" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowH)" />
+
+  <rect x="708" y="110" width="112" height="60" rx="12" fill="#e34a33" stroke="#c13a26" stroke-width="2" />
+  <text x="764" y="145" text-anchor="middle" class="box-title" fill="#fffaf4">HuBERT 학습</text>
+
+  <!-- Step tracker -->
+  <text x="440" y="196" text-anchor="middle" class="section-label">라운드마다 입력이 바뀐다</text>
+
+  <g class="chip-1">
+    <rect x="70" y="210" width="230" height="34" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <text x="185" y="232" text-anchor="middle" class="chip-text">1차 · MFCC · K=100</text>
+  </g>
+  <text x="312" y="232" text-anchor="middle" fill="#b3a08c" font-size="16">→</text>
+  <g class="chip-2">
+    <rect x="325" y="210" width="230" height="34" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <text x="440" y="232" text-anchor="middle" class="chip-text">2차 · 6번째 레이어 · K=500</text>
+  </g>
+  <text x="567" y="232" text-anchor="middle" fill="#b3a08c" font-size="16">→</text>
+  <g class="chip-3">
+    <rect x="580" y="210" width="230" height="34" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <text x="695" y="232" text-anchor="middle" class="chip-text">3차 · 9번째 레이어 · K=500</text>
+  </g>
+
+  <!-- PNMI before/after -->
+  <text x="440" y="282" text-anchor="middle" class="section-label">가짜 라벨의 품질(PNMI) — 음소와의 대응도</text>
+
+  <rect x="290" y="298" width="140" height="70" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
+  <text x="360" y="325" text-anchor="middle" class="pnmi-title" fill="#92400e">MFCC 기반</text>
+  <text x="360" y="348" text-anchor="middle" class="pnmi-sub" fill="#92400e">PNMI 0.563</text>
+
+  <line x1="430" y1="333" x2="522" y2="333" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowH)" />
+
+  <rect x="530" y="298" width="140" height="70" rx="12" fill="#10b981" stroke="#059669" stroke-width="2" />
+  <text x="600" y="325" text-anchor="middle" class="pnmi-title" fill="#fffaf4">학습된 표현 기반</text>
+  <text x="600" y="348" text-anchor="middle" class="pnmi-sub" fill="#ecfdf5">PNMI 0.686</text>
+
+  <text x="440" y="404" text-anchor="middle" class="caption-text">가짜 라벨의 품질 자체가 학습을 거치며 스스로 좋아진다.</text>
+</svg>

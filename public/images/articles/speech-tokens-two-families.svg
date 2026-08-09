@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" role="img" aria-labelledby="speechTokensTitle">
+  <title id="speechTokensTitle">같은 음성 입력이 두 갈래로 갈라진다. HuBERT는 마스킹 예측을 목표로 학습되어 화자 정보가 사라진 semantic 토큰을 만들고, SoundStream/EnCodec은 파형 복원을 목표로 학습되어 화자·억양이 보존된 acoustic 토큰을 만든다.</title>
+
+  <defs>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .box-title { font-weight: 700; font-size: 15px; }
+    .box-sub { font-size: 12px; fill: #8a7f72; }
+    .out-title { font-weight: 700; font-size: 16px; fill: #fffaf4; }
+    .out-sub { font-size: 12px; fill: #ffe4de; }
+    .note-text { font-size: 12px; }
+    .input-title { font-weight: 700; font-size: 15px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="400" fill="#fdf6ec" />
+
+  <text x="440" y="28" text-anchor="middle" class="title-text">음성 입력이 갈라지는 두 갈래 — 예측 경로 vs 복원 경로</text>
+  <text x="440" y="48" text-anchor="middle" class="subtitle-text">같은 소리에서 완전히 다른 정보를 남긴다</text>
+
+  <!-- Input -->
+  <rect x="40" y="175" width="140" height="60" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="110" y="210" text-anchor="middle" class="input-title">음성 입력</text>
+
+  <!-- Branch curves -->
+  <path d="M180,195 Q225,195 260,125" stroke="#b3a08c" stroke-width="2" fill="none" marker-end="url(#arrow2)" />
+  <path d="M180,215 Q225,215 260,285" stroke="#b3a08c" stroke-width="2" fill="none" marker-end="url(#arrow2)" />
+
+  <!-- Top path: HuBERT -->
+  <rect x="260" y="90" width="170" height="70" rx="12" fill="#ffe4de" stroke="#ffab91" stroke-width="2" />
+  <text x="345" y="118" text-anchor="middle" class="box-title" fill="#c13a26">HuBERT</text>
+  <text x="345" y="138" text-anchor="middle" class="box-sub">마스킹 예측(SSL)</text>
+
+  <line x1="430" y1="125" x2="480" y2="125" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow2)" />
+
+  <rect x="490" y="90" width="180" height="70" rx="12" fill="#e34a33" stroke="#c13a26" stroke-width="2" />
+  <text x="580" y="118" text-anchor="middle" class="out-title">semantic 토큰</text>
+  <text x="580" y="138" text-anchor="middle" class="out-sub">무슨 말인지</text>
+
+  <text x="700" y="178" class="note-text" fill="#059669">✓ 문맥 예측에 유리</text>
+  <text x="700" y="196" class="note-text" fill="#92400e">✕ 화자·억양 정보 소실</text>
+
+  <!-- Bottom path: SoundStream/EnCodec -->
+  <rect x="260" y="250" width="170" height="70" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2" />
+  <text x="345" y="276" text-anchor="middle" class="box-title" fill="#059669" font-size="14">SoundStream /</text>
+  <text x="345" y="294" text-anchor="middle" class="box-title" fill="#059669" font-size="14">EnCodec</text>
+
+  <line x1="430" y1="285" x2="480" y2="285" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow2)" />
+
+  <rect x="490" y="250" width="180" height="70" rx="12" fill="#10b981" stroke="#059669" stroke-width="2" />
+  <text x="580" y="278" text-anchor="middle" class="out-title">acoustic 토큰</text>
+  <text x="580" y="298" text-anchor="middle" class="out-sub" fill="#ecfdf5">어떻게 들리는지</text>
+
+  <text x="700" y="338" class="note-text" fill="#059669">✓ 화자·억양·잡음 보존</text>
+  <text x="700" y="356" class="note-text" fill="#92400e">✕ 장문맥 예측이 어려움</text>
+
+</svg>
