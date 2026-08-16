@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">caveman 도입 판단: 조건부로 쓴다</title>
+  <desc id="desc">출력이 긴 작업에서는 세션 비용이 15.1퍼센트 줄었고, 출력이 짧은 작업에서는 오히려 9.9퍼센트 늘어 출력이 긴 작업에서만 조건부로 켜기로 판단했다</desc>
+
+  <rect x="0" y="0" width="880" height="340" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Verdict (hero — the one thing to notice) -->
+  <rect x="40" y="30" width="800" height="100" rx="16" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="440" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">판단: 조건부로 쓴다</text>
+  <text x="440" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#ffd9cf">출력이 긴 작업에서만 켠다</text>
+
+  <!-- Arrows: supporting facts feed up into the verdict -->
+  <line x1="230" y1="208" x2="230" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="650" y1="208" x2="650" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Fact 1: long-output task supports adoption (pale emerald) -->
+  <rect x="40" y="210" width="380" height="90" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="230" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#059669">긴 작업엔 순절감</text>
+  <text x="230" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">출력 15k+ 토큰 — 비용 −15.1%</text>
+
+  <!-- Fact 2: short-output task argues against (amber) -->
+  <rect x="460" y="210" width="380" height="90" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="650" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">짧은 작업엔 순손실</text>
+  <text x="650" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">출력 ~3.5k 토큰 — 비용 +9.9%</text>
+
+  <text x="440" y="325" text-anchor="middle" font-size="12" fill="#a89f92">두 archetype, n=3 기준 — 저자가 공개한 breakeven 지점(출력 1.5~2k 토큰)과 방향 일치</text>
+</svg>
