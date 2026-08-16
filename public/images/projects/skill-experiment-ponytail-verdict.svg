@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">ponytail 도입 판단: 도입하지 않는다</title>
+  <desc id="desc">대안이 있는 작업에서는 LOC가 34에서 49퍼센트 줄어드는 효과가 실험으로 확인됐지만, 코드 생성 자체가 작업의 일부일 뿐이라 그 조건에 걸리는 빈도가 낮아 이 스킬을 도입하지 않기로 판단했다</desc>
+
+  <rect x="0" y="0" width="880" height="340" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Verdict (hero — the one thing to notice) -->
+  <rect x="40" y="30" width="800" height="100" rx="16" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="440" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">판단: 도입하지 않는다</text>
+  <text x="440" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#ffd9cf">효과는 있지만, 걸리는 빈도가 낮다</text>
+
+  <!-- Arrows: supporting facts feed up into the verdict -->
+  <line x1="230" y1="208" x2="230" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="650" y1="208" x2="650" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Fact 1: the effect is real (pale emerald) -->
+  <rect x="40" y="210" width="380" height="90" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="230" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#059669">실험이 확인한 사실</text>
+  <text x="230" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">대안 있는 작업 → LOC −34~49%</text>
+
+  <!-- Fact 2: applicability gap — scope + frequency, not "no branch points ever" (amber) -->
+  <rect x="460" y="210" width="380" height="90" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="650" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">적용 범위가 좁다</text>
+  <text x="650" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">글쓰기는 범위 밖, 개발에서도 가끔뿐</text>
+
+  <text x="440" y="325" text-anchor="middle" font-size="12" fill="#a89f92">bookmarks-api 두 티켓, n=3 기준 — 실험은 유효하다, 다만 내 작업엔 드물게 걸린다</text>
+</svg>
