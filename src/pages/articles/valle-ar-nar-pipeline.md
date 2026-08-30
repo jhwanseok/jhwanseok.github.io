@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ContentLayout.astro
 title: "[기계가 대화를 배우는 법 #4] VALL-E — 회귀 대신 예측: TTS를 언어모델링 문제로 다시 쓰다"
-date: 2026-08-08T12:00:00
+date: 2026-08-31T12:00:00
 tags: ["Voice AI", "System Architecture", "Production Engineering"]
 description: "TTS를 연속 신호 회귀가 아니라 토큰 예측 문제로 재정의해 3초 프롬프트만으로 zero-shot 화자 복제 능력이 저절로 따라온 VALL-E의 AR/NAR 구조를, 끝내 공개되지 않은 이유까지 포함해 프로덕션 관점에서 리뷰합니다."
 ---
