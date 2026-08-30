@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 340" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">VALL-E AR/NAR 파이프라인 흐름도</title>
+  <desc id="desc">음소 텍스트와 3초 음성 프롬프트가 EnCodec 인코딩을 거쳐 8개 코드북 토큰이 되고, AR 모델이 그 조건 위에서 코드북 0을 자기회귀적으로 예측한 뒤, NAR 모델이 음소·프롬프트·코드북 0을 조건으로 나머지 코드북 1~7을 비자기회귀적으로 한 번에 예측하고, 코덱 디코더가 화자의 목소리를 유지한 합성 음성을 만든다</desc>
+
+  <rect x="0" y="0" width="900" height="340" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Row 1 -->
+  <rect x="20" y="30" width="250" height="90" rx="45" fill="#fffaf4" stroke="#c9bfae" stroke-width="1.5" stroke-dasharray="4 4" />
+  <text x="145" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#57534e">입력</text>
+  <text x="145" y="91" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">음소 텍스트 + 3초 음성 프롬프트</text>
+
+  <rect x="300" y="30" width="250" height="90" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="425" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">EnCodec 인코딩</text>
+  <text x="425" y="91" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">프롬프트 → 8개 코드북 토큰</text>
+
+  <rect x="580" y="30" width="300" height="90" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="730" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#c13a26">AR — 코드북 0</text>
+  <text x="730" y="91" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">causal · 자기회귀 순차 예측</text>
+
+  <line x1="270" y1="75" x2="298" y2="75" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="550" y1="75" x2="578" y2="75" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Elbow connector: AR -> NAR -->
+  <path d="M 730 120 L 730 155 L 170 155 L 170 188" fill="none" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="450" y="149" text-anchor="middle" font-size="12" font-weight="600" fill="#57534e">코드북 0을 조건에 더해</text>
+
+  <!-- Row 2 -->
+  <rect x="20" y="190" width="300" height="90" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="170" y="225" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">NAR — 코드북 1~7</text>
+  <text x="170" y="246" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">full attention · 비자기회귀 동시 예측</text>
+  <text x="170" y="262" text-anchor="middle" font-size="11" font-weight="500" fill="#8a7f72">조건: 음소 + 프롬프트 + 코드북 0</text>
+
+  <rect x="340" y="190" width="260" height="90" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="470" y="235" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">코덱 디코더</text>
+  <text x="470" y="256" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">8개 코드북 → 파형</text>
+
+  <rect x="620" y="190" width="260" height="90" rx="14" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="750" y="235" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">합성 음성</text>
+  <text x="750" y="256" text-anchor="middle" font-size="12.5" font-weight="500" fill="#ecfdf5">화자 목소리 유지</text>
+
+  <line x1="320" y1="235" x2="338" y2="235" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="600" y1="235" x2="618" y2="235" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <text x="450" y="308" text-anchor="middle" font-size="13.5" font-weight="500" fill="#c13a26">AR이 예측한 코드북 0의 오류는 그대로 NAR 전체에 전파된다 — 안정성이 낮은 이유다.</text>
+  <text x="450" y="328" text-anchor="middle" font-size="12" fill="#a89f92">VALL-E (Wang et al., 2023) 재구성</text>
+</svg>
