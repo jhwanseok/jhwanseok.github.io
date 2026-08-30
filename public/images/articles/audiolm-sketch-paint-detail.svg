@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" role="img" aria-labelledby="audiolmSketchTitle">
+  <title id="audiolmSketchTitle">같은 원 하나가 세 단계를 거친다. Stage 1(Semantic)에서는 윤곽선만 있고, Stage 2(Coarse Acoustic)에서 색이 채워지고, Stage 3(Fine Acoustic)에서 질감이 더해진다. 이전 단계가 그린 것은 지워지지 않고 그 위에만 더해진다.</title>
+
+  <defs>
+    <pattern id="detailTexture" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#e34a33" />
+      <circle cx="5" cy="5" r="1.3" fill="#ffb4a3" opacity="0.85" />
+    </pattern>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .stage-label { font-weight: 700; font-size: 13px; fill: #8a7f72; }
+    .caption-text { font-size: 12.5px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="300" fill="#fdf6ec" />
+
+  <text x="440" y="28" text-anchor="middle" class="title-text">같은 내용, 세 번에 걸쳐 완성된다</text>
+  <text x="440" y="48" text-anchor="middle" class="subtitle-text">이전 단계가 그린 것은 지우지 않고, 그 위에만 더한다</text>
+
+  <!-- Stage 1: outline only -->
+  <text x="175" y="90" text-anchor="middle" class="stage-label">Stage 1 · Semantic</text>
+  <circle cx="175" cy="175" r="55" fill="none" stroke="#292524" stroke-width="2.5" />
+  <text x="175" y="255" text-anchor="middle" class="caption-text">윤곽선만</text>
+  <text x="175" y="273" text-anchor="middle" class="caption-text">무슨 내용인지</text>
+
+  <text x="300" y="180" text-anchor="middle" fill="#b3a08c" font-size="26">→</text>
+
+  <!-- Stage 2: solid fill -->
+  <text x="440" y="90" text-anchor="middle" class="stage-label">Stage 2 · Coarse Acoustic</text>
+  <circle cx="440" cy="175" r="55" fill="#e34a33" stroke="#c13a26" stroke-width="2.5" />
+  <text x="440" y="255" text-anchor="middle" class="caption-text">색이 채워짐</text>
+  <text x="440" y="273" text-anchor="middle" class="caption-text">누구의 목소리인지</text>
+
+  <text x="565" y="180" text-anchor="middle" fill="#b3a08c" font-size="26">→</text>
+
+  <!-- Stage 3: textured fill -->
+  <text x="705" y="90" text-anchor="middle" class="stage-label">Stage 3 · Fine Acoustic</text>
+  <circle cx="705" cy="175" r="55" fill="url(#detailTexture)" stroke="#c13a26" stroke-width="2.5" />
+  <text x="705" y="255" text-anchor="middle" class="caption-text">질감이 더해짐</text>
+  <text x="705" y="273" text-anchor="middle" class="caption-text">어떻게 들리는지</text>
+</svg>

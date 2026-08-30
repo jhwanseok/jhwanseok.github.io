@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="audiolmTitle">
+  <title id="audiolmTitle">AudioLM의 3단계 계층 생성 파이프라인. Semantic Modeling이 문장 구조를 잡고, 그 조건 위에 Coarse Acoustic Modeling이 화자의 목소리를 입히고, 마지막으로 Fine Acoustic Modeling이 세밀한 질감을 더한다. 각 단계는 이전 단계가 정한 것을 그대로 둔 채 새 정보만 쌓는다.</title>
+
+  <defs>
+    <marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .box-title { font-weight: 700; font-size: 15px; }
+    .box-sub { font-size: 11.5px; fill: #8a7f72; }
+    .tag-text { font-size: 11px; fill: #292524; }
+    .arrow-label { font-size: 11px; fill: #8a7f72; }
+    .caption-text { font-size: 13px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="340" fill="#fdf6ec" />
+
+  <text x="440" y="28" text-anchor="middle" class="title-text">AudioLM: 세 단계로 나눠 조건화한다</text>
+  <text x="440" y="48" text-anchor="middle" class="subtitle-text">각 단계는 이전 단계가 정한 것을 바꾸지 않고 그 위에 새 정보만 얹는다</text>
+
+  <!-- Stage 1 -->
+  <rect x="50" y="100" width="230" height="90" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="165" y="135" text-anchor="middle" class="box-title" fill="#292524">Semantic Modeling</text>
+  <text x="165" y="156" text-anchor="middle" class="box-sub">250bps · w2v-BERT XL</text>
+  <text x="165" y="172" text-anchor="middle" class="box-sub">문장의 뼈대를 잡는다</text>
+
+  <line x1="280" y1="145" x2="320" y2="145" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow3)" />
+  <text x="300" y="132" text-anchor="middle" class="arrow-label">조건</text>
+
+  <!-- Stage 2 -->
+  <rect x="325" y="100" width="230" height="90" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="2" />
+  <text x="440" y="135" text-anchor="middle" class="box-title" fill="#c13a26">Coarse Acoustic</text>
+  <text x="440" y="156" text-anchor="middle" class="box-sub">2000bps · RVQ 앞 4층</text>
+  <text x="440" y="172" text-anchor="middle" class="box-sub">화자의 목소리를 입힌다</text>
+
+  <line x1="555" y1="145" x2="595" y2="145" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow3)" />
+  <text x="575" y="132" text-anchor="middle" class="arrow-label">조건</text>
+
+  <!-- Stage 3 -->
+  <rect x="600" y="100" width="230" height="90" rx="14" fill="#10b981" stroke="#059669" stroke-width="2" />
+  <text x="715" y="135" text-anchor="middle" class="box-title" fill="#fffaf4">Fine Acoustic</text>
+  <text x="715" y="156" text-anchor="middle" class="box-sub" fill="#ecfdf5">누적 6000bps · RVQ 나머지 8층</text>
+  <text x="715" y="172" text-anchor="middle" class="box-sub" fill="#ecfdf5">세밀한 질감을 더한다</text>
+
+  <!-- Accumulating tags -->
+  <rect x="120" y="215" width="90" height="24" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="165" y="231" text-anchor="middle" class="tag-text">문장 구조</text>
+
+  <rect x="395" y="215" width="90" height="24" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="440" y="231" text-anchor="middle" class="tag-text">문장 구조</text>
+  <rect x="392" y="243" width="96" height="24" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="440" y="259" text-anchor="middle" class="tag-text">화자 목소리</text>
+
+  <rect x="670" y="215" width="90" height="24" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="715" y="231" text-anchor="middle" class="tag-text">문장 구조</text>
+  <rect x="667" y="243" width="96" height="24" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="715" y="259" text-anchor="middle" class="tag-text">화자 목소리</text>
+  <rect x="663" y="271" width="104" height="24" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="715" y="287" text-anchor="middle" class="tag-text">세밀한 질감</text>
+
+  <text x="440" y="322" text-anchor="middle" class="caption-text">3초 프롬프트가 준 화자 정보는 Stage 2부터 조건에 실려 끝까지 유지된다.</text>
+</svg>
