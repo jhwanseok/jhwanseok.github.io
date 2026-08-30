@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ContentLayout.astro
 title: "[기계가 대화를 배우는 법 #3] AudioLM: 3초만 듣고 그 사람처럼 이어 말하다"
-date: 2026-08-08T11:00:00
+date: 2026-08-31T11:00:00
 tags: ["Voice AI", "System Architecture"]
 description: "semantic 토큰과 acoustic 토큰을 섞지 않고 순서를 주어 3단계로 조건화하는 AudioLM의 계층적 생성 구조를, 3초 프롬프트만으로 화자를 유지하는 결과와 함께 프로덕션 관점에서 리뷰합니다."
 ---
