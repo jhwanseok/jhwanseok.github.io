@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
-  <title id="title">superpowers 도입 판단: 도입하지 않는다</title>
-  <desc id="desc">쉬운 버그와 일부러 더 어렵게 설계한 버그 모두에서 정확도는 on/off 차이가 없었고 비용만 42에서 43퍼센트 늘어, 정확성을 목적으로는 도입하지 않기로 판단했다</desc>
+  <title id="title">superpowers 실험 결론: 도입 안 함</title>
+  <desc id="desc">쉬운 버그와 일부러 더 어렵게 설계한 버그 모두에서 정확도는 on/off 차이가 없었고 비용만 42에서 43퍼센트 늘어, 정확성을 목적으로는 도입하지 않기로 했습니다.</desc>
 
   <rect x="0" y="0" width="880" height="340" fill="#fdf6ec" />
 
@@ -12,8 +12,8 @@
 
   <!-- Verdict (hero — the one thing to notice) -->
   <rect x="40" y="30" width="800" height="100" rx="16" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
-  <text x="440" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">판단: 도입하지 않는다</text>
-  <text x="440" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#ffd9cf">두 난이도 모두 결과는 같고 비용만 늘었다</text>
+  <text x="440" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">도입 안 함</text>
+  <text x="440" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#ffd9cf">두 난이도 모두 결과는 동일, 비용만 증가</text>
 
   <!-- Arrows: supporting facts feed up into the verdict -->
   <line x1="230" y1="208" x2="230" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
@@ -29,5 +29,5 @@
   <text x="650" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">비용은 꾸준히 증가</text>
   <text x="650" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">두 실험 모두 +42~43%</text>
 
-  <text x="440" y="325" text-anchor="middle" font-size="12" fill="#a89f92">bookmarks-api 버그 2건(SQLite collation + TOCTOU 레이스), 조건당 n=3 — 과정은 바뀌지만 결과는 그대로</text>
+  <text x="440" y="325" text-anchor="middle" font-size="12" fill="#a89f92">bookmarks-api 버그 2건(SQLite collation, TOCTOU 레이스), 조건당 n=3. 과정은 바뀌지만 결과물은 그대로</text>
 </svg>
