@@ -60,7 +60,7 @@ const jsonLd = {
 
 <BaseLayout title={title} description={description} type="article" publishedTime={publishedTime}>
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-	<h1 class="text-2xl font-semibold text-slate-900">{title}</h1>
+	<h1 class="text-3xl font-semibold tracking-tight text-slate-900">{title}</h1>
 	<div class="mt-2 flex flex-wrap items-center gap-2">
 		<span class="text-sm text-slate-500">{formatDate(date)}</span>
 		<ViewCounter mode="page" />
@@ -104,9 +104,6 @@ const jsonLd = {
 <style>
 	@reference '../styles/global.css';
 
-	.content-body {
-		counter-reset: section;
-	}
 	.content-body :global(> *:first-child) {
 		margin-top: 0;
 	}
@@ -129,37 +126,32 @@ const jsonLd = {
 	}
 
 	/* h2 marks a major section (per docs/playbook/content.md Article/Review Article
-	   Structure). Numbering gives readers a landmark to track progress through a
-	   long article without relying on prose alone. Section headings use h2, not
-	   h1 — the page's own <h1> (the article title, rendered above .content-body)
-	   must stay the only h1 on the page. Authors write these as `##` in Markdown. */
+	   Structure). It gives readers a landmark to track progress through a long
+	   article. Section headings use h2, not h1 — the page's own <h1> (the article
+	   title, rendered above .content-body) must stay the only h1 on the page.
+	   Authors write these as `##` in Markdown. */
 	.content-body :global(h2) {
-		counter-increment: section;
-		@apply mt-16 border-b border-slate-200 pb-3 text-xl font-semibold tracking-tight text-slate-900;
-	}
-	.content-body :global(h2)::before {
-		content: counter(section, decimal-leading-zero) '  ';
-		@apply font-normal text-slate-400;
+		@apply mt-14 border-b border-slate-100 pb-2 text-xl font-semibold tracking-tight text-slate-900;
 	}
 	.content-body :global(h3) {
 		@apply mt-10 text-base font-semibold text-slate-900;
 	}
 	.content-body :global(h4) {
-		@apply mt-8 text-[15px] font-semibold text-slate-900;
+		@apply mt-10 text-[17px] font-semibold text-slate-900;
 	}
 	.content-body :global(p) {
-		@apply mt-5 text-[17px] leading-relaxed text-slate-600;
+		@apply mt-5 text-[17px] leading-relaxed text-slate-700;
 	}
 	/* Lead paragraph: the first paragraph right after a section title reads
 	   slightly darker to draw the eye into each new section. */
 	.content-body :global(h2 + p) {
-		@apply text-slate-700;
+		@apply text-slate-800;
 	}
 	.content-body :global(ul) {
-		@apply mt-5 list-disc space-y-2 pl-5 text-[17px] leading-relaxed text-slate-600;
+		@apply mt-5 list-disc space-y-2 pl-5 text-[17px] leading-relaxed text-slate-700;
 	}
 	.content-body :global(ol) {
-		@apply mt-5 list-decimal space-y-2 pl-5 text-[17px] leading-relaxed text-slate-600;
+		@apply mt-5 list-decimal space-y-2 pl-5 text-[17px] leading-relaxed text-slate-700;
 	}
 	.content-body :global(li > strong) {
 		@apply text-slate-900;
@@ -203,7 +195,7 @@ const jsonLd = {
 		@apply bg-transparent p-0;
 	}
 	.content-body :global(hr) {
-		@apply mt-16 border-slate-100;
+		@apply mt-12 border-slate-100;
 	}
 	/* Cells wrap normally rather than whitespace-nowrap: a short numeric/label
 	   table (e.g. a metrics comparison) stays on one line on its own since the
@@ -220,7 +212,7 @@ const jsonLd = {
 		@apply border-b border-slate-300 bg-slate-50 px-3 py-2 font-semibold text-slate-900;
 	}
 	.content-body :global(td) {
-		@apply border-b border-slate-100 px-3 py-2 text-slate-600;
+		@apply border-b border-slate-100 px-3 py-2 text-slate-700;
 	}
 	.content-body :global(img) {
 		@apply mt-6 rounded-lg border border-slate-200;

@@ -123,7 +123,7 @@ Some articles review external technical material — a blog post, a paper, or a 
 
 The goal is to explain how the reviewed material's engineering decisions apply to real systems, not to summarize what it says.
 
-Review articles should follow this structure:
+Review articles should cover these six roles, usually in this order:
 
 1. Summary
 2. What Problem?
@@ -132,7 +132,9 @@ Review articles should follow this structure:
 5. Production Perspective
 6. My Takeaways
 
-This differs from the general Article Structure above because the source material already documents the problem and solution — the value of a review article is in the interpretation layered on top of it: what was gained and lost by the reviewed design, what it means for a production system, and what the author would carry forward into their own work.
+These are roles, not a heading template. Do not map them one-to-one onto six `##` sections: a short "What Problem?" can fold into the summary, and "Trade-offs" and "Production Perspective" can share a section when they are one line of thought. The number of sections should vary from article to article. Reusing another review's heading text (`## 남은 숙제`, `## 실제 서비스에 놓고 보면`, `## 공짜로 얻은 건 없다`) is a form of the Unnecessary repetition the Writing Style section rules out — see `.claude/commands/review-article.md` for the concrete list of stock phrasings to avoid.
+
+This structure differs from the general Article Structure above because the source material already documents the problem and solution. The value of a review article is in the interpretation layered on top of it: what was gained and lost by the reviewed design, what it means for a production system, and what the author would carry forward into their own work.
 
 Every review article must cite what it reviews. Link back to the original source(s) — paper, blog post, repository, talk — so the reader can always find and verify what is being interpreted. Place these links near the top of the article, before the interpretation begins.
 
@@ -154,9 +156,13 @@ Avoid:
 - Marketing language
 - Buzzwords without explanation
 - Overly casual writing
-- Unnecessary repetition
+- Unnecessary repetition — within an article, and also *across* articles. Reusing the same section headings, the same opening sentence pattern, or the same "gained / lost" sub-structure from one piece to the next makes the whole body of work read as machine-generated. Each article's structure should follow that article's actual content.
 
 Write with the assumption that the audience consists of fellow engineers.
+
+## Korean prose
+
+Korean prose in this repo uses a warm 합니다체 — the register of an experienced engineer explaining something to a peer, not a paper's `-다` declarative. Address the reader ("여러분"), ask questions and answer them in the body, and let first-person perspective and honest reactions show. This is "friendly", not "casual": buzzwords, slang, and clickbait stay out. The reference tone is jiho-ml's weekly-nlp series. See `CLAUDE.md`'s "Korean Prose Style" section for the mechanical rules (no em dashes, sentences end on a 서술어, etc.).
 
 ---
 
