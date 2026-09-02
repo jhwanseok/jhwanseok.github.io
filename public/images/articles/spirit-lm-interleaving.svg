@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">Spirit LM의 단어 수준 텍스트-음성 인터리빙</title>
+  <desc id="desc">Llama 2 7B를 웜스타트한 뒤, 텍스트 토큰 the·cat과 음성 토큰 Hu3·Hu7…Hu200과 다시 텍스트 토큰 the·mat이 단어 경계에서 번갈아 나타나는 하나의 토큰 시퀀스로 학습한다</desc>
+
+  <rect x="0" y="0" width="1000" height="260" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <text x="500" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">텍스트와 음성을 한 시퀀스로 — 단어 경계에서 갈아탄다</text>
+  <text x="500" y="48" text-anchor="middle" font-size="13" fill="#8a7f72">Llama 2 7B를 웜스타트해 하나의 토큰 스트림 위에서 이어 학습한다</text>
+
+  <!-- Llama base box -->
+  <rect x="30" y="100" width="170" height="90" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="115" y="140" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">Llama 2 7B</text>
+  <text x="115" y="162" text-anchor="middle" font-size="11.5" font-weight="500" fill="#8a7f72">텍스트 사전학습 가중치</text>
+
+  <line x1="200" y1="145" x2="258" y2="145" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="229" y="132" text-anchor="middle" font-size="11" font-weight="500" fill="#8a7f72">웜스타트</text>
+
+  <!-- Segment pills -->
+  <rect x="270" y="93" width="168" height="24" rx="12" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="354" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="#c13a26">텍스트 토큰</text>
+
+  <rect x="446" y="93" width="344" height="24" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+  <text x="618" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">음성 토큰 (HuBERT unit)</text>
+
+  <rect x="800" y="93" width="168" height="24" rx="12" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="884" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="#c13a26">텍스트 토큰</text>
+
+  <!-- Token cells -->
+  <rect x="270" y="128" width="80" height="46" rx="8" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="310" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">the</text>
+
+  <rect x="358" y="128" width="80" height="46" rx="8" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="398" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">cat</text>
+
+  <rect x="446" y="128" width="80" height="46" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="486" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#059669">Hu3</text>
+
+  <rect x="534" y="128" width="80" height="46" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="574" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#059669">Hu7</text>
+
+  <text x="656" y="158" text-anchor="middle" font-size="20" font-weight="700" fill="#8a7f72">⋯</text>
+
+  <rect x="710" y="128" width="80" height="46" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="750" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#059669">Hu200</text>
+
+  <rect x="800" y="128" width="80" height="46" rx="8" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="840" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">the</text>
+
+  <rect x="888" y="128" width="80" height="46" rx="8" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="928" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">mat</text>
+
+  <!-- Switch markers -->
+  <line x1="442" y1="88" x2="442" y2="180" stroke="#b3a08c" stroke-width="1.2" stroke-dasharray="3 3" />
+  <line x1="796" y1="88" x2="796" y2="180" stroke="#b3a08c" stroke-width="1.2" stroke-dasharray="3 3" />
+
+  <text x="500" y="208" text-anchor="middle" font-size="13" font-weight="500" fill="#57534e">"고양이가 매트에 앉았다" — 같은 문장이 단어 경계에서 텍스트와 음성 사이를 오간다.</text>
+  <text x="500" y="240" text-anchor="middle" font-size="12" fill="#a89f92">Spirit LM (Nguyen et al., 2024) 재구성</text>
+</svg>

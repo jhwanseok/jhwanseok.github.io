@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 380" role="img" aria-labelledby="title desc">
+  <title id="title">Spirit LM Expressive의 세 토큰 트랙 병합</title>
+  <desc id="desc">HuBERT semantic 트랙(25Hz), 피치 트랙(F0를 VQ-VAE로 양자화, 12.5Hz), 스타일 트랙(1Hz)은 샘플링 레이트가 서로 다르지만, 각 토큰에 붙은 타임스탬프 순으로 정렬하면 하나의 토큰 시퀀스가 된다. Base 버전은 HuBERT 트랙만 쓰고, Expressive 버전은 피치와 스타일 트랙을 더해 세 트랙을 함께 쓴다.</desc>
+
+  <defs>
+    <pattern id="huTicks" width="14.6" height="30" patternUnits="userSpaceOnUse" patternTransform="translate(200 0)">
+      <line x1="0" y1="5" x2="0" y2="25" stroke="#059669" stroke-width="2" />
+    </pattern>
+    <pattern id="pitchTicks" width="29.2" height="30" patternUnits="userSpaceOnUse" patternTransform="translate(200 0)">
+      <line x1="0" y1="7" x2="0" y2="23" stroke="#92400e" stroke-width="2.5" />
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .row-name { font-weight: 700; font-size: 12.5px; fill: #292524; }
+    .row-spec { font-size: 11px; fill: #8a7f72; }
+    .side-note { font-size: 11px; fill: #8a7f72; }
+    .merge-label { font-size: 11.5px; font-weight: 500; fill: #8a7f72; }
+    .cell-text { font-weight: 700; font-size: 13px; }
+    .caption-text { font-size: 13px; fill: #292524; }
+    .source-text { font-size: 12px; fill: #a89f92; }
+  </style>
+
+  <rect width="1040" height="380" fill="#fdf6ec" />
+
+  <text x="520" y="30" text-anchor="middle" class="title-text">Expressive: 레이트가 다른 세 트랙을 타임스탬프 순으로 합친다</text>
+  <text x="520" y="50" text-anchor="middle" class="subtitle-text">Expressive는 Base의 HuBERT 트랙에 피치·스타일 트랙을 더합니다</text>
+
+  <!-- HuBERT semantic track -->
+  <text x="24" y="87" class="row-name">HuBERT semantic</text>
+  <text x="24" y="101" class="row-spec">25Hz · 유닛 501개</text>
+  <rect x="200" y="76" width="730" height="30" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <rect x="200" y="76" width="730" height="30" rx="8" fill="url(#huTicks)" />
+
+  <!-- Pitch track -->
+  <text x="24" y="135" class="row-name">피치 (F0 → VQ-VAE)</text>
+  <text x="24" y="149" class="row-spec">12.5Hz · 코드북 64개</text>
+  <rect x="200" y="124" width="730" height="30" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <rect x="200" y="124" width="730" height="30" rx="8" fill="url(#pitchTicks)" />
+
+  <!-- Style track -->
+  <text x="24" y="183" class="row-name">스타일 (운율)</text>
+  <text x="24" y="197" class="row-spec">1Hz · k-means 100개</text>
+  <rect x="201" y="172" width="362" height="30" rx="8" fill="#ffd9cf" stroke="#ffab91" stroke-width="1.5" />
+  <rect x="567" y="172" width="362" height="30" rx="8" fill="#ffd9cf" stroke="#ffab91" stroke-width="1.5" />
+  <circle cx="382" cy="187" r="4" fill="#e34a33" />
+  <circle cx="748" cy="187" r="4" fill="#e34a33" />
+  <text x="382" y="165" text-anchor="middle" class="row-spec">1초에 토큰 1개</text>
+
+  <!-- Time axis hint -->
+  <text x="200" y="222" class="row-spec">t = 0</text>
+  <text x="565" y="222" text-anchor="middle" class="row-spec">1초</text>
+  <text x="930" y="222" text-anchor="end" class="row-spec">2초</text>
+
+  <!-- Right-side version braces -->
+  <text x="944" y="88" class="side-note">모든 버전</text>
+  <text x="944" y="101" class="side-note">공통</text>
+  <path d="M942,124 h6 v78 h-6" fill="none" stroke="#b3a08c" stroke-width="1.5" />
+  <text x="954" y="159" class="side-note">Expressive</text>
+  <text x="954" y="172" class="side-note">전용</text>
+
+  <!-- Merge arrow -->
+  <line x1="565" y1="228" x2="565" y2="256" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="578" y="247" class="merge-label">타임스탬프 순 정렬</text>
+
+  <!-- Merged sequence -->
+  <text x="24" y="288" class="row-name">합쳐진 시퀀스</text>
+  <text x="24" y="302" class="row-spec">타임스탬프 순</text>
+  <rect x="190" y="262" width="740" height="52" rx="12" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+
+  <!-- cells: S P H H P H H P H H P H H ... -->
+  <g>
+    <rect x="200" y="272" width="34" height="32" rx="6" fill="#e34a33" />
+    <text x="217" y="293" text-anchor="middle" class="cell-text" fill="#ffffff">S</text>
+    <rect x="238" y="272" width="34" height="32" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2" />
+    <text x="255" y="293" text-anchor="middle" class="cell-text" fill="#92400e">P</text>
+    <rect x="276" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="293" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="314" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="331" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="352" y="272" width="34" height="32" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2" />
+    <text x="369" y="293" text-anchor="middle" class="cell-text" fill="#92400e">P</text>
+    <rect x="390" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="407" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="428" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="445" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="466" y="272" width="34" height="32" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2" />
+    <text x="483" y="293" text-anchor="middle" class="cell-text" fill="#92400e">P</text>
+    <rect x="504" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="521" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="542" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="559" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="580" y="272" width="34" height="32" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2" />
+    <text x="597" y="293" text-anchor="middle" class="cell-text" fill="#92400e">P</text>
+    <rect x="618" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="635" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <rect x="656" y="272" width="34" height="32" rx="6" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.2" />
+    <text x="673" y="293" text-anchor="middle" class="cell-text" fill="#059669">H</text>
+    <text x="712" y="295" text-anchor="middle" font-size="18" font-weight="700" fill="#8a7f72">⋯</text>
+  </g>
+  <text x="820" y="293" class="row-spec">S 스타일 · P 피치 · H HuBERT</text>
+
+  <text x="520" y="340" text-anchor="middle" class="caption-text">세 트랙은 샘플링 레이트가 다르지만, 각 토큰에 붙은 타임스탬프 순으로 정렬하면 하나의 스트림이 됩니다.</text>
+  <text x="520" y="360" text-anchor="middle" class="caption-text">Base는 HuBERT 트랙만 쓰고, Expressive는 피치·스타일 트랙을 더해 세 트랙을 함께 사용합니다.</text>
+  <text x="520" y="376" text-anchor="middle" class="source-text">Spirit LM Expressive (Nguyen et al., 2024) 재구성</text>
+</svg>
