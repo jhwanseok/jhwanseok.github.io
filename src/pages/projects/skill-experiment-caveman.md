@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ContentLayout.astro
-title: "[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까 — caveman을 큰 작업과 작은 작업에 나눠 시험하다"
+title: "[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까: caveman을 큰 작업과 작은 작업에 나눠 시험하다"
 date: 2026-08-12T12:00:00
 tags: ["Engineering Experiments", "AI Engineering"]
 description: "저자 스스로 '출력이 짧은 작업에서는 손해'라고 밝힌 caveman의 주장을 두 archetype에서 그대로 재현해본 기록"

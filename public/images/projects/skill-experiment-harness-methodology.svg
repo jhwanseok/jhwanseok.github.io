@@ -65,7 +65,7 @@
 
   <!-- Caption for the shared discovery -->
   <line x1="555" y1="270" x2="555" y2="292" stroke="#ffab91" stroke-width="1.5" />
-  <text x="365" y="310" text-anchor="start" font-size="13" font-weight="500" fill="#c13a26">세 실험 모두에서 발견 — 설정만 켜서는 룰셋이 주입되지 않는다</text>
+  <text x="365" y="310" text-anchor="start" font-size="13" font-weight="500" fill="#c13a26">세 실험 모두에서 발견: 설정만 켜서는 룰셋이 주입되지 않는다</text>
 
-  <text x="450" y="345" text-anchor="middle" font-size="12" fill="#a89f92">skill-experiment-lab — baseline 픽스처 → OFF/ON 격리 worktree → 활성화 검증 → 지표 비교 방법론 재구성</text>
+  <text x="450" y="345" text-anchor="middle" font-size="12" fill="#a89f92">skill-experiment-lab: baseline 픽스처 → OFF/ON 격리 worktree → 활성화 검증 → 지표 비교 방법론 재구성</text>
 </svg>

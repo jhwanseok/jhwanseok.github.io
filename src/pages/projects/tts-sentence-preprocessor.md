@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ContentLayout.astro
-title: "TTS 발음은 텍스트가 아니라 전처리가 결정한다 — tts-sentence-preprocessor를 만든 이유"
+title: "TTS 발음은 텍스트가 아니라 전처리가 결정한다: tts-sentence-preprocessor를 만든 이유"
 date: 2026-08-07
 tags: ["Voice AI", "AI Engineering"]
 description: "Korean/English TTS를 위한 커스텀 텍스트 정규화·phonemization(IPA) 전처리 레포"

@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ContentLayout.astro
-title: "[스킬은 켜봐야 안다 #1] 토큰이 준다는 스킬, 진짜였을까 — ponytail을 켜고 끄며 검증하다"
+title: "[스킬은 켜봐야 안다 #1] 토큰이 준다는 스킬, 진짜였을까: ponytail을 켜고 끄며 검증하다"
 date: 2026-08-12T10:00:00
 tags: ["Engineering Experiments", "AI Engineering"]
 description: "'약 54% 코드 감소, 약 22% 토큰 절감'을 주장하는 ponytail 스킬을 bookmarks-api 픽스처로 on/off 검증한 기록"

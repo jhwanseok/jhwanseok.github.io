@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ContentLayout.astro
-title: "[스킬은 켜봐야 안다 #2] 디버깅 과정이 정말 달라지는가 — superpowers를 자연스러운 버그 리포트로 시험하다"
+title: "[스킬은 켜봐야 안다 #2] 디버깅 과정이 정말 달라지는가: superpowers를 자연스러운 버그 리포트로 시험하다"
 date: 2026-08-12T11:00:00
 tags: ["Engineering Experiments", "AI Engineering"]
 description: "메타 스킬 superpowers가 강제 없이도 systematic-debugging을 스스로 호출하는지 claude -p 헤드리스 세션으로 검증한 기록"

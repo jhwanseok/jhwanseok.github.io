@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ContentLayout.astro
-title: "[스킬은 켜봐야 안다 #0] 프롤로그 — 추천받는 대로 쓰지 않기로 했다"
+title: "[스킬은 켜봐야 안다 #0] 프롤로그: 추천받는 대로 쓰지 않기로 했다"
 date: 2026-08-12T09:00:00
 tags: ["Engineering Experiments", "AI Engineering"]
 description: "Claude Code 스킬·플러그인·MCP를 추천받는 대로 쓰지 않고, 백로그에 적어뒀다가 하나씩 직접 켜고 꺼보며 검증하기로 한 이유를 정리하는 프롤로그"

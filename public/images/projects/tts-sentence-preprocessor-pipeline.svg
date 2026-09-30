@@ -66,5 +66,5 @@
   <line x1="555" y1="240" x2="555" y2="262" stroke="#ffab91" stroke-width="1.5" />
   <text x="460" y="280" text-anchor="start" font-size="13.5" font-weight="500" fill="#c13a26">학교 → 학꾜 → hak̚k͈jo (경음화가 반영된 IPA)</text>
 
-  <text x="450" y="308" text-anchor="middle" font-size="12" fill="#a89f92">tts-sentence-preprocessor — 영어(2단계)·한국어(3단계) phonemization 파이프라인 비교</text>
+  <text x="450" y="308" text-anchor="middle" font-size="12" fill="#a89f92">tts-sentence-preprocessor: 영어(2단계)·한국어(3단계) phonemization 파이프라인 비교</text>
 </svg>
