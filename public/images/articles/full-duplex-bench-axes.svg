@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">Full-Duplex-Bench의 4가지 측정 축</title>
+  <desc id="desc">한 번의 대화 타임라인 위에서 사용자의 내부 정지, 모델의 맞장구(백채널), 발화 종료 후 매끄러운 턴 전환, 그리고 모델이 말하는 도중 사용자가 끼어드는 상황 네 가지가 각각 어디서 일어나는지 번호를 매겨 표시하고, 아래 4개 카드에서 각 축의 정의와 측정 지표를 설명한다</desc>
+
+  <rect x="0" y="0" width="1000" height="500" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <text x="500" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">Full-Duplex-Bench가 재는 네 가지 순간</text>
+  <text x="500" y="48" text-anchor="middle" font-size="13" fill="#8a7f72">한 번의 대화 안에서 정지·맞장구·턴 전환·끼어들기가 함께 일어난다</text>
+
+  <!-- Highlight zones (drawn first, under bars) -->
+  <rect x="188" y="95" width="29" height="40" rx="6" fill="#fef3c7" fill-opacity="0.7" stroke="#fcd34d" stroke-width="1.2" stroke-dasharray="3 3" />
+  <rect x="300" y="95" width="30" height="180" rx="6" fill="#fef3c7" fill-opacity="0.7" stroke="#fcd34d" stroke-width="1.2" stroke-dasharray="3 3" />
+  <rect x="498" y="95" width="94" height="180" rx="6" fill="#ffe4de" fill-opacity="0.35" stroke="#ffab91" stroke-width="1.2" stroke-dasharray="3 3" />
+
+  <!-- Lane labels -->
+  <text x="20" y="120" font-size="14" font-weight="700" fill="#292524">사용자</text>
+  <text x="20" y="260" font-size="14" font-weight="700" fill="#c13a26">모델</text>
+
+  <!-- User lane bars -->
+  <rect x="100" y="100" width="90" height="30" rx="8" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="215" y="100" width="85" height="30" rx="8" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="500" y="100" width="90" height="30" rx="8" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+
+  <!-- Model lane bars -->
+  <rect x="246" y="240" width="24" height="30" rx="6" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <rect x="330" y="240" width="320" height="30" rx="8" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+
+  <!-- Time axis -->
+  <line x1="60" y1="330" x2="930" y2="330" stroke="#c9bfae" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#arrow)" />
+  <text x="948" y="335" text-anchor="middle" font-size="12" fill="#8a7f72">시간</text>
+
+  <!-- Event badges (placed clear of the bars, connected by leader lines) -->
+  <circle cx="202" cy="72" r="11" fill="#e34a33" />
+  <text x="202" y="76" text-anchor="middle" font-size="12" font-weight="700" fill="#fff8f5">1</text>
+  <line x1="202" y1="83" x2="202" y2="99" stroke="#c9bfae" stroke-width="1.2" stroke-dasharray="2 3" />
+
+  <circle cx="258" cy="296" r="11" fill="#e34a33" />
+  <text x="258" y="300" text-anchor="middle" font-size="12" font-weight="700" fill="#fff8f5">2</text>
+  <line x1="258" y1="285" x2="258" y2="271" stroke="#c9bfae" stroke-width="1.2" stroke-dasharray="2 3" />
+
+  <circle cx="315" cy="185" r="11" fill="#e34a33" stroke="#fdf6ec" stroke-width="2" />
+  <text x="315" y="189" text-anchor="middle" font-size="12" font-weight="700" fill="#fff8f5">3</text>
+
+  <circle cx="545" cy="185" r="11" fill="#e34a33" />
+  <text x="545" y="189" text-anchor="middle" font-size="12" font-weight="700" fill="#fff8f5">4</text>
+
+  <!-- Legend cards -->
+  <g>
+    <rect x="40" y="355" width="210" height="112" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <circle cx="65" cy="377" r="11" fill="#e34a33" />
+    <text x="65" y="381" text-anchor="middle" font-size="11" font-weight="700" fill="#fff8f5">1</text>
+    <text x="84" y="382" font-size="14" font-weight="700" fill="#292524">Pause Handling</text>
+    <text x="58" y="405" font-size="11.5" fill="#8a7f72">0.4~1.0초 정지 동안</text>
+    <text x="58" y="421" font-size="11.5" fill="#8a7f72">끼어들지 않아야 한다</text>
+    <text x="58" y="445" font-size="11" fill="#a89f92">지표: Takeover Rate(TOR)</text>
+  </g>
+
+  <g>
+    <rect x="270" y="355" width="210" height="112" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <circle cx="295" cy="377" r="11" fill="#e34a33" />
+    <text x="295" y="381" text-anchor="middle" font-size="11" font-weight="700" fill="#fff8f5">2</text>
+    <text x="314" y="382" font-size="14" font-weight="700" fill="#292524">Backchanneling</text>
+    <text x="288" y="405" font-size="11.5" fill="#8a7f72">1초 미만의 짧은 반응:</text>
+    <text x="288" y="421" font-size="11.5" fill="#8a7f72">"음", "네" 같은 맞장구</text>
+    <text x="288" y="445" font-size="11" fill="#a89f92">지표: JSD(사람 분포와의 거리)</text>
+  </g>
+
+  <g>
+    <rect x="500" y="355" width="210" height="112" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <circle cx="525" cy="377" r="11" fill="#e34a33" />
+    <text x="525" y="381" text-anchor="middle" font-size="11" font-weight="700" fill="#fff8f5">3</text>
+    <text x="544" y="382" font-size="13.5" font-weight="700" fill="#292524">Smooth Turn-Taking</text>
+    <text x="518" y="405" font-size="11.5" fill="#8a7f72">발화 종료→응답 시작</text>
+    <text x="518" y="421" font-size="11.5" fill="#8a7f72">200~250ms가 이상적</text>
+    <text x="518" y="445" font-size="11" fill="#a89f92">지표: 응답 지연(초)</text>
+  </g>
+
+  <g>
+    <rect x="730" y="355" width="210" height="112" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+    <circle cx="755" cy="377" r="11" fill="#e34a33" />
+    <text x="755" y="381" text-anchor="middle" font-size="11" font-weight="700" fill="#fff8f5">4</text>
+    <text x="774" y="382" font-size="13.5" font-weight="700" fill="#292524">User Interruption</text>
+    <text x="748" y="405" font-size="11.5" fill="#8a7f72">발화 도중 끼어들어도</text>
+    <text x="748" y="421" font-size="11.5" fill="#8a7f72">맥락을 유지해야 한다</text>
+    <text x="748" y="445" font-size="11" fill="#a89f92">지표: LLM 심사 점수(0~5)</text>
+  </g>
+
+  <text x="500" y="486" text-anchor="middle" font-size="12" fill="#a89f92">Full-Duplex-Bench (Lin et al., 2025) 재구성</text>
+</svg>
