@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" role="img" aria-labelledby="moshiSolutionTitle">
+  <title id="moshiSolutionTitle">Inner Monologue가 실제로 푸는 문제: 오디오만 예측하면 문맥이 흐트러지고, 텍스트와 오디오를 번갈아 끼워넣는 방식은 Moshi 구조상 불가능하지만, 매 프레임 안에 텍스트 토큰 하나와 오디오 코드북 8개를 함께 쌓으면 두 제약을 동시에 만족시킨다</title>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .panel-label { font-weight: 700; font-size: 13px; }
+    .block-label { font-size: 11px; fill: #57534e; }
+    .verdict-caution { font-weight: 600; font-size: 12.5px; fill: #92400e; }
+    .verdict-good { font-weight: 600; font-size: 12.5px; fill: #059669; }
+    .desc-text { font-size: 12px; fill: #8a7f72; }
+    .flow-arrow { font-size: 26px; fill: #b3a08c; font-weight: 700; }
+  </style>
+
+  <rect width="880" height="420" fill="#fdf6ec" />
+
+  <text x="440" y="28" text-anchor="middle" class="title-text">Inner Monologue가 실제로 푸는 문제</text>
+  <text x="440" y="48" text-anchor="middle" class="subtitle-text">왜 오디오만으로도, 번갈아 끼워넣기로도 안 됐는가</text>
+
+  <!-- Flow arrows between panels -->
+  <text x="307" y="235" text-anchor="middle" class="flow-arrow">→</text>
+  <text x="572" y="235" text-anchor="middle" class="flow-arrow">→</text>
+
+  <!-- Panel 1: Audio-only -->
+  <rect x="75" y="90" width="200" height="26" rx="13" fill="#fef3c7" stroke="#fcd34d" />
+  <text x="175" y="108" text-anchor="middle" class="panel-label" fill="#92400e">오디오만 예측</text>
+
+  <rect x="135" y="140" width="80" height="170" rx="8" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="145" y="148" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="168" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="188" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="208" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="228" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="248" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="268" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="145" y="288" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <text x="175" y="328" text-anchor="middle" class="desc-text">프레임마다 오디오 코드북 8개만</text>
+  <text x="175" y="356" text-anchor="middle" class="verdict-caution">⚠ 문맥이 길어질수록</text>
+  <text x="175" y="373" text-anchor="middle" class="verdict-caution">의미가 흐트러진다</text>
+
+  <!-- Panel 2: Interleaving -->
+  <rect x="340" y="90" width="200" height="26" rx="13" fill="#fef3c7" stroke="#fcd34d" />
+  <text x="440" y="108" text-anchor="middle" class="panel-label" fill="#92400e">번갈아 끼워넣기</text>
+
+  <rect x="355" y="205" width="70" height="50" rx="8" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="390" y="234" text-anchor="middle" class="block-label" fill="#c13a26">텍스트</text>
+  <line x1="428" y1="230" x2="448" y2="230" stroke="#b3a08c" stroke-width="1.5" />
+  <path d="M448,225 L455,230 L448,235 z" fill="#b3a08c" />
+  <rect x="458" y="205" width="70" height="50" rx="8" fill="#f5ede0" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="493" y="234" text-anchor="middle" class="block-label">오디오×8</text>
+  <text x="440" y="280" text-anchor="middle" class="desc-text" font-style="italic">… 구간마다 번갈아 반복</text>
+  <text x="440" y="356" text-anchor="middle" class="verdict-caution">⚠ Moshi는 매 프레임 오디오를</text>
+  <text x="440" y="373" text-anchor="middle" class="verdict-caution">내야 해서 이 순서를 쓸 수 없다</text>
+
+  <!-- Panel 3: Inner Monologue -->
+  <rect x="605" y="90" width="200" height="26" rx="13" fill="#ecfdf5" stroke="#6ee7b7" />
+  <text x="705" y="108" text-anchor="middle" class="panel-label" fill="#059669">Inner Monologue</text>
+
+  <rect x="665" y="140" width="80" height="204" rx="8" fill="#fffaf4" stroke="#6ee7b7" stroke-width="2" />
+  <rect x="675" y="148" width="60" height="18" rx="4" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <rect x="675" y="172" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="192" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="212" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="232" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="252" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="272" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="292" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+  <rect x="675" y="312" width="60" height="16" rx="4" fill="#f5ede0" stroke="#e7dfd3" />
+
+  <text x="755" y="161" class="block-label" fill="#c13a26">← 텍스트 먼저</text>
+  <text x="755" y="248" class="block-label">← 오디오 코드북 8개</text>
+
+  <text x="705" y="368" text-anchor="middle" class="desc-text">한 프레임 안에서 텍스트가 오디오 코드북의 접두어가 된다</text>
+  <text x="705" y="392" text-anchor="middle" class="verdict-good">✓ 두 제약을 함께 만족한다</text>
+</svg>
