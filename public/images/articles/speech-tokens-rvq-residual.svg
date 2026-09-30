@@ -161,7 +161,7 @@
   <rect x="560" y="200" width="16" height="16" rx="3" fill="#e34a33" stroke="#c13a26" />
   <text x="582" y="213" class="label-text">지금까지 담아낸 값</text>
   <rect x="560" y="224" width="16" height="16" rx="3" fill="url(#residualHatch)" stroke="#fcd34d" />
-  <text x="582" y="237" class="label-text">잔차 — 다음 코드북이 처리할 몫</text>
+  <text x="582" y="237" class="label-text">잔차: 다음 코드북이 처리할 몫</text>
 
   <text x="440" y="316" text-anchor="middle" class="caption-text">코드북을 하나씩 더할 때마다, 빗금(잔차)이 다음 코드북에 넘어가 코랄로 바뀐다.</text>
 </svg>

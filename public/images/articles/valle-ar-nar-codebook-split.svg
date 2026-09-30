@@ -18,7 +18,7 @@
 
   <!-- AR panel -->
   <rect x="40" y="80" width="380" height="180" rx="16" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
-  <text x="230" y="112" text-anchor="middle" font-size="15.5" font-weight="700" fill="#c13a26">AR — 코드북 0</text>
+  <text x="230" y="112" text-anchor="middle" font-size="15.5" font-weight="700" fill="#c13a26">AR: 코드북 0</text>
 
   <!-- sequential tokens t1..t4 -->
   <circle cx="100" cy="170" r="20" fill="#fffaf4" stroke="#c13a26" stroke-width="1.5" />
@@ -44,7 +44,7 @@
 
   <!-- NAR panel -->
   <rect x="480" y="80" width="380" height="180" rx="16" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
-  <text x="670" y="112" text-anchor="middle" font-size="15.5" font-weight="700" fill="#292524">NAR — 코드북 1~7</text>
+  <text x="670" y="112" text-anchor="middle" font-size="15.5" font-weight="700" fill="#292524">NAR: 코드북 1~7</text>
 
   <circle cx="670" cy="150" r="16" fill="#ffe4de" stroke="#c13a26" stroke-width="1.5" />
   <text x="670" y="154" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c13a26">조건</text>
@@ -78,6 +78,6 @@
   <text x="670" y="242" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">조건 하나로 나머지 전부를</text>
   <text x="670" y="256" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">한 스텝에 동시 예측</text>
 
-  <text x="450" y="298" text-anchor="middle" font-size="13.5" font-weight="500" fill="#c13a26">AR이 만든 코드북 0의 오류는 NAR의 "조건" 안에 그대로 실려 들어간다.</text>
+  <text x="450" y="298" text-anchor="middle" font-size="13.5" font-weight="500" fill="#c13a26">NAR의 "조건"에는 AR이 정한 코드북 0이 그대로 들어간다.</text>
   <text x="450" y="320" text-anchor="middle" font-size="12" fill="#a89f92">VALL-E (Wang et al., 2023) 구조 단순화</text>
 </svg>

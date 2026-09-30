@@ -26,7 +26,7 @@
 
   <!-- Cascade panel -->
   <rect x="300" y="70" width="280" height="26" rx="13" fill="#fef3c7" stroke="#fcd34d" />
-  <text x="440" y="88" text-anchor="middle" class="panel-label" fill="#92400e">Cascade — 세 단계를 거치며 잃는다</text>
+  <text x="440" y="88" text-anchor="middle" class="panel-label" fill="#92400e">Cascade: 세 단계를 거치며 잃는다</text>
 
   <!-- row: y 112-178, center 145. box centers: 106 / 273 / 440 / 607 / 774 -->
   <rect x="50" y="112" width="112" height="66" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
@@ -66,7 +66,7 @@
 
   <!-- End-to-end panel -->
   <rect x="300" y="252" width="280" height="26" rx="13" fill="#ecfdf5" stroke="#6ee7b7" />
-  <text x="440" y="270" text-anchor="middle" class="panel-label" fill="#059669">End-to-end — 하나의 파이프라인으로</text>
+  <text x="440" y="270" text-anchor="middle" class="panel-label" fill="#059669">End-to-end: 하나의 파이프라인으로</text>
 
   <!-- row: y 292-358, center 325 -->
   <rect x="50" y="292" width="112" height="66" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />

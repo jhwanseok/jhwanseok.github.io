@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ContentLayout.astro
-title: "[기계가 대화를 배우는 법 #2] 무슨 말인지, 어떻게 들리는지 — 음성 토큰의 두 계열"
+title: "[기계가 대화를 배우는 법 #2] 무슨 말인지, 어떻게 들리는지: 음성 토큰의 두 계열"
 date: 2026-08-09T10:00:00
 tags: ["Voice AI", "System Architecture"]
 description: "HuBERT의 마스킹 예측과 SoundStream/EnCodec의 파형 복원이 왜 완전히 다른 음성 토큰을 만들어내는지, semantic·acoustic 토큰의 근본적 차이를 프로덕션 관점에서 리뷰합니다."
@@ -20,7 +20,7 @@ description: "HuBERT의 마스킹 예측과 SoundStream/EnCodec의 파형 복원
 
 ![HuBERT의 마스킹 예측 경로(예측 목표, 화자 정보 소실)와 SoundStream/EnCodec의 인코더-RVQ-디코더 경로(복원 목표, 화자 정보 보존)를 나란히 비교하는 다이어그램. 같은 음성 입력이 두 갈래로 갈라져 semantic 토큰과 acoustic 토큰이라는 서로 다른 결과물로 이어진다.](/images/articles/speech-tokens-two-families.svg)
 
-숫자로 보면 차이가 더 뚜렷합니다. HuBERT는 라벨이 단 10분만 있어도 <abbr title="Word Error Rate: 음성 인식 오류율, 낮을수록 정확" tabindex="0">WER</abbr> test-clean 4.7%, test-other 7.6%를 달성합니다. 그것도 처음엔 <abbr title="음성 스펙트럼을 사람 청각에 가깝게 압축한 저수준 음향 특징" tabindex="0">MFCC</abbr>로 대충 만든 <abbr title="k-means 등으로 비슷한 데이터끼리 묶은 그룹" tabindex="0">클러스터</abbr>(<abbr title="Pairwise Normalized Mutual Information: 클러스터가 실제 음소 카테고리와 얼마나 잘 대응하는지 재는 지표" tabindex="0">PNMI</abbr> 0.563)를 스스로 다듬어 더 나은 클러스터(PNMI 0.686)로 반복 개선한 결과입니다. SoundStream은 3kbps로 Opus 12kbps를 능가하고, EnCodec은 같은 3kbps에서 Lyra-v2 6kbps와 Opus 12kbps를 모두 앞지릅니다. 한쪽은 "적은 라벨로도 의미를 잘 맞히는" 방향으로, 다른 한쪽은 "더 적은 비트로도 원음을 잘 복원하는" 방향으로 극한까지 최적화된 결과입니다.
+숫자로 보면 차이가 더 뚜렷합니다. HuBERT는 라벨이 단 10분만 있어도 <abbr title="Word Error Rate: 음성 인식 오류율, 낮을수록 정확" tabindex="0">WER</abbr> test-clean 4.7%, test-other 7.6%를 달성합니다(Large 모델에 언어모델을 붙였을 때). 그것도 처음엔 <abbr title="음성 스펙트럼을 사람 청각에 가깝게 압축한 저수준 음향 특징" tabindex="0">MFCC</abbr>로 대충 만든 <abbr title="k-means 등으로 비슷한 데이터끼리 묶은 그룹" tabindex="0">클러스터</abbr>(<abbr title="Pairwise Normalized Mutual Information: 클러스터가 실제 음소 카테고리와 얼마나 잘 대응하는지 재는 지표" tabindex="0">PNMI</abbr> 0.287)를 스스로 다듬어 더 나은 클러스터(PNMI 0.686)로 반복 개선한 결과입니다. SoundStream은 3kbps로 Opus 12kbps를 능가하고, EnCodec은 같은 3kbps에서 평균적으로 Lyra-v2 6kbps와 Opus 12kbps를 모두 앞지릅니다. 한쪽은 "적은 라벨로도 의미를 잘 맞히는" 방향으로, 다른 한쪽은 "더 적은 비트로도 원음을 잘 복원하는" 방향으로 극한까지 최적화된 결과입니다.
 
 ## 음성에는 텍스트의 '단어'에 해당하는 게 없다
 
@@ -36,15 +36,15 @@ description: "HuBERT의 마스킹 예측과 SoundStream/EnCodec의 파형 복원
 
 HuBERT는 오디오의 8%를 시작점으로 골라 각 지점부터 10프레임씩 연속으로 가린 뒤, 가려진 구간이 원래 어떤 클러스터에 속하는지 맞히도록 학습됩니다. 문제는 처음엔 정답 클러스터가 없다는 것입니다. 그래서 HuBERT는 부트스트랩(bootstrap) 구조를 씁니다. 먼저 39차원 MFCC 특징을 k-means로 100개 클러스터로 나눠 "가짜 라벨"로 삼고, 그 라벨로 학습한 모델의 6번째 트랜스포머 레이어 표현을 다시 k-means로 500개 클러스터로 나눠 더 나은 가짜 라벨을 만듭니다. Large와 X-Large 모델은 2차 모델의 9번째 레이어 표현으로 한 번 더 다듬습니다.
 
-![HuBERT의 부트스트랩 클러스터링 순환 구조. 오디오에서 특징을 추출해 k-means로 가짜 라벨을 만들고 그 라벨로 마스킹 예측을 학습시킨 뒤, 학습된 모델의 레이어 표현을 다시 다음 라운드의 특징으로 사용한다. 1차는 MFCC·K=100, 2차는 6번째 레이어·K=500, 3차는 9번째 레이어·K=500을 쓰며 라벨 품질(PNMI)이 0.563에서 0.686으로 개선된다.](/images/articles/hubert-bootstrap-clustering.svg)
+![HuBERT의 부트스트랩 클러스터링 순환 구조. 오디오에서 특징을 추출해 k-means로 가짜 라벨을 만들고 그 라벨로 마스킹 예측을 학습시킨 뒤, 학습된 모델의 레이어 표현을 다시 다음 라운드의 특징으로 사용한다. 1차는 MFCC·K=100, 2차는 6번째 레이어·K=500, 3차는 9번째 레이어·K=500을 쓰며 라벨 품질(PNMI)이 0.287에서 0.686으로 개선된다.](/images/articles/hubert-bootstrap-clustering.svg)
 
-MFCC 기반 클러스터의 PNMI, 곧 클러스터가 실제 음소와 얼마나 잘 대응하는지는 0.563이었지만, 모델이 학습한 표현으로 다시 클러스터링한 뒤에는 0.686으로 올라갑니다. 가짜 라벨의 품질 자체가 학습을 거치며 스스로 좋아지는 구조입니다. 결과물은 음소에 가까운, 화자 정보가 상당 부분 희석된 토큰입니다.
+MFCC 기반 클러스터의 PNMI, 곧 클러스터가 실제 음소와 얼마나 잘 대응하는지는 0.287이었지만, 모델이 학습한 표현으로 다시 클러스터링한 뒤에는 0.686으로 올라갑니다(클러스터 500개 기준). 가짜 라벨의 품질 자체가 학습을 거치며 스스로 좋아지는 구조입니다. 결과물은 음소에 가까운, 화자 정보가 상당 부분 희석된 토큰입니다.
 
 #### SoundStream과 EnCodec: 압축했다가 그대로 되돌린다
 
 SoundStream은 완전 합성곱 인코더, <abbr title="잔차를 반복 양자화해 압축률을 높이는 벡터 양자화 기법" tabindex="0">RVQ</abbr>(Residual Vector Quantization), 디코더를 종단간(end-to-end)으로 함께 학습합니다. 목표는 명확합니다. 압축한 뒤 원래 파형과 최대한 비슷하게 복원하는 것입니다. 이를 위해 적대적 손실(원음과 구별 안 되게), 특징 손실, 멀티스케일 스펙트로그램 재구성 손실을 함께 씁니다. 24kHz 입력을 3~18kbps 범위에서 처리하며, 3kbps만으로 Opus 12kbps를 앞지릅니다.
 
-EnCodec은 이 구조에 인코더와 디코더 양쪽에 2층 LSTM을 추가해 시퀀스 모델링을 강화하고, 판별기를 <abbr title="여러 해상도의 스펙트로그램을 동시에 분석하는 판별기 구조" tabindex="0">MS-STFT</abbr> 하나로 단순화해도 품질이 유지된다는 것을 보였습니다. 여기에 경량 5층 Transformer 언어모델로 양자화된 토큰에 <abbr title="데이터의 통계적 패턴을 이용해 추가로 압축하는 무손실 압축 기법" tabindex="0">엔트로피 코딩</abbr>을 적용해 대역폭을 25~40% 더 줄입니다(3kbps에서 약 1.9kbps로). 13ms의 추가 지연이 붙지만 여전히 실시간보다 빠릅니다. 결과는 3kbps에서 Lyra-v2 6kbps와 Opus 12kbps를 모두 앞지르는 품질입니다.
+EnCodec은 이 구조에 인코더와 디코더 양쪽에 2층 LSTM을 추가해 시퀀스 모델링을 강화하고, 판별기를 <abbr title="여러 해상도의 스펙트로그램을 동시에 분석하는 판별기 구조" tabindex="0">MS-STFT</abbr> 하나로 단순화해도 품질이 유지된다는 것을 보였습니다. 여기에 경량 5층 Transformer 언어모델로 양자화된 토큰에 <abbr title="데이터의 통계적 패턴을 이용해 추가로 압축하는 무손실 압축 기법" tabindex="0">엔트로피 코딩</abbr>을 적용해 대역폭을 25~40% 더 줄입니다(3kbps에서 약 1.9kbps로). 24kHz 모델의 초기 지연은 13ms이고, 엔트로피 코딩을 더해도 실시간보다 빠르게 동작합니다. 결과는 3kbps에서 Lyra-v2 6kbps와 Opus 12kbps를 모두 앞지르는 품질입니다.
 
 ![SoundStream과 EnCodec의 아키텍처 비교. 두 모델 모두 인코더-RVQ-디코더 구조를 공유한다. EnCodec은 인코더와 디코더에 LSTM 두 층을 추가하고, RVQ 뒤에 엔트로피 코딩 단계를 더해 3kbps를 약 1.9kbps까지 한 번 더 압축한다.](/images/articles/soundstream-encodec-architecture.svg)
 
@@ -82,6 +82,6 @@ RVQ의 계층 구조는 압축률을 얻는 대신 시퀀스 예측 문제를 �
 
 "음성 토큰"이라는 하나의 이름 아래, 사실은 서로 다른 목적함수로 학습된 완전히 다른 물건들이 존재한다는 것이 이 편의 핵심입니다. 토크나이저를 고를 때 "이게 음성을 토큰화하는가"가 아니라 "이게 무엇을 예측하도록, 혹은 무엇을 복원하도록 학습됐는가"를 물어야 합니다.
 
-HuBERT의 부트스트랩 클러스터링에서 PNMI가 0.563에서 0.686으로 개선되는 과정은, 정답이 없는 상황에서도 모델이 스스로 만든 근사치를 딛고 점점 더 나은 근사치로 나아갈 수 있다는 것을 구체적인 숫자로 보여줍니다.
+HuBERT의 부트스트랩 클러스터링에서 PNMI가 0.287에서 0.686으로 개선되는 과정은, 정답이 없는 상황에서도 모델이 스스로 만든 근사치를 딛고 점점 더 나은 근사치로 나아갈 수 있다는 것을 구체적인 숫자로 보여줍니다.
 
 그리고 RVQ의 코드북 개수와 크기 트레이드오프는, 압축률을 높이는 결정이 그 뒤에 오는 시퀀스 모델링 단계에 부담을 남긴다는 것을 보여줍니다. 지금 당장은 저장과 전송 효율만 보고 코드북 층수를 늘리고 싶어지지만, 그 코드북들을 나중에 무엇이 예측할 것인지까지 함께 설계해야 합니다. [다음 리뷰](/articles/audiolm-hierarchical-generation)에서 AudioLM이 그 코드북들을 어떻게 풀어내는지 볼 차례입니다.

@@ -23,7 +23,7 @@
 
   <rect width="900" height="700" fill="#fdf6ec" />
 
-  <text x="450" y="28" text-anchor="middle" class="title-text">같은 뼈대, 다른 단계 수 — SoundStream vs EnCodec</text>
+  <text x="450" y="28" text-anchor="middle" class="title-text">같은 뼈대, 다른 단계 수: SoundStream과 EnCodec</text>
   <text x="450" y="48" text-anchor="middle" class="subtitle-text">인코더–RVQ–디코더는 공유하되, EnCodec은 두 곳을 더 얹는다</text>
 
   <!-- Divider -->

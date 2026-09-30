@@ -21,7 +21,7 @@
 
   <rect width="880" height="400" fill="#fdf6ec" />
 
-  <text x="440" y="28" text-anchor="middle" class="title-text">음성 입력이 갈라지는 두 갈래 — 예측 경로 vs 복원 경로</text>
+  <text x="440" y="28" text-anchor="middle" class="title-text">음성 입력이 갈라지는 두 갈래: 예측 경로와 복원 경로</text>
   <text x="440" y="48" text-anchor="middle" class="subtitle-text">같은 소리에서 완전히 다른 정보를 남긴다</text>
 
   <!-- Input -->

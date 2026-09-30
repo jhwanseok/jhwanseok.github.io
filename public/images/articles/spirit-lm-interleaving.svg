@@ -10,7 +10,7 @@
     </marker>
   </defs>
 
-  <text x="500" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">텍스트와 음성을 한 시퀀스로 — 단어 경계에서 갈아탄다</text>
+  <text x="500" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">텍스트와 음성을 한 시퀀스로: 단어 경계에서 갈아탄다</text>
   <text x="500" y="48" text-anchor="middle" font-size="13" fill="#8a7f72">Llama 2 7B를 웜스타트해 하나의 토큰 스트림 위에서 이어 학습한다</text>
 
   <!-- Llama base box -->
@@ -59,6 +59,6 @@
   <line x1="442" y1="88" x2="442" y2="180" stroke="#b3a08c" stroke-width="1.2" stroke-dasharray="3 3" />
   <line x1="796" y1="88" x2="796" y2="180" stroke="#b3a08c" stroke-width="1.2" stroke-dasharray="3 3" />
 
-  <text x="500" y="208" text-anchor="middle" font-size="13" font-weight="500" fill="#57534e">"고양이가 매트에 앉았다" — 같은 문장이 단어 경계에서 텍스트와 음성 사이를 오간다.</text>
+  <text x="500" y="208" text-anchor="middle" font-size="13" font-weight="500" fill="#57534e">"고양이가 매트에 앉았다"라는 같은 문장이 단어 경계에서 텍스트와 음성 사이를 오간다.</text>
   <text x="500" y="240" text-anchor="middle" font-size="12" fill="#a89f92">Spirit LM (Nguyen et al., 2024) 재구성</text>
 </svg>

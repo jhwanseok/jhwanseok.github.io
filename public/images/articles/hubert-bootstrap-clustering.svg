@@ -133,11 +133,11 @@
   </g>
 
   <!-- PNMI before/after -->
-  <text x="440" y="282" text-anchor="middle" class="section-label">가짜 라벨의 품질(PNMI) — 음소와의 대응도</text>
+  <text x="440" y="282" text-anchor="middle" class="section-label">가짜 라벨의 품질(PNMI, K=500): 음소와의 대응도</text>
 
   <rect x="290" y="298" width="140" height="70" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
   <text x="360" y="325" text-anchor="middle" class="pnmi-title" fill="#92400e">MFCC 기반</text>
-  <text x="360" y="348" text-anchor="middle" class="pnmi-sub" fill="#92400e">PNMI 0.563</text>
+  <text x="360" y="348" text-anchor="middle" class="pnmi-sub" fill="#92400e">PNMI 0.287</text>
 
   <line x1="430" y1="333" x2="522" y2="333" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrowH)" />
 

@@ -20,7 +20,7 @@
   <text x="425" y="91" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">프롬프트 → 8개 코드북 토큰</text>
 
   <rect x="580" y="30" width="300" height="90" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
-  <text x="730" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#c13a26">AR — 코드북 0</text>
+  <text x="730" y="70" text-anchor="middle" font-size="16" font-weight="700" fill="#c13a26">AR: 코드북 0</text>
   <text x="730" y="91" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">causal · 자기회귀 순차 예측</text>
 
   <line x1="270" y1="75" x2="298" y2="75" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
@@ -32,7 +32,7 @@
 
   <!-- Row 2 -->
   <rect x="20" y="190" width="300" height="90" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
-  <text x="170" y="225" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">NAR — 코드북 1~7</text>
+  <text x="170" y="225" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">NAR: 코드북 1~7</text>
   <text x="170" y="246" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">full attention · 비자기회귀 동시 예측</text>
   <text x="170" y="262" text-anchor="middle" font-size="11" font-weight="500" fill="#8a7f72">조건: 음소 + 프롬프트 + 코드북 0</text>
 
@@ -47,6 +47,6 @@
   <line x1="320" y1="235" x2="338" y2="235" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
   <line x1="600" y1="235" x2="618" y2="235" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
 
-  <text x="450" y="308" text-anchor="middle" font-size="13.5" font-weight="500" fill="#c13a26">AR이 예측한 코드북 0의 오류는 그대로 NAR 전체에 전파된다 — 안정성이 낮은 이유다.</text>
+  <text x="450" y="308" text-anchor="middle" font-size="13.5" font-weight="500" fill="#c13a26">NAR은 AR이 정한 코드북 0을 조건으로 받으므로, AR 단계의 오류가 이후 단계에도 남는다.</text>
   <text x="450" y="328" text-anchor="middle" font-size="12" fill="#a89f92">VALL-E (Wang et al., 2023) 재구성</text>
 </svg>
