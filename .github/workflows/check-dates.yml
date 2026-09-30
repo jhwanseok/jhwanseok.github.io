@@ -1,0 +1,69 @@
+name: Check publish dates
+
+# Enforces the "Publish-Day Dating" convention in CLAUDE.md: a page under
+# src/pages/articles/ or src/pages/projects/ must carry a `date:` equal to the
+# day it is first committed. Only newly ADDED page files are checked, so edits
+# to already-published pages are never flagged.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check-dates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: New page files must be dated on their commit day
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base="${{ github.event.pull_request.base.sha }}"
+            head="${{ github.event.pull_request.head.sha }}"
+          else
+            base="${{ github.event.before }}"
+            head="${{ github.sha }}"
+          fi
+
+          # Branch creation / first push: nothing meaningful to diff against.
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ]; then
+            echo "No diff base (branch creation); skipping."
+            exit 0
+          fi
+
+          # Accept the CI day and the two calendar days around it, since the
+          # `date:` values are wall-clock (KST-ish) while the runner is UTC.
+          declare -A ok
+          for off in -1 0 1; do
+            ok["$(date -u -d "$off day" +%Y-%m-%d)"]=1
+          done
+
+          added=$(git diff --name-only --diff-filter=A "$base" "$head" -- \
+            'src/pages/articles/*.md' 'src/pages/projects/*.md' || true)
+
+          fail=0
+          if [ -z "$added" ]; then
+            echo "No newly added page files in this push."
+          fi
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            d=$(sed -n 's/^date:[[:space:]]*//p' "$f" | head -1 | tr -d '"' | cut -c1-10)
+            if [ -z "$d" ]; then
+              echo "::error file=$f::no \`date:\` frontmatter found"
+              fail=1
+            elif [ -z "${ok[$d]:-}" ]; then
+              echo "::error file=$f::new page dated '$d' but was first committed on $(date -u +%Y-%m-%d). Set \`date:\` to publish day before committing (see CLAUDE.md > Publish-Day Dating)."
+              fail=1
+            else
+              echo "OK  $f  ($d)"
+            fi
+          done <<< "$added"
+
+          exit $fail

@@ -30,6 +30,7 @@ Defines how this project is implemented.
 - `docs/playbook/design.md`
 - `docs/playbook/content.md`
 - `docs/playbook/roadmap.md`
+- `docs/playbook/writing-rules.md` (execution rules and pre-publish checklist for every article/project page; read before writing or editing one)
 
 These documents should guide implementation decisions.
 
@@ -181,7 +182,7 @@ All Korean prose in this repo follows the `fluent-korean` style. Established 202
 - **Register is a warm 합니다체**, not the `-다` declarative of a paper (decided 2026-08-30 alongside the Review Article Tone revision). Address the reader as "여러분", ask questions and answer them in the body, and let first-person perspective and honest reactions show. Friendly, not casual: buzzwords, slang, and clickbait still stay out. Reference tone: jiho-ml's weekly-nlp series. Applies to articles and project pages alike.
 - **No em dashes (`—`) in body prose, headings, or `<abbr title="…">` text.** Replace each per context: a colon for an appositive/expansion, a connective for a logical link, or split into two sentences. When splitting, restore any subject or particle the dash was eliding — do not leave a bare fragment.
 - **An inserted `A — B — C` aside becomes parentheses** (`A(B)C`) or a `, 즉 …` / `, 곧 …` clause.
-- **Article `title:` frontmatter keeps its `[시리즈 라벨] 제목 — 부제: 세부` shape** — the `—` there is a fixed format separator between the bracketed series label and the title, not prose. Leave it.
+- **No dashes in `title:` frontmatter or SVG text either.** Revised 2026-09-30: the user found the `—` in titles and diagram labels awkward, so the earlier exemption for a `[시리즈 라벨] 제목 — 부제: 세부` title shape was dropped. Titles now use `[시리즈 라벨] 주제: 핵심 문장, 보충구` with a single colon. See `docs/playbook/writing-rules.md` §3.
 - **Sentences end on a 서술어 + 종결어미**, not a noun phrase or connective ending (headings and list items are exempt).
 - **Prefer plain words over figurative ones in body prose** (e.g. 고정하다 over 못박다). Headings may stay creative per Review Article Tone. Keep metaphors already idiomatic in Korean technical writing (줄다리기, 디딤돌).
 - Does not apply to code, code comments, or quoted source text.
@@ -255,6 +256,15 @@ Established when committing the tts-sentence-preprocessor Projects entry (2026-0
 - **When unrelated uncommitted changes exist in the working tree, leave them unstaged and tell the user explicitly what was excluded and why**, rather than silently including them or silently discarding them. The user commits those separately when ready.
 
 This applies every time a commit is made in this repo, not just when something unrelated happens to be sitting in the working tree — check `git status` before staging and confirm every staged file is actually part of the current task.
+
+## Publish-Day Dating
+
+Established 2026-08-31 after the AudioLM (#3) and VALL-E (#4) reviews shipped carrying `2026-08-08` placeholder dates, which sorted them behind the already-published prologue and speech-tokens entries and scrambled the series order on the blog. `.github/workflows/check-dates.yml` enforces this on every push.
+
+- **A page's `date:` frontmatter must equal the day it is first committed.** Drafts under `src/pages/articles/` and `src/pages/projects/` sit untracked with placeholder dates while being written, and those dates are almost always stale by the time the piece ships. In the same change that first adds a page to git (it shows as `??` in `git status`, not `M`), set its `date:` to today's date. This is a mandatory pre-commit step, not a nicety.
+- **Keep the `Thh:mm:ss` time suffix and use it for ordering.** When several sibling pages publish together, give each a later time than the previous one (e.g. `T11:00:00`, `T12:00:00`) so the intended reading order survives the blog's date sort.
+- **Editing an already-committed page does NOT change its `date:`.** Re-dating a live article re-sorts it to the top of the blog for what is only a copy edit. Leave the original publish date alone.
+- When asked to "publish" or "commit" a batch of drafts, re-date every one of them in the working tree first, then commit — sequentially, one page per commit, if their relative order matters.
 
 ---
 
