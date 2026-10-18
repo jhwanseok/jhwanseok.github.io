@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">VoxServe의 구조: 모델 차이는 한곳에 모으고 스케줄러는 누가 더 급한지 본다</title>
+  <desc id="desc">클라이언트의 요청이 API 서버를 거쳐 실행 프로세스의 Scheduler로 들어간다. Scheduler는 요청을 시작 단계(TTFA 우선, 동시 진입 상한)와 정상 단계(마감 1초 이내를 먼저 처리)로 나눠 다룬다. Worker는 GPU에서 LLM과 디토크나이저를 별개 작업으로 실행하며 CPU 처리와 겹친다. Worker는 Model을 호출하고, Model은 Preprocess, LLM Forward, Sampling, Postprocess(디토크나이저) 네 단계로 표준화되어 있으며 다층 코드북 모델에는 선택적으로 Depth-Forward 단계가 있다. 요청 묶기, 청크 단위 디토크나이징, 캐시 관리, CUDA graph 같은 최적화는 모델과 무관하게 작동한다.</desc>
+
+  <rect x="0" y="0" width="1000" height="580" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <text x="500" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">모델 차이는 한곳에 모으고, 스케줄러는 누가 더 급한지 본다</text>
+  <text x="500" y="52" text-anchor="middle" font-size="13.5" fill="#8a7f72">모델마다 다른 부분은 Model 안에 가두고, 최적화는 모델과 무관하게 Scheduler와 Worker가 맡는다</text>
+
+  <!-- Execution process container -->
+  <rect x="350" y="78" width="640" height="410" rx="16" fill="none" stroke="#c9bfae" stroke-width="1.5" stroke-dasharray="5 4" />
+  <text x="364" y="97" font-size="12.5" font-weight="500" fill="#8a7f72">실행 프로세스</text>
+
+  <!-- Client and API server -->
+  <rect x="20" y="160" width="130" height="70" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="85" y="192" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">클라이언트</text>
+  <text x="85" y="212" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">HTTP 요청</text>
+  <rect x="190" y="160" width="130" height="70" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="255" y="192" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">API 서버</text>
+  <text x="255" y="212" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">요청 접수, 청크 전송</text>
+  <line x1="150" y1="195" x2="188" y2="195" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="320" y1="195" x2="368" y2="195" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Scheduler (hero) -->
+  <rect x="370" y="110" width="280" height="170" rx="14" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="510" y="138" text-anchor="middle" font-size="16" font-weight="700" fill="#fff8f5">② Scheduler</text>
+  <text x="510" y="157" text-anchor="middle" font-size="12.5" font-weight="500" fill="#ffd9cf">요청을 두 시기로 나눠 본다</text>
+  <rect x="386" y="170" width="248" height="42" rx="10" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="400" y="188" font-size="13" font-weight="700" fill="#c13a26">시작 단계</text>
+  <text x="400" y="204" font-size="12" font-weight="500" fill="#8a7f72">TTFA 우선, 동시 진입 상한</text>
+  <rect x="386" y="222" width="248" height="42" rx="10" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="400" y="240" font-size="13" font-weight="700" fill="#c13a26">정상 단계</text>
+  <text x="400" y="256" font-size="12" font-weight="500" fill="#8a7f72">마감 1초 이내인 요청을 먼저</text>
+
+  <!-- Worker -->
+  <rect x="690" y="110" width="280" height="80" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="830" y="138" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">③ Worker</text>
+  <text x="830" y="159" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">LLM과 디토크나이저를 별개 GPU 작업으로</text>
+  <text x="830" y="176" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">나눠 CPU 처리와 겹친다</text>
+  <line x1="650" y1="150" x2="688" y2="150" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="830" y1="190" x2="830" y2="314" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Model container -->
+  <rect x="362" y="316" width="616" height="160" rx="14" fill="#fffaf4" fill-opacity="0.6" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="378" y="338" font-size="13.5" font-weight="700" fill="#292524">① Model: 네 단계로 맞춘 틀</text>
+  <text x="590" y="338" font-size="12.5" font-weight="500" fill="#8a7f72">모델마다 다른 부분은 이 안에 가둔다</text>
+
+  <rect x="374" y="350" width="136" height="76" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="442" y="376" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">Preprocess</text>
+  <text x="442" y="395" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">프롬프트 구성</text>
+  <text x="442" y="411" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">버퍼 할당</text>
+
+  <rect x="526" y="350" width="136" height="76" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="594" y="376" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">LLM Forward</text>
+  <text x="594" y="395" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">토큰 ID, 특징,</text>
+  <text x="594" y="411" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">마스크를 입력</text>
+
+  <rect x="678" y="350" width="136" height="76" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="746" y="376" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">Sampling</text>
+  <text x="746" y="395" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">다음 토큰</text>
+  <text x="746" y="411" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">결정</text>
+
+  <rect x="830" y="350" width="136" height="76" rx="12" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="898" y="376" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Postprocess</text>
+  <text x="898" y="395" text-anchor="middle" font-size="12" font-weight="500" fill="#ecfdf5">디토크나이저가</text>
+  <text x="898" y="411" text-anchor="middle" font-size="12" font-weight="500" fill="#ecfdf5">소리 청크 생성</text>
+
+  <line x1="510" y1="388" x2="524" y2="388" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="662" y1="388" x2="676" y2="388" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="814" y1="388" x2="828" y2="388" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Optional depth-forward -->
+  <rect x="526" y="436" width="288" height="30" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2" stroke-dasharray="4 3" />
+  <text x="670" y="456" text-anchor="middle" font-size="12.5" font-weight="700" fill="#92400e">(선택) Depth-Forward: 다층 코드북 모델용</text>
+
+  <!-- Common optimizations strip -->
+  <rect x="20" y="504" width="960" height="40" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="500" y="529" text-anchor="middle" font-size="13.5" font-weight="700" fill="#059669">모델과 무관하게 작동하는 최적화: 요청 묶기, 청크 단위 디토크나이징, 요청별 캐시 관리, CUDA graph</text>
+
+  <text x="500" y="568" text-anchor="middle" font-size="12" fill="#a89f92">VoxServe (Kamahori et al., 2026)의 그림 4를 바탕으로 직접 재구성한 개념도</text>
+</svg>
