@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">Pipecat 파이프라인 속 RTZRSTTService의 자리</title>
+  <desc id="desc">Pipecat 파이프라인은 오디오 입력, STT, 사용자 문맥, LLM, TTS, 오디오 출력 프로세서를 한 줄로 잇고 그 사이로 프레임이 흐른다. STT 자리에 들어간 RTZRSTTService는 아래의 RTZR VITO 스트리밍 API와 WebSocket으로 연결되어 오디오를 보내고 interim과 final 결과를 받는다. 오른쪽 카드는 서비스가 소켓 위에서 지키는 약속을 정리한다. VAD가 발화 끝을 알리면 Finalize를 보내고, 종료할 때 EOS를 보낸 뒤 마지막 결과를 최대 2초 기다리며, 오디오가 없을 때는 무음으로 연결을 유지하고, 토큰은 캐시했다가 401을 받으면 한 번 새로 받아 다시 시도한다. 소켓이 끊기면 자동으로 다시 연결하지만 그때 진행 중이던 발화는 사라진다.</desc>
+
+  <rect x="0" y="0" width="900" height="440" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Header -->
+  <text x="20" y="40" font-size="17" font-weight="700" fill="#292524">STT는 오디오 프레임을 받아 텍스트 프레임을 내보내는 한 칸입니다</text>
+  <text x="20" y="63" font-size="13.5" font-weight="500" fill="#8a7f72">이 칸만 RTZR로 바꾸면 LLM과 TTS는 그대로 둔 채 한국어 음성을 받습니다</text>
+
+  <!-- Pipeline row: 6 boxes, w=125, gap=22, x0=20 -->
+  <rect x="20" y="90" width="125" height="80" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="82.5" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">오디오 입력</text>
+  <text x="82.5" y="147" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">VAD 포함</text>
+
+  <rect x="167" y="90" width="125" height="80" rx="14" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="229.5" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#fff8f5">RTZR STT</text>
+  <text x="229.5" y="147" text-anchor="middle" font-size="12.5" font-weight="500" fill="#ffd9cf">pipecat-rtzr</text>
+
+  <rect x="314" y="90" width="125" height="80" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="376.5" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">사용자 문맥</text>
+  <text x="376.5" y="147" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">발화를 대화에 쌓음</text>
+
+  <rect x="461" y="90" width="125" height="80" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="523.5" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">LLM</text>
+  <text x="523.5" y="147" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">응답 생성</text>
+
+  <rect x="608" y="90" width="125" height="80" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="670.5" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">TTS</text>
+  <text x="670.5" y="147" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">텍스트를 음성으로</text>
+
+  <rect x="755" y="90" width="125" height="80" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="817.5" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">오디오 출력</text>
+  <text x="817.5" y="147" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">사용자에게 재생</text>
+
+  <!-- Pipeline arrows -->
+  <line x1="145" y1="130" x2="165" y2="130" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="292" y1="130" x2="312" y2="130" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="439" y1="130" x2="459" y2="130" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="586" y1="130" x2="606" y2="130" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="733" y1="130" x2="753" y2="130" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- WebSocket link STT <-> RTZR -->
+  <line x1="214" y1="172" x2="214" y2="298" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="245" y1="298" x2="245" y2="172" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <text x="204" y="250" text-anchor="end" font-size="12" font-weight="500" fill="#8a7f72">PCM 오디오</text>
+  <text x="255" y="250" text-anchor="start" font-size="12" font-weight="500" fill="#8a7f72">interim / final</text>
+
+  <!-- RTZR server -->
+  <rect x="60" y="300" width="340" height="62" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="230" y="327" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">RTZR VITO 스트리밍 API</text>
+  <text x="230" y="347" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">WebSocket · sommers_ko (한국어 8kHz 전화 음성)</text>
+
+  <!-- Limitation note (amber) -->
+  <rect x="60" y="378" width="340" height="44" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="230" y="405" text-anchor="middle" font-size="12.5" font-weight="600" fill="#92400e">끊기면 자동 재연결, 진행 중이던 발화는 사라짐</text>
+
+  <!-- Promise card -->
+  <rect x="460" y="232" width="420" height="190" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="480" y="260" font-size="14.5" font-weight="700" fill="#c13a26">RTZR STT가 소켓 위에서 지키는 약속</text>
+
+  <text x="480" y="290" font-size="13" font-weight="700" fill="#292524">Finalize</text>
+  <text x="572" y="290" font-size="13" font-weight="500" fill="#8a7f72">VAD가 발화 끝을 알리면 바로 닫기</text>
+
+  <text x="480" y="318" font-size="13" font-weight="700" fill="#292524">EOS</text>
+  <text x="572" y="318" font-size="13" font-weight="500" fill="#8a7f72">종료할 때 보내고 마지막 final을 최대 2초 대기</text>
+
+  <text x="480" y="346" font-size="13" font-weight="700" fill="#292524">keepalive</text>
+  <text x="572" y="346" font-size="13" font-weight="500" fill="#8a7f72">무음 60초면 서버가 끊으므로 무음을 보냄</text>
+
+  <text x="480" y="374" font-size="13" font-weight="700" fill="#292524">토큰</text>
+  <text x="572" y="374" font-size="13" font-weight="500" fill="#8a7f72">캐시하고 만료 전에 갱신, 401이면 한 번 재시도</text>
+
+  <text x="480" y="402" font-size="13" font-weight="700" fill="#292524">키워드</text>
+  <text x="572" y="402" font-size="13" font-weight="500" fill="#8a7f72">고유명사에 가중치를 주는 부스팅</text>
+</svg>
