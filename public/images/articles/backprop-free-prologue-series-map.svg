@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 430" role="img" aria-labelledby="bpmTitle bpmDesc">
+  <title id="bpmTitle">시리즈 지도: 역전파 없이 배우는 법</title>
+  <desc id="bpmDesc">본편 일곱 편은 1,000만 토큰 시기의 열흘을 따라갑니다. 1편 규칙과 숫자, 2편 Dust, 3편 잡음을 덜 낭비하는 법, 4편 attention 고정, 5편 잃은 신용 되찾기, 6편 어디까지가 역전파인가, 7편 1.6초까지의 스피드런 공학입니다. 8편부터는 3,000만 토큰 이후의 새 기록과 규칙 변화를 PR 한 편씩 리뷰하는 연재입니다.</desc>
+
+  <defs>
+    <marker id="bpmArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 22px; fill: #292524; }
+    .subtitle-text { font-size: 14px; fill: #8a7f72; }
+    .num { font-size: 12px; font-weight: 700; fill: #8a7f72; }
+    .box-title { font-weight: 700; font-size: 15px; }
+    .box-sub { font-size: 12px; fill: #8a7f72; }
+    .caption-text { font-size: 15px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="430" fill="#fdf6ec" />
+
+  <text x="440" y="34" text-anchor="middle" class="title-text">시리즈 지도: 질문 하나가 모양을 바꿔 간다</text>
+  <text x="440" y="56" text-anchor="middle" class="subtitle-text">본편 일곱 편은 1,000만 토큰의 열흘을, 그 뒤의 연재는 진행 중인 대회를 따라간다</text>
+
+  <!-- row 1: x 25 / 240 / 455 / 670, w 185, y 90..186 -->
+  <rect x="25" y="90" width="185" height="96" rx="12" fill="#e34a33" stroke="#c13a26" stroke-width="2" />
+  <text x="41" y="112" font-size="12" font-weight="700" fill="#ffffff">#1 이 글</text>
+  <text x="117" y="140" text-anchor="middle" class="box-title" fill="#ffffff">규칙과 숫자</text>
+  <text x="117" y="162" text-anchor="middle" font-size="12" fill="#ffffff">무엇을 금지하는가</text>
+
+  <line x1="214" y1="138" x2="236" y2="138" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <rect x="240" y="90" width="185" height="96" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="256" y="112" class="num">#2</text>
+  <text x="332" y="140" text-anchor="middle" class="box-title" fill="#292524">Dust</text>
+  <text x="332" y="162" text-anchor="middle" class="box-sub">활성값을 흔들어 개체군을 얻다</text>
+
+  <line x1="429" y1="138" x2="451" y2="138" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <rect x="455" y="90" width="185" height="96" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="471" y="112" class="num">#3</text>
+  <text x="547" y="140" text-anchor="middle" class="box-title" fill="#292524">잡음 덜 낭비하기</text>
+  <text x="547" y="160" text-anchor="middle" class="box-sub">겹치지 않는 방향, 메모리,</text>
+  <text x="547" y="175" text-anchor="middle" class="box-sub">잡음에 강한 옵티마이저</text>
+
+  <line x1="644" y1="138" x2="666" y2="138" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <rect x="670" y="90" width="185" height="96" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="686" y="112" class="num">#4</text>
+  <text x="762" y="140" text-anchor="middle" class="box-title" fill="#292524">attention 고정</text>
+  <text x="762" y="162" text-anchor="middle" class="box-sub">토큰마다 독립된 실험</text>
+
+  <!-- turn down: #4 -> #5 -->
+  <line x1="762" y1="190" x2="762" y2="236" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <!-- row 2 (right to left): #5 670, #6 455, #7 240, #8~ 25; y 240..336 -->
+  <rect x="670" y="240" width="185" height="96" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="686" y="262" class="num">#5</text>
+  <text x="762" y="290" text-anchor="middle" class="box-title" fill="#292524">잃은 신용 되찾기</text>
+  <text x="762" y="312" text-anchor="middle" class="box-sub">Adam 기준선 아래로</text>
+
+  <line x1="666" y1="288" x2="644" y2="288" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <rect x="455" y="240" width="185" height="96" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
+  <text x="471" y="262" class="num">#6</text>
+  <text x="547" y="290" text-anchor="middle" class="box-title" fill="#92400e">어디까지가 역전파인가</text>
+  <text x="547" y="312" text-anchor="middle" class="box-sub">규칙의 선이 그어진 논쟁</text>
+
+  <line x1="451" y1="288" x2="429" y2="288" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <rect x="240" y="240" width="185" height="96" rx="12" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="256" y="262" class="num">#7</text>
+  <text x="332" y="290" text-anchor="middle" class="box-title" fill="#292524">1.6초까지</text>
+  <text x="332" y="310" text-anchor="middle" class="box-sub">스피드런의 공학과</text>
+  <text x="332" y="325" text-anchor="middle" class="box-sub">학습을 끝내는 방법</text>
+
+  <line x1="236" y1="288" x2="214" y2="288" stroke="#b3a08c" stroke-width="2" marker-end="url(#bpmArrow)" />
+
+  <rect x="25" y="240" width="185" height="96" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="2" stroke-dasharray="6 4" />
+  <text x="41" y="262" font-size="12" font-weight="700" fill="#059669">#8부터 연재</text>
+  <text x="117" y="290" text-anchor="middle" class="box-title" fill="#059669">새 기록, 새 규칙</text>
+  <text x="117" y="310" text-anchor="middle" class="box-sub">3,000만 토큰 이후</text>
+  <text x="117" y="325" text-anchor="middle" class="box-sub">PR 한 편씩 리뷰</text>
+
+  <text x="440" y="378" text-anchor="middle" class="box-sub">#1부터 #7까지 본편: 1,000만 토큰의 열흘, 지금은 저장소의 archive/10M에 보관</text>
+
+  <text x="440" y="412" text-anchor="middle" class="caption-text">다음 편은 #2 Dust입니다. 활성값을 흔든다는 말을 코드로 읽어 봅니다.</text>
+</svg>

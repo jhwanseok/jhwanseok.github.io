@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 500" role="img" aria-labelledby="bppTitle bppDesc">
+  <title id="bppTitle">개체군을 어디서 얻느냐: 가중치를 흔드는 ES와 활성값을 흔드는 Dust</title>
+  <desc id="bppDesc">왼쪽의 가중치 공간 ES는 가중치에 잡음을 더한 복사본마다 forward를 한 번씩 돌려야 해서, 실험 하나에 가중치 복사본 한 벌과 forward 한 번이 듭니다. 오른쪽의 Dust는 forward 한 번 안에서 토큰마다 다른 잡음을 활성값에 더하므로, 토큰 하나가 실험 하나가 되어 시퀀스 길이 2,048만큼의 실험을 한꺼번에 얻습니다. 논문은 이렇게 얻는 개체군이 가중치 공간 ES보다 적어도 세 자릿수 크다고 설명합니다.</desc>
+
+  <defs>
+    <marker id="bppArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 22px; fill: #292524; }
+    .subtitle-text { font-size: 14px; fill: #8a7f72; }
+    .panel-label { font-weight: 700; font-size: 14px; }
+    .box-title { font-weight: 700; font-size: 13px; }
+    .box-sub { font-size: 12px; fill: #8a7f72; }
+    .arrow-label { font-size: 13px; fill: #8a7f72; }
+    .note-text { font-size: 13px; fill: #292524; }
+    .caption-text { font-size: 15px; fill: #292524; }
+    .tok { font-size: 12px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="500" fill="#fdf6ec" />
+
+  <text x="440" y="34" text-anchor="middle" class="title-text">개체군을 어디서 얻느냐</text>
+  <text x="440" y="56" text-anchor="middle" class="subtitle-text">가중치를 흔들면 실험마다 forward가 들고, 토큰마다 흔들면 forward 한 번이 수천 개의 실험이 된다</text>
+
+  <!-- ===== Left: weight-space ES ===== -->
+  <rect x="30" y="76" width="400" height="354" rx="16" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="110" y="88" width="240" height="24" rx="12" fill="#fef3c7" stroke="#fcd34d" />
+  <text x="230" y="105" text-anchor="middle" class="panel-label" fill="#92400e">가중치 공간 ES (EGGROLL 등)</text>
+
+  <!-- rows -->
+  <rect x="50" y="130" width="130" height="38" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="115" y="154" text-anchor="middle" class="box-title" fill="#92400e">가중치 + 잡음 1</text>
+  <line x1="184" y1="149" x2="214" y2="149" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="218" y="130" width="110" height="38" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="273" y="154" text-anchor="middle" class="box-title" fill="#292524">forward 1번</text>
+  <line x1="332" y1="149" x2="352" y2="149" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="356" y="130" width="58" height="38" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="385" y="154" text-anchor="middle" class="box-title" fill="#059669">손실</text>
+
+  <rect x="50" y="184" width="130" height="38" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="115" y="208" text-anchor="middle" class="box-title" fill="#92400e">가중치 + 잡음 2</text>
+  <line x1="184" y1="203" x2="214" y2="203" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="218" y="184" width="110" height="38" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="273" y="208" text-anchor="middle" class="box-title" fill="#292524">forward 1번</text>
+  <line x1="332" y1="203" x2="352" y2="203" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="356" y="184" width="58" height="38" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="385" y="208" text-anchor="middle" class="box-title" fill="#059669">손실</text>
+
+  <rect x="50" y="238" width="130" height="38" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="115" y="262" text-anchor="middle" class="box-title" fill="#92400e">가중치 + 잡음 3</text>
+  <line x1="184" y1="257" x2="214" y2="257" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="218" y="238" width="110" height="38" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="273" y="262" text-anchor="middle" class="box-title" fill="#292524">forward 1번</text>
+  <line x1="332" y1="257" x2="352" y2="257" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="356" y="238" width="58" height="38" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="385" y="262" text-anchor="middle" class="box-title" fill="#059669">손실</text>
+
+  <text x="230" y="302" text-anchor="middle" class="box-title" fill="#8a7f72">⋮</text>
+
+  <rect x="50" y="316" width="130" height="38" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="115" y="340" text-anchor="middle" class="box-title" fill="#92400e">가중치 + 잡음 N</text>
+  <line x1="184" y1="335" x2="214" y2="335" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="218" y="316" width="110" height="38" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="273" y="340" text-anchor="middle" class="box-title" fill="#292524">forward 1번</text>
+  <line x1="332" y1="335" x2="352" y2="335" stroke="#b3a08c" stroke-width="2" marker-end="url(#bppArrow)" />
+  <rect x="356" y="316" width="58" height="38" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="385" y="340" text-anchor="middle" class="box-title" fill="#059669">손실</text>
+
+  <text x="230" y="390" text-anchor="middle" class="note-text">실험 1개 = 가중치 복사본 1벌 + forward 1번</text>
+  <text x="230" y="410" text-anchor="middle" class="box-sub">실험 N개를 하려면 forward도 N번</text>
+
+  <!-- ===== Right: Dust, per-token activation noise ===== -->
+  <rect x="450" y="76" width="400" height="354" rx="16" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="530" y="88" width="240" height="24" rx="12" fill="#ffe4de" stroke="#ffab91" />
+  <text x="650" y="105" text-anchor="middle" class="panel-label" fill="#c13a26">활성값 공간 (Dust)</text>
+
+  <!-- one forward container -->
+  <rect x="470" y="130" width="360" height="224" rx="12" fill="#fffaf4" stroke="#e34a33" stroke-width="2" stroke-dasharray="7 5" />
+  <text x="650" y="152" text-anchor="middle" class="box-title" fill="#c13a26">forward 1번</text>
+
+  <text x="650" y="180" text-anchor="middle" class="box-sub">토큰마다 다른 잡음</text>
+  <!-- noise dots -->
+  <circle cx="508" cy="202" r="7" fill="#e34a33" />
+  <circle cx="554" cy="202" r="7" fill="#e34a33" fill-opacity="0.75" />
+  <circle cx="600" cy="202" r="7" fill="#e34a33" fill-opacity="0.5" />
+  <circle cx="646" cy="202" r="7" fill="#e34a33" fill-opacity="0.85" />
+  <circle cx="692" cy="202" r="7" fill="#e34a33" fill-opacity="0.6" />
+  <circle cx="788" cy="202" r="7" fill="#e34a33" fill-opacity="0.7" />
+
+  <!-- token cells -->
+  <rect x="490" y="222" width="36" height="30" rx="7" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="508" y="242" text-anchor="middle" class="tok">t1</text>
+  <rect x="536" y="222" width="36" height="30" rx="7" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="554" y="242" text-anchor="middle" class="tok">t2</text>
+  <rect x="582" y="222" width="36" height="30" rx="7" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="600" y="242" text-anchor="middle" class="tok">t3</text>
+  <rect x="628" y="222" width="36" height="30" rx="7" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="646" y="242" text-anchor="middle" class="tok">t4</text>
+  <rect x="674" y="222" width="36" height="30" rx="7" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="692" y="242" text-anchor="middle" class="tok">t5</text>
+  <text x="737" y="242" text-anchor="middle" class="box-title" fill="#8a7f72">…</text>
+  <rect x="760" y="222" width="56" height="30" rx="7" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="788" y="242" text-anchor="middle" class="tok">t2048</text>
+
+  <!-- per-token loss change -->
+  <line x1="508" y1="256" x2="508" y2="276" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#bppArrow)" />
+  <line x1="554" y1="256" x2="554" y2="276" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#bppArrow)" />
+  <line x1="600" y1="256" x2="600" y2="276" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#bppArrow)" />
+  <line x1="646" y1="256" x2="646" y2="276" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#bppArrow)" />
+  <line x1="692" y1="256" x2="692" y2="276" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#bppArrow)" />
+  <line x1="788" y1="256" x2="788" y2="276" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#bppArrow)" />
+  <rect x="494" y="280" width="28" height="20" rx="6" fill="#ecfdf5" stroke="#6ee7b7" />
+  <rect x="540" y="280" width="28" height="20" rx="6" fill="#ecfdf5" stroke="#6ee7b7" />
+  <rect x="586" y="280" width="28" height="20" rx="6" fill="#ecfdf5" stroke="#6ee7b7" />
+  <rect x="632" y="280" width="28" height="20" rx="6" fill="#ecfdf5" stroke="#6ee7b7" />
+  <rect x="678" y="280" width="28" height="20" rx="6" fill="#ecfdf5" stroke="#6ee7b7" />
+  <rect x="774" y="280" width="28" height="20" rx="6" fill="#ecfdf5" stroke="#6ee7b7" />
+  <text x="650" y="330" text-anchor="middle" class="box-sub">토큰마다 손실 변화</text>
+
+  <text x="650" y="390" text-anchor="middle" class="note-text">토큰 1개 = 실험 1개, forward 1번에 2,048개</text>
+  <text x="650" y="410" text-anchor="middle" class="box-sub">논문: 가중치 공간 ES보다 개체군이 적어도 세 자릿수 크다</text>
+
+  <text x="440" y="470" text-anchor="middle" class="caption-text">같은 forward 예산으로 훨씬 많은 방향을 잴 수 있다는 것이 Dust의 출발점입니다.</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" role="img" aria-labelledby="bphTitle bphDesc">
+  <title id="bphTitle">측정한 신호는 비선형을 한 번만 건넌다: Noise의 역전파 금지 규칙</title>
+  <desc id="bphDesc">왼쪽은 허용되는 경우입니다. forward로 측정한 손실 신호는 선형 사상을 몇 번 건너도 세지 않고, 비선형 부분은 한 걸음만 건너 어느 층의 오차 추정이 됩니다. 오른쪽은 금지되는 경우입니다. 맨 위 블록의 오차까지는 측정에서 한 걸음이라 허용되지만, 그 추정치에서 다시 아래 블록의 오차를 계산하면 비선형을 두 번째로 건너게 되고, 이렇게 블록에서 블록으로 이어 내려보내는 것은 역전파를 흉내 내는 일이라 막힙니다.</desc>
+
+  <defs>
+    <marker id="bphArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 22px; fill: #292524; }
+    .subtitle-text { font-size: 14px; fill: #8a7f72; }
+    .panel-label { font-weight: 700; font-size: 14px; }
+    .box-title { font-weight: 700; font-size: 14px; }
+    .box-sub { font-size: 12px; fill: #8a7f72; }
+    .arrow-label { font-size: 13px; fill: #8a7f72; }
+    .note-text { font-size: 13px; fill: #292524; }
+    .caption-text { font-size: 15px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="520" fill="#fdf6ec" />
+
+  <text x="440" y="34" text-anchor="middle" class="title-text">측정한 신호는 비선형을 한 번만 건넌다</text>
+  <text x="440" y="56" text-anchor="middle" class="subtitle-text">블록에서 블록으로 신용을 이어 내려보내면, 그것은 다시 역전파가 된다</text>
+
+  <!-- ===== Left: allowed ===== -->
+  <rect x="30" y="76" width="400" height="344" rx="16" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="170" y="86" width="120" height="24" rx="12" fill="#ecfdf5" stroke="#6ee7b7" />
+  <text x="230" y="103" text-anchor="middle" class="panel-label" fill="#059669">허용</text>
+
+  <rect x="130" y="120" width="200" height="46" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2" />
+  <text x="230" y="139" text-anchor="middle" class="box-title" fill="#059669">손실</text>
+  <text x="230" y="156" text-anchor="middle" class="box-sub">forward로 돌려 측정</text>
+
+  <line x1="230" y1="170" x2="230" y2="196" stroke="#b3a08c" stroke-width="2" marker-end="url(#bphArrow)" />
+
+  <rect x="130" y="200" width="200" height="46" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="230" y="219" text-anchor="middle" class="box-title" fill="#292524">선형 사상</text>
+  <text x="230" y="236" text-anchor="middle" class="box-sub">몇 번 건너도 세지 않음</text>
+
+  <line x1="230" y1="250" x2="230" y2="276" stroke="#b3a08c" stroke-width="2" marker-end="url(#bphArrow)" />
+
+  <rect x="130" y="280" width="200" height="46" rx="10" fill="#ffe4de" stroke="#ffab91" stroke-width="2" />
+  <text x="230" y="299" text-anchor="middle" class="box-title" fill="#c13a26">비선형 한 걸음</text>
+  <text x="230" y="316" text-anchor="middle" class="box-sub">최대 1번</text>
+
+  <line x1="230" y1="330" x2="230" y2="356" stroke="#b3a08c" stroke-width="2" marker-end="url(#bphArrow)" />
+
+  <rect x="130" y="360" width="200" height="46" rx="10" fill="#10b981" stroke="#059669" stroke-width="2" />
+  <text x="230" y="379" text-anchor="middle" class="box-title" fill="#ffffff">이 층의 오차 추정</text>
+  <text x="230" y="396" text-anchor="middle" font-size="12" fill="#ffffff">여기서 멈춘다</text>
+
+  <!-- ===== Right: forbidden ===== -->
+  <rect x="450" y="76" width="400" height="344" rx="16" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <rect x="590" y="86" width="120" height="24" rx="12" fill="#fef3c7" stroke="#fcd34d" />
+  <text x="650" y="103" text-anchor="middle" class="panel-label" fill="#92400e">금지</text>
+
+  <rect x="530" y="120" width="200" height="46" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2" />
+  <text x="630" y="139" text-anchor="middle" class="box-title" fill="#059669">손실</text>
+  <text x="630" y="156" text-anchor="middle" class="box-sub">forward로 돌려 측정</text>
+
+  <line x1="630" y1="170" x2="630" y2="196" stroke="#b3a08c" stroke-width="2" marker-end="url(#bphArrow)" />
+  <text x="642" y="188" text-anchor="start" class="box-sub">한 걸음</text>
+
+  <rect x="530" y="200" width="200" height="46" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <text x="630" y="219" text-anchor="middle" class="box-title" fill="#292524">맨 위 블록의 오차</text>
+  <text x="630" y="236" text-anchor="middle" class="box-sub">여기까지는 허용</text>
+
+  <line x1="630" y1="250" x2="630" y2="276" stroke="#b3a08c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#bphArrow)" />
+  <!-- X mark on the second crossing -->
+  <circle cx="630" cy="263" r="11" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <path d="M625,258 L635,268 M635,258 L625,268" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" />
+  <text x="650" y="268" text-anchor="start" font-size="12" font-weight="700" fill="#c13a26">두 번째 건너기</text>
+
+  <rect x="530" y="280" width="200" height="46" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
+  <text x="630" y="299" text-anchor="middle" class="box-title" fill="#92400e">그 아래 블록의 오차</text>
+  <text x="630" y="316" text-anchor="middle" class="box-sub">위 블록의 추정치에서 다시 계산</text>
+
+  <line x1="630" y1="330" x2="630" y2="356" stroke="#b3a08c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#bphArrow)" />
+
+  <rect x="530" y="360" width="200" height="46" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
+  <text x="630" y="379" text-anchor="middle" class="box-title" fill="#92400e">아래로 계속</text>
+  <text x="630" y="396" text-anchor="middle" class="box-sub">블록 사이의 chain rule과 같다</text>
+
+  <text x="440" y="458" text-anchor="middle" class="caption-text">선을 이렇게 그어 두면, 측정을 잘게 쪼개 역전파를 흉내 내는 길이 막힙니다.</text>
+  <text x="440" y="486" text-anchor="middle" class="arrow-label">규칙의 취지: 미분할 수 없는 부분이 있는 네트워크에도 적용될 수 있어야 한다</text>
+</svg>
