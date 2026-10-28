@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
-  <title id="title">요약 가와 요약 나의 점검기 수치 비교</title>
-  <desc id="desc">같은 논문의 요약 두 개를 점검기로 비교한 막대 그림이다. 평균 문장 길이는 요약 가가 52.5자, 요약 나가 38.2자다. 지적받은 문장 비율은 요약 가가 83퍼센트, 요약 나가 10퍼센트다. 글자 수는 요약 가가 320자, 요약 나가 391자로 나가 더 길다. 요약 나는 점검기를 보며 고친 글이다.</desc>
+  <title id="title">요약 가와 요약 나의 점검 도구 수치 비교</title>
+  <desc id="desc">같은 논문의 요약 두 개를 점검 도구로 비교한 막대 그림이다. 평균 문장 길이는 요약 가가 52.5자, 요약 나가 38.2자다. 지적받은 문장 비율은 요약 가가 83퍼센트, 요약 나가 10퍼센트다. 글자 수는 요약 가가 320자, 요약 나가 391자로 나가 더 길다. 요약 나는 점검 도구를 보며 고친 글이다.</desc>
 
   <rect x="0" y="0" width="1000" height="440" fill="#fdf6ec" />
-  <text x="30" y="38" font-size="17" font-weight="700" fill="#292524">두 요약의 점검기 수치: 문장은 짧아졌고 글자 수는 늘었습니다</text>
+  <text x="30" y="38" font-size="17" font-weight="700" fill="#292524">두 요약의 점검 도구 수치: 문장은 짧아졌고 글자 수는 늘었습니다</text>
 
   <rect x="30" y="60" width="300" height="340" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
   <text x="180" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">평균 문장 길이</text>
@@ -17,7 +17,7 @@
   <text x="240" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">요약 나</text>
   <rect x="350" y="60" width="300" height="340" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
   <text x="500" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">지적받은 문장 비율</text>
-  <text x="500" y="112" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">점검기 기준, 낮을수록 좋음</text>
+  <text x="500" y="112" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">점검 도구 기준, 낮을수록 좋음</text>
   <line x1="380" y1="360" x2="620" y2="360" stroke="#b3a08c" stroke-width="2" />
   <rect x="405" y="177.4" width="70" height="182.6" rx="6" fill="#e7dfd3" stroke="#b3a08c" stroke-width="1.5" />
   <rect x="525" y="338.0" width="70" height="22.0" rx="6" fill="#10b981" stroke="#059669" stroke-width="1.5" />
@@ -35,5 +35,5 @@
   <text x="880" y="134.9" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">391자</text>
   <text x="760" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">요약 가</text>
   <text x="880" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">요약 나</text>
-  <text x="30" y="424" font-size="13.5" font-weight="500" fill="#8a7f72">요약 나는 점검기를 보며 고친 글이라 이 비교는 독립 평가가 아닙니다. 가는 모델이 처음 낸 글 그대로입니다.</text>
+  <text x="30" y="424" font-size="13.5" font-weight="500" fill="#8a7f72">요약 나는 점검 도구를 보며 고친 글이라 이 비교는 독립 평가가 아닙니다. 가는 모델이 처음 낸 글 그대로입니다.</text>
 </svg>
