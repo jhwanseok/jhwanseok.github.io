@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 480" role="img" aria-labelledby="bpsTitle bpsDesc">
+  <title id="bpsTitle">목표 손실 4.2까지 걸린 시간, 1,000만 토큰 트랙 2의 기록 22개</title>
+  <desc id="bpsDesc">세로축은 로그 눈금의 학습 시간이고 가로축은 10월 12일부터 22일까지의 기록 순서입니다. 10월 12일 Dust와 Adam의 1시간 46분에서 시작해 18일 5분(PR 12), 19일 1분 23초(PR 16), 20일 15.4초(PR 25)와 6.4초(PR 29)를 거쳐 22일 1.6초(PR 42)까지 내려왔습니다. 앞쪽은 추정 방법이 바뀌던 구간이고, 뒤쪽은 주로 커널, 샤딩, 배치 크기 같은 시스템 공학이 시간을 줄인 구간입니다.</desc>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 22px; fill: #292524; }
+    .subtitle-text { font-size: 14px; fill: #8a7f72; }
+    .phase { font-size: 12px; font-weight: 700; }
+    .tick { font-size: 12px; fill: #8a7f72; }
+    .ann { font-size: 13px; fill: #292524; }
+    .ann-hero { font-size: 13px; font-weight: 700; fill: #c13a26; }
+    .caption-text { font-size: 15px; fill: #292524; }
+  </style>
+
+  <rect width="880" height="480" fill="#fdf6ec" />
+
+  <text x="440" y="34" text-anchor="middle" class="title-text">목표 손실 4.2까지 걸린 시간, 기록 22개</text>
+  <text x="440" y="56" text-anchor="middle" class="subtitle-text">세로축은 로그 눈금이라, 같은 높이만큼 내려가면 같은 배수만큼 빨라진 것이다</text>
+
+  <!-- phase bands: plot x 100..840, y 100..380 -->
+  <rect x="100" y="100" width="267" height="280" fill="#ffe4de" fill-opacity="0.45" />
+  <rect x="367" y="100" width="473" height="280" fill="#fef3c7" fill-opacity="0.55" />
+  <text x="233" y="90" text-anchor="middle" class="phase" fill="#c13a26">추정 방법이 바뀌던 구간</text>
+  <text x="603" y="90" text-anchor="middle" class="phase" fill="#92400e">주로 시스템 공학이 줄인 구간</text>
+
+  <!-- gridlines: y = 380 - 70*log10(seconds) -->
+  <line x1="100" y1="380" x2="840" y2="380" stroke="#b3a08c" stroke-width="1.5" />
+  <line x1="100" y1="310" x2="840" y2="310" stroke="#e7dfd3" stroke-width="1" />
+  <line x1="100" y1="255.5" x2="840" y2="255.5" stroke="#e7dfd3" stroke-width="1" />
+  <line x1="100" y1="185.5" x2="840" y2="185.5" stroke="#e7dfd3" stroke-width="1" />
+  <line x1="100" y1="131.1" x2="840" y2="131.1" stroke="#e7dfd3" stroke-width="1" />
+  <text x="92" y="384" text-anchor="end" class="tick">1초</text>
+  <text x="92" y="314" text-anchor="end" class="tick">10초</text>
+  <text x="92" y="259.5" text-anchor="end" class="tick">1분</text>
+  <text x="92" y="189.5" text-anchor="end" class="tick">10분</text>
+  <text x="92" y="135.1" text-anchor="end" class="tick">1시간</text>
+
+  <!-- record step line (each record holds until the next) -->
+  <path d="M110,113.8 H144.3 V161.5 H178.6 V163 H212.9 V206.6 H247.1 V210.8 H281.4 V226.3 H315.7 V245.7 H350 V254.6 H384.3 V263 H418.6 V296.8 H452.9 V298.5 H487.1 V301.8 H521.4 V323.6 H555.7 V327.1 H590 V331.7 H624.3 V335 H658.6 V341.1 H692.9 V345.6 H727.1 V349.8 H761.4 V352.1 H795.7 V363.9 H830 V365.7" fill="none" stroke="#e34a33" stroke-width="2.5" stroke-linejoin="round" />
+
+  <!-- record points -->
+  <g fill="#fffaf4" stroke="#e34a33" stroke-width="2">
+    <circle cx="110" cy="113.8" r="4" />
+    <circle cx="144.3" cy="161.5" r="3.5" />
+    <circle cx="178.6" cy="163" r="3.5" />
+    <circle cx="212.9" cy="206.6" r="4" />
+    <circle cx="247.1" cy="210.8" r="3.5" />
+    <circle cx="281.4" cy="226.3" r="3.5" />
+    <circle cx="315.7" cy="245.7" r="4" />
+    <circle cx="350" cy="254.6" r="3.5" />
+    <circle cx="384.3" cy="263" r="3.5" />
+    <circle cx="418.6" cy="296.8" r="4" />
+    <circle cx="452.9" cy="298.5" r="3.5" />
+    <circle cx="487.1" cy="301.8" r="3.5" />
+    <circle cx="521.4" cy="323.6" r="4" />
+    <circle cx="555.7" cy="327.1" r="3.5" />
+    <circle cx="590" cy="331.7" r="3.5" />
+    <circle cx="624.3" cy="335" r="3.5" />
+    <circle cx="658.6" cy="341.1" r="3.5" />
+    <circle cx="692.9" cy="345.6" r="3.5" />
+    <circle cx="727.1" cy="349.8" r="3.5" />
+    <circle cx="761.4" cy="352.1" r="3.5" />
+    <circle cx="795.7" cy="363.9" r="3.5" />
+  </g>
+  <circle cx="830" cy="365.7" r="6" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+
+  <!-- annotations -->
+  <text x="152" y="128" text-anchor="start" class="ann">1시간 46분: Dust + Adam 출발선</text>
+  <text x="220" y="197" text-anchor="start" class="ann">5분, #12</text>
+  <text x="323" y="237" text-anchor="start" class="ann">1분 23초, #16</text>
+  <text x="426" y="287" text-anchor="start" class="ann">15.4초, #25</text>
+  <text x="529" y="314" text-anchor="start" class="ann">6.4초, #29</text>
+  <text x="836" y="338" text-anchor="end" class="ann-hero">1.6초, #42</text>
+
+  <!-- x axis: dates (October) -->
+  <text x="110" y="400" text-anchor="middle" class="tick">12일</text>
+  <text x="144.3" y="400" text-anchor="middle" class="tick">15일</text>
+  <text x="178.6" y="400" text-anchor="middle" class="tick">16일</text>
+  <text x="212.9" y="400" text-anchor="middle" class="tick">18일</text>
+  <text x="281.4" y="400" text-anchor="middle" class="tick">19일</text>
+  <text x="435.6" y="400" text-anchor="middle" class="tick">20일</text>
+  <text x="658.6" y="400" text-anchor="middle" class="tick">21일</text>
+  <text x="812.9" y="400" text-anchor="middle" class="tick">22일</text>
+  <text x="470" y="422" text-anchor="middle" class="tick">10월, 기록이 깨진 순서 (같은 날 여러 번 깨지기도 했다)</text>
+
+  <text x="440" y="460" text-anchor="middle" class="caption-text">목표 4.2는 그대로 두고, 같은 손실에 닿는 시간만 약 4,000배 줄었습니다.</text>
+</svg>
