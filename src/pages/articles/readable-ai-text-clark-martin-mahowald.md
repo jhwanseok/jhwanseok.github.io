@@ -2,7 +2,7 @@
 layout: ../../layouts/ContentLayout.astro
 title: "AI가 쓴 글은 왜 이해하기 어려울까: 논문이 꼽은 여섯 가지 특징과 내 글에 적용해 본 결과"
 date: 2026-10-28T22:00:00
-tags: ["AI Engineering", "Engineering Experiments", "Voice AI"]
+tags: ["LLM Applications", "AI Evaluation", "Technical Writing"]
 description: "AI가 쓴 글에 읽기 어려운 문장 구조가 더 많다는 Clark, Martin, Mahowald의 논문을 읽고, 같은 논문의 요약을 규칙 없이 쓴 것과 규칙을 적용해 쓴 것으로 나란히 비교한 기록입니다."
 ---
 
@@ -72,7 +72,7 @@ description: "AI가 쓴 글에 읽기 어려운 문장 구조가 더 많다는 C
 
 <figure style="margin:1.5rem 0;text-align:center">
 <img src="/images/articles/clark-fig2-round-trip-by-model.png" alt="논문 그림 2. 14개 모델별로 원래 글과 왕복 번역 문장의 차이를 대화, 코딩, 에세이, 전체 칸으로 나눠 막대로 보여 준다. Opus 5와 Fable 같은 프런티어 모델은 막대가 길고 Llama와 Olmo 기본 모델은 짧다." style="display:block;width:75%;margin:0 auto" />
-<figcaption style="margin-top:0.5rem;font-size:0.875rem;color:#64748b">그림: Clark·Martin·Mahowald (2026) Figure 2. CC BY 4.0</figcaption>
+<figcaption style="margin-top:0.5rem;font-size:1rem;color:#64748b">그림: Clark·Martin·Mahowald (2026) Figure 2. CC BY 4.0</figcaption>
 </figure>
 
 이 그림에서 볼 것: 막대는 원래 글과 왕복 번역 문장의 차이이고, 길수록 모델이 그 특징을 더 많이 골랐다는 신호입니다. 위쪽의 프런티어 모델은 길고 아래쪽의 Llama와 Olmo 기본 모델은 짧습니다. 가로축은 모델마다 값이 흩어진 정도(표준편차)를 한 단위로 삼은 값이고, 짧은 선은 그 설정에서 모델을 돌리지 않았다는 표시입니다.
@@ -86,8 +86,8 @@ description: "AI가 쓴 글에 읽기 어려운 문장 구조가 더 많다는 C
 점수를 깎기 시작하면 짧은 쪽을 고르는 비율이 올라갔습니다. 원래 모델에서 멀어지지 못하게 묶는 규제(KL 규제)를 없애면 그 속도가 훨씬 빠릅니다. 이 설정에서는 점수를 조금이라도 깎으면 무작위 시작값(시드)을 바꿔 돌린 세 번 모두 짧은 쪽으로 모였습니다. 훈련에 쓴 that 생략 두 가지는 깎는 정도가 어떻든 98%를 넘게 짧은 쪽이었습니다. 훈련하지 않은 that 구문에서도 같은 경향이 이어졌습니다. 다만 전혀 다른 표현 쌍 네 개 중에서는 규제가 없을 때 소유격에서만 이어졌습니다. 저자들은 이 실험을 "개념 증명"으로 소개합니다. 이 실험은 길이 압박이 문법 선택을 바꿀 수 있음을 보여 줍니다. 실제 모델 훈련에서 그랬는지는 보여 주지 않습니다.
 
 <figure style="margin:1.5rem 0;text-align:center">
-<img src="/images/articles/clark-fig7-length-penalty.png" alt="논문 그림 7. 글이 길수록 깎는 점수를 키울수록 모델이 짧은 표현을 고르는 비율이 올라가는 모습. KL 규제가 없는 주황 선이 더 빠르게 올라가고, 두 표현의 길이가 같은 대조군은 변하지 않는다." style="display:block;width:75%;margin:0 auto" />
-<figcaption style="margin-top:0.5rem;font-size:0.875rem;color:#64748b">그림: Clark·Martin·Mahowald (2026) Figure 7. CC BY 4.0</figcaption>
+<img src="/images/articles/clark-fig7-length-penalty.png" alt="논문 그림 7. 글이 길수록 깎는 점수를 키울수록 모델이 짧은 표현을 고르는 비율이 올라가는 모습. KL 규제가 없는 주황 선이 더 빠르게 올라가고, 두 표현의 길이가 같은 대조군은 변하지 않는다." style="display:block;width:100%;margin:0 auto" />
+<figcaption style="margin-top:0.5rem;font-size:1rem;color:#64748b">그림: Clark·Martin·Mahowald (2026) Figure 7. CC BY 4.0</figcaption>
 </figure>
 
 이 그림에서 볼 것: 가로축은 글이 길 때 깎는 점수의 크기이고 세로축은 짧은 표현을 고른 비율입니다. 주황 선(KL 규제 없음)은 깎는 점수가 커지면 1 가까이로 오르고, 파랑 선(규제 있음)은 천천히 오릅니다. 오른쪽 위의 Particle은 두 표현의 길이가 같은 대조군이라 변하지 않습니다.
