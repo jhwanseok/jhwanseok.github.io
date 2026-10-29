@@ -12,16 +12,16 @@ description: "AI가 쓴 글에 읽기 어려운 문장 구조가 더 많다는 C
 
 ## 같은 논문의 요약 두 개 중 어느 쪽이 더 잘 읽히시나요
 
-아래 두 요약은 같은 논문을 같은 계열의 AI가 쓴 것입니다. 하나는 규칙을 모르는 새 대화에서 받은 결과입니다. 요청은 "블로그 첫머리 요약 300자 내외로"가 전부였습니다. 다른 하나는 이 글에서 소개할 규칙을 적용해 제가 다시 쓴 결과입니다. 어느 쪽이 어느 쪽인지는 아직 말씀드리지 않겠습니다. 소리 내어 한 번씩 읽어 보시고, 이해하기 편한 쪽을 골라 보세요.
+아래 두 요약은 같은 논문을 같은 계열의 AI가 쓴 것입니다. 하나는 별도의 규칙을 적용하지 않은 결과입니다. 요청은 "블로그 첫머리 요약 300자 내외로"가 전부였습니다. 다른 하나는 이 글에서 소개할 규칙을 적용한 결과입니다. 어느 쪽이 어느 쪽인지는 아직 말씀드리지 않겠습니다. 소리 내어 한 번씩 읽어 보시고, 이해하기 편한 쪽을 골라 보세요.
 
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(18.75rem,1fr));gap:1rem;align-items:stretch;margin:1.5rem 0"><div style="display:flex;flex-direction:column;border:1px solid #e2e8f0;border-radius:0.5rem;padding:1rem;background:#ffffff"><p style="margin:0 0 0.5rem;font-weight:600;color:#0f172a">요약 가</p><p style="margin:0">최근 AI가 쓴 글이 읽기 어렵다는 체감이 퍼지고 있다. Clark, Martin, Mahowald(2026)는 14개 모델의 채팅·코딩·에세이 출력을 분석했다. 그 결과 목적어 관계절, 긴 의존 거리, 쌓인 명사, 저빈도 n-gram처럼 사람의 처리 부담과 관련된 특징이 왕복 번역 패러프레이즈보다 더 자주 나타났다. 무생물 주어와 저빈도 n-gram은 인간 글보다도 많았다. 저자들은 원인을 정보 밀도를 우선하는 후처리, 즉 수학·코드 중심의 검증 가능한 보상 학습으로 본다. 길이 페널티를 준 강화학습 실험에서 모델이 짧은 표현을 일관되게 고르게 되는 것을 확인했다.</p><details style="margin-top:auto;padding-top:0.75rem"><summary style="cursor:pointer;font-size:0.875rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:0.75rem">점검 수치 보기 (고른 뒤에 열어 보세요)</summary><ul style="margin:0.5rem 0 0;padding-left:1.25rem;font-size:0.875rem;color:#475569;list-style:disc"><li style="margin:0">글자 수 320</li><li style="margin:0">평균 문장 길이 52.5자</li><li style="margin:0">지적받은 문장 83% (6문장 중 5)</li></ul></details></div><div style="display:flex;flex-direction:column;border:1px solid #e2e8f0;border-radius:0.5rem;padding:1rem;background:#ffffff"><p style="margin:0 0 0.5rem;font-weight:600;color:#0f172a">요약 나</p><p style="margin:0">AI가 쓴 글은 왜 이해하기 어려울까요? Clark, Martin, Mahowald(2026)는 이 의문을 실험으로 확인했습니다. 연구진은 14개 모델에게 글을 쓰게 하고, 독자가 이해하기 힘든 문장 구조가 얼마나 나오는지 셌습니다. 같은 내용을 번역으로 한 번 돌려 다시 쓰면 그런 구조가 줄어듭니다. 모델이 쓴 글에는 그 구조가 더 자주 나왔습니다. 사람 글과 비교해도 사물을 사람처럼 쓰는 문장이 더 많았습니다. 흔치 않은 단어 조합도 더 많았습니다. 연구진은 이유를 이렇게 짐작합니다. 수학이나 코딩처럼 정답을 확인할 수 있는 문제로 훈련하면, 모델은 독자에게 잘 전달되기보다 짧게 줄이는 쪽으로 기웁니다. 작은 모델에 글이 길수록 점수를 깎는 규칙을 넣고 훈련해 보니, 모델은 짧은 표현을 더 많이 골랐습니다.</p><details style="margin-top:auto;padding-top:0.75rem"><summary style="cursor:pointer;font-size:0.875rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:0.75rem">점검 수치 보기 (고른 뒤에 열어 보세요)</summary><ul style="margin:0.5rem 0 0;padding-left:1.25rem;font-size:0.875rem;color:#475569;list-style:disc"><li style="margin:0">글자 수 402</li><li style="margin:0">평균 문장 길이 39.3자</li><li style="margin:0">지적받은 문장 10% (10문장 중 1)</li></ul></details></div></div>
 
 <details>
 <summary>정답과 점검 결과 열기</summary>
 
-요약 가는 모델이 처음 내놓은 글입니다. 윤문하지 않았고, 문장도 하나도 고치지 않았습니다. 요약 나는 같은 내용을 제가 이 글의 규칙에 맞춰 다시 쓴 글입니다. 이 글 뒤쪽에서 소개하는 문장 점검 도구(제가 만든 간단한 스크립트)를 돌려 보면 두 요약의 차이는 아래와 같습니다.
+요약 가는 규칙 없이 처음 나온 글 그대로입니다. 윤문하지 않았고, 문장도 하나도 고치지 않았습니다. 요약 나는 같은 내용에 이 글의 규칙을 적용한 글입니다. 이 글 뒤쪽에서 소개하는 문장 점검 도구(제가 만든 간단한 스크립트)를 돌려 보면 두 요약의 차이는 아래와 같습니다.
 
-| 점검 항목 | 요약 가 (그냥 생성) | 요약 나 (규칙 적용) |
+| 점검 항목 | 요약 가 (규칙 적용 안 함) | 요약 나 (규칙 적용) |
 | --- | --- | --- |
 | 글자 수 (공백 포함) | 320 | 402 |
 | 문장 수 | 6 | 10 |
