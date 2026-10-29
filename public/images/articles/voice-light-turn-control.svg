@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">Voice-Light의 시간 제어 구조</title>
+  <desc id="desc">위쪽은 말이 시작되는 순간이다. Silero가 사용자 음성을 가장 먼저 감지하면 볼륨을 450밀리초에 걸쳐 낮추고 500밀리초까지 재생을 일시정지하며, 이 반응은 되돌릴 수 있다. 말 가져가기 확률이 0.82를 넘거나 발화가 900밀리초 이어지거나 정지·정정 같은 어휘 증거가 나오면 끼어들기를 확정하고, 짧은 맞장구로 판단되면 같은 생성을 이어 가며 사용자 턴은 추가하지 않는다. 아래쪽은 응답이 소리가 되는 길이다. 비공개로 준비한 텍스트와 오디오는 최종 ASR과 전사 개정 점검을 통과해야 승격되고, 브라우저가 80밀리초 단위로 확인한 구간만 대화 기록에 남는다. 전사 단어가 바뀌거나 끼어들기가 확정되면 비공개 결과는 버려진다.</desc>
+
+  <rect x="0" y="0" width="1000" height="560" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Lane 1: onset during playback -->
+  <text x="30" y="36" font-size="15" font-weight="700" fill="#292524">말이 시작되는 순간: 끄지 않고 낮춘다</text>
+
+  <rect x="30" y="60" width="200" height="100" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="130" y="100" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">사용자 발화 시작</text>
+  <text x="130" y="126" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">Silero가 가장 먼저 감지</text>
+
+  <rect x="290" y="60" width="230" height="100" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="405" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#c13a26">낮추고 멈출 준비</text>
+  <text x="405" y="118" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">450ms에 걸쳐 -15dB로 낮춤</text>
+  <text x="405" y="138" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">500ms까지 일시정지, 되돌림 가능</text>
+
+  <rect x="610" y="40" width="360" height="86" rx="14" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="790" y="72" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">증거가 모이면 끼어들기 확정</text>
+  <text x="790" y="96" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffffff">말 가져가기 0.82 초과, 900ms 지속,</text>
+  <text x="790" y="114" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffffff">정지·정정 같은 어휘 증거</text>
+
+  <rect x="610" y="144" width="360" height="86" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="790" y="176" text-anchor="middle" font-size="16" font-weight="700" fill="#059669">짧은 맞장구면 같은 말을 이어 감</text>
+  <text x="790" y="200" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">맞장구 0.82 초과, 발화가 끝난 뒤 재개</text>
+  <text x="790" y="218" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">사용자 턴은 추가하지 않음</text>
+
+  <line x1="230" y1="110" x2="288" y2="110" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M520,110 L565,110 L565,83 L608,83" fill="none" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M565,110 L565,187 L608,187" fill="none" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Lane 2: response becomes audible -->
+  <text x="30" y="296" font-size="15" font-weight="700" fill="#292524">응답이 소리가 되는 길: 시작은 일찍, 확정은 늦게</text>
+
+  <rect x="30" y="320" width="205" height="110" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="132" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">비공개 준비</text>
+  <text x="132" y="382" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">무음 80ms 뒤 후보를 열고</text>
+  <text x="132" y="402" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">생성 ID를 달아 숨김</text>
+
+  <rect x="285" y="320" width="205" height="110" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="387" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">승격</text>
+  <text x="387" y="382" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">최종 ASR과 전사 개정</text>
+  <text x="387" y="402" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">점검을 통과해야 공개</text>
+
+  <rect x="540" y="320" width="205" height="110" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="642" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#292524">재생</text>
+  <text x="642" y="382" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">브라우저가 80ms마다</text>
+  <text x="642" y="402" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">재생 구간을 확인해 줌</text>
+
+  <rect x="795" y="320" width="175" height="110" rx="14" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="882" y="356" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">대화 기록</text>
+  <text x="882" y="382" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffffff">확인된 구간만</text>
+  <text x="882" y="402" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffffff">기록에 남김</text>
+
+  <line x1="235" y1="375" x2="283" y2="375" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="490" y1="375" x2="538" y2="375" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="745" y1="375" x2="793" y2="375" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="30" y="462" width="715" height="62" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="387" y="489" text-anchor="middle" font-size="15" font-weight="700" fill="#c13a26">전사 단어가 바뀌거나 끼어들기가 확정되면 비공개 결과는 버려진다</text>
+  <text x="387" y="510" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">취소된 말은 진단 자료로만 남고 대화 기록에는 들어가지 않음</text>
+</svg>
