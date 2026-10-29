@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
   <title id="title">요약 가와 요약 나의 점검 도구 수치 비교</title>
-  <desc id="desc">같은 논문의 요약 두 개를 점검 도구로 비교한 막대 그림이다. 평균 문장 길이는 요약 가가 52.5자, 요약 나가 38.2자다. 지적받은 문장 비율은 요약 가가 83퍼센트, 요약 나가 10퍼센트다. 글자 수는 요약 가가 320자, 요약 나가 391자로 나가 더 길다. 요약 나는 점검 도구를 보며 고친 글이다.</desc>
+  <desc id="desc">같은 논문의 요약 두 개를 문장 점검 도구로 비교한 막대 그림이다. 평균 문장 길이는 요약 가가 52.5자, 요약 나가 39.3자다. 지적받은 문장 비율은 요약 가가 83퍼센트, 요약 나가 10퍼센트다. 글자 수는 요약 가가 320자, 요약 나가 402자로 나가 더 길다. 요약 나는 점검 도구를 보며 고친 글이다.</desc>
 
   <rect x="0" y="0" width="1000" height="440" fill="#fdf6ec" />
   <text x="30" y="38" font-size="17" font-weight="700" fill="#292524">두 요약의 점검 도구 수치: 문장은 짧아졌고 글자 수는 늘었습니다</text>
@@ -10,9 +10,9 @@
   <text x="180" y="112" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">글자 수, 짧을수록 읽기 쉬움</text>
   <line x1="60" y1="360" x2="300" y2="360" stroke="#b3a08c" stroke-width="2" />
   <rect x="85" y="167.5" width="70" height="192.5" rx="6" fill="#e7dfd3" stroke="#b3a08c" stroke-width="1.5" />
-  <rect x="205" y="219.9" width="70" height="140.1" rx="6" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <rect x="205" y="215.9" width="70" height="144.1" rx="6" fill="#10b981" stroke="#059669" stroke-width="1.5" />
   <text x="120" y="157.5" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">52.5자</text>
-  <text x="240" y="209.9" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">38.2자</text>
+  <text x="240" y="205.9" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">39.3자</text>
   <text x="120" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">요약 가</text>
   <text x="240" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">요약 나</text>
   <rect x="350" y="60" width="300" height="340" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
@@ -30,9 +30,9 @@
   <text x="820" y="112" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">공백 포함, 나가 더 깁니다</text>
   <line x1="700" y1="360" x2="940" y2="360" stroke="#b3a08c" stroke-width="2" />
   <rect x="725" y="184.0" width="70" height="176.0" rx="6" fill="#e7dfd3" stroke="#b3a08c" stroke-width="1.5" />
-  <rect x="845" y="144.9" width="70" height="215.1" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
+  <rect x="845" y="138.9" width="70" height="221.1" rx="6" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
   <text x="760" y="174.0" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">320자</text>
-  <text x="880" y="134.9" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">391자</text>
+  <text x="880" y="128.9" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">402자</text>
   <text x="760" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">요약 가</text>
   <text x="880" y="383" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">요약 나</text>
   <text x="30" y="424" font-size="13.5" font-weight="500" fill="#8a7f72">요약 나는 점검 도구를 보며 고친 글이라 이 비교는 독립 평가가 아닙니다. 가는 모델이 처음 낸 글 그대로입니다.</text>
