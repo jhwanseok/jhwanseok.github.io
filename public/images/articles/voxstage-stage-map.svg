@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
-  <title id="title">상담봇을 한 칸씩 바꾸는 두 축 지도</title>
-  <desc id="desc">윗줄은 지능 축이다. S1 규칙은 끝났고, S2 질문 이해와 FAQ 검색은 진행 중이며, S3 LLM과 S4 에이전트는 아직 시작하지 않았다. 아랫줄은 전송 축으로, S0 배치와 S5 스트리밍이 아직 실측 전이다. 모든 칸은 같은 시험지로 재고, 새 칸은 옛 칸을 덮어쓰지 않고 옆에 놓는다.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">상담봇을 한 칸씩 바꾸는 두 축 지도와 현재 위치</title>
+  <desc id="desc">윗줄은 지능 축이다. S1 규칙은 끝났고, S2 질문 이해와 FAQ 검색이 현재 위치이며, S3 LLM과 S4 에이전트는 그 뒤 칸이다. 아랫줄은 음성 모드로 가는 전송 축이다. 지금은 글자로 대화 관리자와 흐름을 먼저 고정하는 단계이고, 다음 칸은 S0 배치 음성, 그다음 칸은 S5 스트리밍이다. 모든 칸은 같은 시험지로 재고, 새 칸은 옛 칸을 덮어쓰지 않고 옆에 놓는다.</desc>
 
-  <rect x="0" y="0" width="1000" height="520" fill="#fdf6ec" />
+  <rect x="0" y="0" width="1000" height="540" fill="#fdf6ec" />
 
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -10,47 +10,53 @@
     </marker>
   </defs>
 
-  <text x="30" y="38" font-size="17" font-weight="700" fill="#292524">지능 축: 질문을 이해하는 방식을 바꿉니다</text>
+  <text x="30" y="38" font-size="17" font-weight="700" fill="#292524">지능 축: 질문을 이해하는 방식을 바꿉니다 (지금은 글자로 대화)</text>
 
   <rect x="30" y="60" width="205" height="120" rx="14" fill="#10b981" stroke="#059669" stroke-width="1.5" />
   <text x="132" y="92" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">S1 규칙</text>
   <text x="132" y="120" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffffff">사람이 쓴 조건과 흐름</text>
   <text x="132" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">끝남</text>
 
-  <rect x="285" y="60" width="205" height="120" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
-  <text x="387" y="92" text-anchor="middle" font-size="15" font-weight="700" fill="#c13a26">S2 질문 이해, FAQ 검색</text>
-  <text x="387" y="120" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">문장 임베딩으로 찾기</text>
-  <text x="387" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">진행 중</text>
+  <rect x="285" y="60" width="205" height="120" rx="14" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="387" y="92" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">S2 질문 이해, FAQ 검색</text>
+  <text x="387" y="120" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffffff">문장 임베딩으로 찾기</text>
+  <text x="387" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">현재 위치</text>
 
   <rect x="540" y="60" width="205" height="120" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="6 5" />
   <text x="642" y="92" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">S3 LLM</text>
   <text x="642" y="120" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">언어모델이 답을 만듦</text>
-  <text x="642" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">아직</text>
+  <text x="642" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">뒤 칸</text>
 
   <rect x="795" y="60" width="175" height="120" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="6 5" />
   <text x="882" y="92" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">S4 에이전트</text>
   <text x="882" y="120" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">도구 호출을 계획함</text>
-  <text x="882" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">아직</text>
+  <text x="882" y="156" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">뒤 칸</text>
 
   <line x1="235" y1="120" x2="283" y2="120" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
   <line x1="490" y1="120" x2="538" y2="120" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
   <line x1="745" y1="120" x2="793" y2="120" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
 
-  <text x="30" y="236" font-size="17" font-weight="700" fill="#292524">전송 축: 소리가 오가는 방식을 바꿉니다</text>
+  <text x="30" y="236" font-size="17" font-weight="700" fill="#292524">전송 축: 음성 모드로 가는 길</text>
 
-  <rect x="30" y="258" width="300" height="100" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="6 5" />
-  <text x="180" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">S0 배치</text>
-  <text x="180" y="318" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">발화를 통째로 처리</text>
-  <text x="180" y="342" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">실측 전</text>
+  <rect x="30" y="258" width="250" height="110" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="155" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#c13a26">지금: 글자 모드</text>
+  <text x="155" y="316" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">대화 관리자와 흐름을</text>
+  <text x="155" y="336" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">먼저 고정하는 단계</text>
 
-  <rect x="670" y="258" width="300" height="100" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="6 5" />
-  <text x="820" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">S5 스트리밍</text>
-  <text x="820" y="318" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">말하는 도중에 처리</text>
-  <text x="820" y="342" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">아직</text>
+  <rect x="350" y="258" width="280" height="110" rx="14" fill="#fffaf4" stroke="#ffab91" stroke-width="2" stroke-dasharray="6 5" />
+  <text x="490" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">S0 배치 음성</text>
+  <text x="490" y="316" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">발화를 통째로 인식하고 합성</text>
+  <text x="490" y="344" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">음성 모드로 가는 다음 칸</text>
 
-  <line x1="330" y1="308" x2="668" y2="308" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+  <rect x="700" y="258" width="270" height="110" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="6 5" />
+  <text x="835" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#292524">S5 스트리밍</text>
+  <text x="835" y="316" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">말하는 도중에 처리</text>
+  <text x="835" y="344" text-anchor="middle" font-size="14" font-weight="700" fill="#8a7f72">그다음 칸</text>
 
-  <rect x="30" y="406" width="940" height="78" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
-  <text x="500" y="438" text-anchor="middle" font-size="15" font-weight="700" fill="#92400e">한 번에 한 칸만 바꾸고, 옛 칸은 지우지 않고 옆에 둡니다</text>
-  <text x="500" y="464" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">모든 칸을 같은 시험지로 재기 때문에 점수를 나란히 놓을 수 있습니다</text>
+  <line x1="280" y1="313" x2="348" y2="313" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="630" y1="313" x2="698" y2="313" stroke="#b3a08c" stroke-width="2" marker-end="url(#arrow)" />
+
+  <rect x="30" y="416" width="940" height="78" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="500" y="448" text-anchor="middle" font-size="15" font-weight="700" fill="#92400e">한 번에 한 칸만 바꾸고, 옛 칸은 지우지 않고 옆에 둡니다</text>
+  <text x="500" y="474" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">모든 칸을 같은 시험지로 재기 때문에 점수를 나란히 놓을 수 있습니다</text>
 </svg>
