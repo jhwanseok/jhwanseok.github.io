@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">저지연 스트리밍 모델 네 편의 삼각 트레이드오프</title>
+  <desc id="desc">저지연, 텍스트 능력 보존, 음성 표현력 세 꼭짓점을 가진 삼각형 안에 LLaMA-Omni는 저지연 꼭짓점 가까이, Freeze-Omni는 텍스트 능력 보존 꼭짓점 가까이, GLM-4-Voice와 Mini-Omni는 세 꼭짓점 사이의 중간 지대에 배치해 각 모델이 무엇을 우선했는지 보여준다</desc>
+
+  <rect x="0" y="0" width="900" height="560" fill="#fdf6ec" />
+
+  <text x="450" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">저지연으로 가는 서로 다른 네 가지 선택</text>
+  <text x="450" y="48" text-anchor="middle" font-size="13" fill="#8a7f72">지연, 텍스트 능력 보존, 음성 표현력 가운데 무엇을 우선했는가</text>
+
+  <!-- Triangle -->
+  <polygon points="450,110 180,460 720,460" fill="#fffaf4" stroke="#c9bfae" stroke-width="1.5" />
+
+  <!-- Vertex labels -->
+  <rect x="395" y="66" width="110" height="28" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="450" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#c13a26">저지연</text>
+
+  <rect x="70" y="472" width="190" height="28" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="165" y="491" text-anchor="middle" font-size="13" font-weight="700" fill="#c13a26">텍스트 능력 보존</text>
+
+  <rect x="640" y="472" width="180" height="28" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.2" />
+  <text x="730" y="491" text-anchor="middle" font-size="13" font-weight="700" fill="#c13a26">음성 표현력</text>
+
+  <!-- Leader lines (drawn under dots and cards) -->
+  <line x1="440" y1="190" x2="330" y2="190" stroke="#b3a08c" stroke-width="1" />
+  <line x1="505" y1="295" x2="640" y2="265" stroke="#b3a08c" stroke-width="1" />
+  <line x1="440" y1="345" x2="685" y2="378" stroke="#b3a08c" stroke-width="1" />
+
+  <!-- LLaMA-Omni: close to low-latency vertex, card outside left -->
+  <circle cx="440" cy="190" r="9" fill="#e34a33" />
+  <rect x="110" y="161" width="220" height="58" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="123" y="181" font-size="14" font-weight="700" fill="#292524">LLaMA-Omni</text>
+  <text x="123" y="196" font-size="11.5" font-weight="500" fill="#8a7f72">226ms · CTC 비자기회귀 디코더</text>
+  <text x="123" y="209" font-size="11" font-weight="500" fill="#a89f92">LLM은 파인튜닝(동결하지 않음)</text>
+
+  <!-- Mini-Omni: middle ground, card outside right -->
+  <circle cx="505" cy="295" r="9" fill="#e34a33" />
+  <rect x="640" y="236" width="240" height="58" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="653" y="256" font-size="14" font-weight="700" fill="#292524">Mini-Omni</text>
+  <text x="653" y="271" font-size="11.5" font-weight="500" fill="#8a7f72">텍스트+오디오 8헤드 병렬 생성</text>
+  <text x="653" y="284" font-size="11" font-weight="500" fill="#a89f92">배치 2 디코딩으로 텍스트 추론력 이식</text>
+
+  <!-- GLM-4-Voice: centre, card outside right -->
+  <circle cx="440" cy="345" r="9" fill="#e34a33" />
+  <rect x="685" y="350" width="205" height="58" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="697" y="370" font-size="14" font-weight="700" fill="#292524">GLM-4-Voice</text>
+  <text x="697" y="385" font-size="11.5" font-weight="500" fill="#8a7f72">텍스트-음성 인터리브 스트리밍</text>
+  <text x="697" y="398" font-size="11" font-weight="500" fill="#a89f92">flow matching 디코더로 표현력 확보</text>
+
+  <!-- Freeze-Omni: close to text-preservation vertex, card inside -->
+  <circle cx="262" cy="425" r="9" fill="#e34a33" />
+  <rect x="284" y="396" width="220" height="58" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="297" y="416" font-size="14" font-weight="700" fill="#292524">Freeze-Omni</text>
+  <text x="297" y="431" font-size="11.5" font-weight="500" fill="#8a7f72">LLM 완전 동결 · 텍스트 능력 손실 없음</text>
+  <text x="297" y="444" font-size="11" font-weight="500" fill="#a89f92">턴 전환 0.953초로 느림</text>
+
+  <text x="450" y="526" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">위치는 각 논문이 보고한 수치를 참고한 정성적 배치이며, 공통 척도로 잰 값이 아니다.</text>
+  <text x="450" y="546" text-anchor="middle" font-size="12" fill="#a89f92">GLM-4-Voice / Mini-Omni / LLaMA-Omni / Freeze-Omni 논문 재구성</text>
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 380" role="img" aria-labelledby="moshiInnerTitle">
+  <title id="moshiInnerTitle">Inner Monologue의 시간 정렬: 텍스트 스트림과 오디오 스트림을 잇는 연결선이 delay=0일 때는 수직으로 정렬되어 대화 모드가 되고, delay가 음수면 텍스트가 오디오보다 뒤처져 ASR이 되고, delay가 양수면 텍스트가 오디오보다 앞서 TTS가 된다</title>
+
+  <defs>
+    <pattern id="frameTexture" width="14" height="24" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="#b3a08c" stroke-width="1" opacity="0.5" />
+    </pattern>
+  </defs>
+
+  <style>
+    text { font-family: -apple-system, "Segoe UI", "Noto Sans KR", sans-serif; }
+    .title-text { font-weight: 700; font-size: 20px; fill: #292524; }
+    .subtitle-text { font-size: 13px; fill: #8a7f72; }
+    .track-label { font-size: 12px; fill: #8a7f72; }
+    .mode-label { font-weight: 700; font-size: 15px; fill: #c13a26; }
+    .caption-text { font-size: 13px; fill: #292524; }
+    .legend-text { font-size: 12px; fill: #8a7f72; }
+
+    .text-dot {
+      animation: dotMove 8s linear infinite;
+    }
+    .mode-1 { animation: mode1Fade 8s linear infinite; }
+    .mode-2 { animation: mode2Fade 8s linear infinite; opacity: 0; }
+    .mode-3 { animation: mode3Fade 8s linear infinite; opacity: 0; }
+
+    @keyframes dotMove {
+      0%     { transform: translateX(0); }
+      30%    { transform: translateX(0); }
+      30.1%  { transform: translateX(240px); }
+      63%    { transform: translateX(240px); }
+      63.1%  { transform: translateX(-240px); }
+      97%    { transform: translateX(-240px); }
+      100%   { transform: translateX(0); }
+    }
+    @keyframes mode1Fade {
+      0%     { opacity: 1; }
+      30%    { opacity: 1; }
+      30.1%  { opacity: 0; }
+      99.9%  { opacity: 0; }
+      100%   { opacity: 1; }
+    }
+    @keyframes mode2Fade {
+      0%     { opacity: 0; }
+      30%    { opacity: 0; }
+      30.1%  { opacity: 1; }
+      63%    { opacity: 1; }
+      63.1%  { opacity: 0; }
+      100%   { opacity: 0; }
+    }
+    @keyframes mode3Fade {
+      0%     { opacity: 0; }
+      63%    { opacity: 0; }
+      63.1%  { opacity: 1; }
+      97%    { opacity: 1; }
+      97.1%  { opacity: 0; }
+      100%   { opacity: 0; }
+    }
+
+    .static-only { opacity: 0; }
+    .tag-text { font-weight: 700; font-size: 12px; fill: #c13a26; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .text-dot { animation: none; transform: translateX(0); }
+      .mode-1, .mode-2, .mode-3 { animation: none; opacity: 1; }
+      .mode-label.mode-1, .mode-label.mode-2, .mode-label.mode-3 { opacity: 0; }
+      .static-only { opacity: 1; }
+    }
+  </style>
+
+  <rect width="880" height="380" fill="#fdf6ec" />
+
+  <text x="440" y="28" text-anchor="middle" class="title-text">Inner Monologue: 텍스트가 오디오를 얼마나 앞서거나 뒤서는가</text>
+  <text x="440" y="48" text-anchor="middle" class="subtitle-text">같은 모델이 delay 부호만 바꿔 대화·ASR·TTS 사이를 오간다</text>
+
+  <!-- Text stream track -->
+  <text x="80" y="98" class="track-label">텍스트 스트림 (단어 단위, 대부분 PAD)</text>
+  <text x="800" y="98" text-anchor="end" class="track-label">시간 →</text>
+  <rect x="80" y="125" width="720" height="24" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <rect x="170" y="125" width="24" height="24" rx="5" fill="#e34a33" />
+  <rect x="410" y="125" width="24" height="24" rx="5" fill="#e34a33" />
+  <rect x="650" y="125" width="24" height="24" rx="5" fill="#e34a33" />
+
+  <!-- Audio stream track -->
+  <text x="80" y="242" class="track-label">오디오 스트림 (12.5Hz, 프레임마다 채워짐)</text>
+  <rect x="80" y="255" width="720" height="24" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="2" />
+  <rect x="80" y="255" width="720" height="24" rx="10" fill="url(#frameTexture)" />
+
+  <path class="mode-1" d="M422,143 L422,261" stroke="#c13a26" stroke-width="2.5" fill="none" />
+  <path class="mode-2" d="M662,143 L422,261" stroke="#c13a26" stroke-width="2.5" fill="none" />
+  <path class="mode-3" d="M182,143 L422,261" stroke="#c13a26" stroke-width="2.5" fill="none" />
+
+  <circle class="text-dot" cx="422" cy="137" r="7" fill="#e34a33" stroke="#fdf6ec" stroke-width="2" />
+  <circle cx="422" cy="267" r="7" fill="#e34a33" stroke="#fdf6ec" stroke-width="2" />
+
+  <text x="440" y="303" text-anchor="middle" class="mode-label mode-1">delay = 0: 대화 모드</text>
+  <text x="440" y="303" text-anchor="middle" class="mode-label mode-2">delay &lt; 0: 오디오가 먼저 나오고 텍스트가 받아쓴다 (ASR)</text>
+  <text x="440" y="303" text-anchor="middle" class="mode-label mode-3">delay &gt; 0: 텍스트가 먼저 나오고 오디오가 뒤따른다 (TTS)</text>
+  <text x="440" y="303" text-anchor="middle" class="mode-label static-only">같은 오디오 프레임에 짝지을 텍스트를 어느 시점에 두느냐가 모드를 정한다</text>
+  <text x="182" y="116" text-anchor="middle" class="tag-text static-only">TTS (delay &gt; 0)</text>
+  <text x="422" y="116" text-anchor="middle" class="tag-text static-only">대화 (delay = 0)</text>
+  <text x="662" y="116" text-anchor="middle" class="tag-text static-only">ASR (delay &lt; 0)</text>
+
+  <text x="440" y="338" text-anchor="middle" class="caption-text">코랄 사각형은 실제 단어, 나머지 구간은 PAD 토큰이다. 선은 한 오디오 프레임과 짝지어진 텍스트 토큰을 잇는다.</text>
+  <text x="440" y="360" text-anchor="middle" class="legend-text">텍스트가 더 이른 시점에 있으면 텍스트가 앞선 것(TTS), 더 늦은 시점에 있으면 뒤처진 것(ASR)이다.</text>
+</svg>

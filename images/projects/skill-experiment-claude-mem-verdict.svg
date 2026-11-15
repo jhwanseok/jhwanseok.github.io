@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">claude-mem 실험 결론: 도입 안 함</title>
+  <desc id="desc">활성화 자체에 실질 버그 두 개를 직접 고쳐야 했고, 켠 뒤에도 세션2 비용이 30.3퍼센트 늘었으며 코드가 바뀐 뒤에도 낡은 사실을 확신 있게 보고하는 staleness 위험이 재현돼 도입하지 않기로 했습니다.</desc>
+
+  <rect x="0" y="0" width="880" height="340" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Verdict (hero — the one thing to notice) -->
+  <rect x="40" y="30" width="800" height="100" rx="16" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="440" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">도입 안 함</text>
+  <text x="440" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#ffd9cf">켜는 것부터 비용, 켠 뒤에도 staleness 위험</text>
+
+  <!-- Arrows: supporting facts feed up into the verdict -->
+  <line x1="230" y1="208" x2="230" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="650" y1="208" x2="650" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Fact 1: activation + ongoing cost (amber) -->
+  <rect x="40" y="210" width="380" height="90" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="230" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">켜는 것부터 비용</text>
+  <text x="230" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">실질 버그 2개 직접 수정, 세션2도 +30.3%</text>
+
+  <!-- Fact 2: staleness risk (amber) -->
+  <rect x="460" y="210" width="380" height="90" rx="14" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="650" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">낡은 사실을 확신 있게 답함</text>
+  <text x="650" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">staleness 재현, hedge 없음</text>
+
+  <text x="440" y="325" text-anchor="middle" font-size="12" fill="#a89f92">bookmarks-api n=3 주 실험에 보조 n=1×2. 프로젝트 간 누수는 없었음</text>
+</svg>

@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.1.6"><meta name="description" content="훅·워커·벡터DB 없이 CLAUDE.md 파일에 직접 쓰는 /revise-claude-md가 claude-mem보다 정확도와 비용 모두에서 앞선 유일한 사례를 검증한 기록"><link rel="canonical" href="https://jhwanseok.github.io/projects/skill-experiment-claude-md-management/"><title>[스킬은 켜봐야 안다 #5] CLAUDE.md에 몇 줄 적는 것만으로 얻는, claude-mem보다 싼 세션 간 기억 · 정환석</title><meta property="og:type" content="article"><meta property="og:title" content="[스킬은 켜봐야 안다 #5] CLAUDE.md에 몇 줄 적는 것만으로 얻는, claude-mem보다 싼 세션 간 기억 · 정환석"><meta property="og:description" content="훅·워커·벡터DB 없이 CLAUDE.md 파일에 직접 쓰는 /revise-claude-md가 claude-mem보다 정확도와 비용 모두에서 앞선 유일한 사례를 검증한 기록"><meta property="og:url" content="https://jhwanseok.github.io/projects/skill-experiment-claude-md-management/"><meta property="og:site_name" content="정환석"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-09-30T18:00:00.000Z"><meta property="article:author" content="정환석"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="[스킬은 켜봐야 안다 #5] CLAUDE.md에 몇 줄 적는 것만으로 얻는, claude-mem보다 싼 세션 간 기억 · 정환석"><meta name="twitter:description" content="훅·워커·벡터DB 없이 CLAUDE.md 파일에 직접 쓰는 /revise-claude-md가 claude-mem보다 정확도와 비용 모두에서 앞선 유일한 사례를 검증한 기록"><link rel="stylesheet" href="/_astro/BaseLayout.BPPl8Xvw.css"><link rel="stylesheet" href="/_astro/audiolm-hierarchical-generation.CxtPKPUW.css"></head><body class="flex min-h-screen flex-col bg-white text-slate-800 antialiased"><header class="border-b border-slate-200"><div class="mx-auto max-w-3xl px-6 py-5"><div class="flex items-center justify-between"><a href="/" class="shrink-0 font-semibold whitespace-nowrap text-slate-900">AI Engineering Notes</a><nav class="hidden md:block"><ul class="flex gap-6 text-sm"><li><a href="/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Home</a></li><li><a href="/about/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">About</a></li><li><a href="/projects/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Projects</a></li><li><a href="/articles/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Articles</a></li><li><a href="/resume/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Resume</a></li><li><a href="/contact/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Contact</a></li></ul></nav><button id="nav-toggle" type="button" class="-mr-2 shrink-0 p-2 text-slate-600 hover:text-slate-900 md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="메뉴 열기"><svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg><svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><nav id="mobile-nav" class="hidden md:hidden"><ul class="flex flex-col gap-1 pt-4 text-sm"><li><a href="/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Home</a></li><li><a href="/about/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">About</a></li><li><a href="/projects/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Projects</a></li><li><a href="/articles/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Articles</a></li><li><a href="/resume/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Resume</a></li><li><a href="/contact/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Contact</a></li></ul></nav></div></header><script type="module">var e=document.getElementById(`nav-toggle`),t=document.getElementById(`mobile-nav`),n=document.getElementById(`nav-icon-open`),r=document.getElementById(`nav-icon-close`);e?.addEventListener(`click`,()=>{let i=t?.classList.contains(`hidden`);t?.classList.toggle(`hidden`,!i),e.setAttribute(`aria-expanded`,String(i)),n?.classList.toggle(`hidden`,i),r?.classList.toggle(`hidden`,!i)});</script><main class="mx-auto w-full max-w-3xl flex-1 px-6 py-12"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[스킬은 켜봐야 안다 #5] CLAUDE.md에 몇 줄 적는 것만으로 얻는, claude-mem보다 싼 세션 간 기억","description":"훅·워커·벡터DB 없이 CLAUDE.md 파일에 직접 쓰는 /revise-claude-md가 claude-mem보다 정확도와 비용 모두에서 앞선 유일한 사례를 검증한 기록","datePublished":"2026-09-30T18:00:00.000Z","url":"https://jhwanseok.github.io/projects/skill-experiment-claude-md-management/","author":{"@type":"Person","name":"정환석"}}</script><h1 class="text-3xl font-semibold tracking-tight text-slate-900" data-astro-cid-62dzsm7q>[스킬은 켜봐야 안다 #5] CLAUDE.md에 몇 줄 적는 것만으로 얻는, claude-mem보다 싼 세션 간 기억</h1><div class="mt-2 flex flex-wrap items-center gap-2" data-astro-cid-62dzsm7q><span class="text-sm text-slate-500" data-astro-cid-62dzsm7q>2026년 9월 30일</span><span id="view-counter-page" class="text-sm text-slate-500 tabular-nums">조회수 집계 중…</span><script>(function(){const elementId = "view-counter-page";
+const endpoint = "https://jhwanseok.goatcounter.com/counter/%2Fprojects%2Fskill-experiment-claude-md-management%2F.json";
+const label = "조회수";
+
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		})();</script><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>Engineering Experiments</span><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>AI Engineering</span></div><div class="content-body mt-8" data-astro-cid-62dzsm7q><p>저장소</p>
+<ul>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab">GitHub: jhwanseok/skill-experiment-lab</a></li>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab/blob/main/experiments/design/claude-md-management.md">실험 설계</a></li>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab/blob/main/experiments/results/claude-md-management.md">실행 결과</a></li>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab/blob/main/experiments/results/claude-md-management-report.md">정리된 리포트</a></li>
+</ul>
+<h2 id="훨씬-단순한데-정말-더-쌀까">훨씬 단순한데, 정말 더 쌀까</h2>
+<p><a href="/projects/skill-experiment-claude-mem/">claude-mem 실험</a>에서 확인한 것은 세 가지 대가였습니다. 활성화 자체의 실질 버그, 꾸준한 비용 증가, 그리고 자기검증 없는 staleness입니다. 그런데 정작 그 실험에서 가장 안정적으로 기록된 내용은 코드를 그렇게 구현한 이유 같은 일회성 맥락이 아니라, 이 환경에서 반복되는 툴링 함정이었습니다. 그렇다면 훨씬 가벼운 도구로 그 부분만 노려도 되지 않을까요.</p>
+<p><code>claude-md-management</code> 플러그인의 <code>/revise-claude-md</code> 커맨드는 세션이 끝날 때 배운 것을 CLAUDE.md, 곧 팀이 공유하는 파일에 몇 줄 적는 것이 전부입니다. 훅 체인도, 로컬 워커도, 벡터 DB도, 내부 요약 LLM 호출도 없습니다. CLAUDE.md는 어차피 매 세션이 시작될 때 자동으로 읽히는 파일이라, claude-mem이 필요로 했던 “검색” 단계 자체가 없습니다. 메커니즘이 이렇게 단순하면 claude-mem이 겪은 활성화 불안정성도 없으리라는 것이 이번 가설이었습니다.</p>
+<p><img src="/images/projects/skill-experiment-claude-md-management-verdict.svg" alt="claude-md-management 실험 결론 요약: CLAUDE.md는 세션 시작 시 항상 로드되어 검색 단계가 없고, 정확도와 비용이 함께 개선된 유일한 사례로 확인돼 도입하기로 했다"></p>
+<p>미리 결론을 말하면, <mark>저는 이 스킬을 씁니다.</mark> 이 시리즈에서 정확도와 비용이 함께 개선된 것은 이번이 처음입니다. 환경 함정을 코드를 재실행하지 않고 정확히 경고하는 비율이 0/3에서 3/3으로 올랐는데, 같은 세션의 비용은 오히려 35.9% 줄었습니다. 다만 조건이 하나 붙습니다. 이 도구가 실제로 다루는 범위가 claude-mem보다 훨씬 좁습니다. 저는 세션1을 다 돌리고 나서야 그 사실을 알았습니다.</p>
+<h2 id="세션-1을-다-돌리고-나서야-질문을-바꿨다">세션 1을 다 돌리고 나서야 질문을 바꿨다</h2>
+<p>세션1 티켓과 세션2 질문은 claude-mem 실험과 똑같은 문구를 재사용해서 비교 가능성을 맞췄습니다(“북마크 태그 기능 추가” 다음에 “왜 그렇게 구현했는지, 코드는 다시 읽지 말고 답해줘”). 그런데 ON 조건 세션1을 3회 다 돌리고 CLAUDE.md 변경분을 확인해보니, 셋 다 태그 구현 내용은 전혀 적지 않았습니다. 대신 이 머신에서 <code>python -m venv .venv</code>가 <code>ensurepip</code> 오류로 실패한다는 로컬 환경 함정만 저장소 루트에 적어놨습니다.</p>
+<p>플러그인 공식 문서를 다시 보니 이유가 있었습니다. “Reflect” 단계가 그 범위를 명시적으로 “bash commands, code patterns, testing approaches, environment quirks, gotchas”로 좁혀놨습니다. claude-mem처럼 “이번 세션에 있었던 일 전반”을 담는 범용 메모리가 아니라, 처음부터 “이 저장소에서 반복적으로 부딪힐 환경·툴링 함정”만 걸러 담도록 설계된 도구였습니다. 원래 질문을 그대로 쓰면 OFF와 ON 둘 다 “모른다”고 답할 뿐이라 무의미했습니다. 그래서 실제로 3/3 수렴해서 기록된 내용을 겨냥하도록 세션2 질문을 바꿨습니다. 실제로 물은 질문은 이렇습니다. “pytest를 돌려보려는데, 미리 알아두면 좋을 주의사항 있어?”</p>
+<p>설치를 확인하는 과정에서 실수도 하나 있었습니다. <code>claude plugin install</code>을 무심코 실행했다가 이 머신의 전역 설정을 건드릴 뻔했습니다. 바로 <code>uninstall</code>로 되돌리고, 이후로는 claude-mem 실험처럼 <code>claude -p --settings</code>로 조건별 인라인 지정만 썼습니다. 이 과정에서 <code>--settings</code>가 전역 설정과 부분 병합된다는 것도 다시 확인했습니다. 전역으로 켜져 있던 <code>ponytail</code>과 <code>caveman</code>을 명시적으로 꺼주지 않으면 계속 섞여 들어왔습니다.</p>
+<h2 id="모르는-대가가-아는-것의-비용보다-컸다">모르는 대가가 아는 것의 비용보다 컸다</h2>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>OFF</th>
+<th>ON</th>
+<th>차이</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>세션2 cost_usd</td>
+<td>0.3919</td>
+<td>0.2514</td>
+<td><strong>−35.9%</strong></td>
+</tr>
+<tr>
+<td>세션2 num_turns</td>
+<td>14.3</td>
+<td>8.7</td>
+<td><strong>−39.5%</strong></td>
+</tr>
+<tr>
+<td>세션1 cost_usd(오버헤드)</td>
+<td>0.8177</td>
+<td>0.8150</td>
+<td>−0.3%(잡음)</td>
+</tr>
+<tr>
+<td>venv 함정을 재실행 없이 경고</td>
+<td>0/3</td>
+<td>3/3</td>
+<td>뚜렷한 차이</td>
+</tr>
+</tbody>
+</table>
+<p>정확도를 끌어올리면서 비용까지 줄어든 이유는 OFF 조건이 치른 대가에 있었습니다. OFF-3은 venv 얘기를 아예 꺼내지 않았고, OFF-2는 “README대로 venv부터 만드세요”라며 이 머신에서 실패하는 것을 모른 채 틀린 조언을 했습니다. OFF-1은 그나마 근접했는데, 실제로 pytest를 재실행해서(21턴으로, 세 OFF 중 가장 비쌌습니다) “venv 없이도 되긴 하네” 정도를 우연히 확인했을 뿐 <code>ensurepip</code> 실패 자체는 몰랐습니다. 반면 ON 3세션은 전부 “CLAUDE.md에 적혀 있듯”이라고 출처를 직접 인용하며 8~10턴 만에 정확히 답했습니다. 모르는 대가, 곧 재탐색과 재실행이 아는 것의 비용, 곧 CLAUDE.md 몇 줄을 매번 읽는 것보다 컸습니다. claude-mem이 검색 파이프라인을 거치느라 캐시 미스 비용을 치른 것과는 정반대 구조입니다.</p>
+<p>claude-mem과 나란히 놓아보면 차이가 선명합니다. claude-mem은 세션2 정확도를 얻는 대가로 세션2 비용을 30.3%, 세션1 비용도 21.1% 더 치렀습니다. <code>/revise-claude-md</code>는 정확도를 0/3에서 3/3으로 끌어올리면서 세션2는 오히려 35.9% 줄었고, 세션1 오버헤드는 잡음 수준인 −0.3%였습니다. 활성화도 더 안정적이었습니다. claude-mem이 3단계에 걸쳐 원인을 규명해야 했던 것과 달리, 파일럿에서 모델이 근거 없이 커맨드를 한 번 거부한 것 외에는 본 실행 3/3 전부 문제없이 기록됐습니다.</p>
+<h2 id="도입하되-claude-mem의-대체재로-읽지-않는다">도입하되, claude-mem의 대체재로 읽지 않는다</h2>
+<p><mark>이 결과를 claude-mem의 대체재로 읽으면 안 됩니다.</mark> 세 ON 세션 전부 태그 구현 방식은 기록하지 않고 환경 함정만 담았습니다. 이 도구는 애초에 “이번에 무엇을 왜 그렇게 만들었는지” 같은 일회성 맥락을 겨냥하지 않습니다. claude-mem이 노리던 범위와 이 도구가 실제로 잘하는 범위는 겹치지 않는, 서로 다른 문제입니다.</p>
+<p>그래도 이 좁은 범위 안에서는 망설일 이유가 없었습니다. 메커니즘이 CLAUDE.md에 몇 줄 얹는 것이 전부라 검색 단계도, 활성화 불안정성도, staleness 위험도 없습니다. CLAUDE.md는 파일이라 코드와 함께 리뷰되고 버전 관리되니, claude-mem에서 가장 위험했던 문제, 곧 낡은 사실을 자기검증 없이 확신하는 것도 구조적으로 덜합니다.</p>
+<p>다만 이번 실험은 단일 라운드였다는 한계가 있습니다. <code>/revise-claude-md</code>를 반복해서 쓰면 CLAUDE.md가 계속 불어나고, 그러면 이후 모든 세션이 매번 그 내용을 읽는 표준 비용이 늘어납니다. claude-mem에는 없는, 이 도구만의 트레이드오프입니다. 이 부분은 이번 실험 범위 밖이라 다음 숙제로 남겨둡니다.</p>
+</div><nav class="mt-16 grid grid-cols-2 gap-4 border-t border-slate-200 pt-6" aria-label="글 목록 이동" data-astro-cid-62dzsm7q><div data-astro-cid-62dzsm7q><a href="/projects/skill-experiment-claude-mem/" class="group block" data-astro-cid-62dzsm7q><span class="text-xs text-slate-500" data-astro-cid-62dzsm7q>← 이전 글</span><span class="mt-1 block text-sm font-medium text-slate-900 group-hover:underline" data-astro-cid-62dzsm7q>[스킬은 켜봐야 안다 #4] 기억이 남는다는 스킬, 켜는 것부터 비용이었다: claude-mem을 검증하다</span></a></div><div class="text-right" data-astro-cid-62dzsm7q></div></nav><section class="mt-16 border-t border-slate-200 pt-10"><script src="https://giscus.app/client.js" data-repo="jhwanseok/jhwanseok.github.io" data-repo-id="R_kgDOTrBGUQ" data-category="Comments" data-category-id="DIC_kwDOTrBGUc4DC8Av" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="ko" crossorigin="anonymous" async></script></section></main><footer class="border-t border-slate-200"><div class="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2 px-6 py-8 text-sm text-slate-500"><p>&copy; 2026 정환석. 공개 엔지니어링 증거로 만들어갑니다.</p><span id="view-counter-total" class="text-sm text-slate-500 tabular-nums">전체 방문 집계 중…</span><script>(function(){const elementId = "view-counter-total";
+const endpoint = "https://jhwanseok.goatcounter.com/counter/TOTAL.json";
+const label = "전체 방문";
+
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		})();</script></div></footer><script data-goatcounter="https://jhwanseok.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

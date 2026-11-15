@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.1.6"><meta name="description" content="화자 겹침을 지우는 대신 학습 신호로 보존하는 Sommelier의 7단계 오디오 전처리 파이프라인을, 프로덕션 음성 AI 운영 관점에서 리뷰합니다."><link rel="canonical" href="https://jhwanseok.github.io/articles/sommelier-full-duplex-audio-preprocessing/"><title>Sommelier: Full-Duplex 음성 대화 모델을 위한 데이터 전처리 파이프라인 · 정환석</title><meta property="og:type" content="article"><meta property="og:title" content="Sommelier: Full-Duplex 음성 대화 모델을 위한 데이터 전처리 파이프라인 · 정환석"><meta property="og:description" content="화자 겹침을 지우는 대신 학습 신호로 보존하는 Sommelier의 7단계 오디오 전처리 파이프라인을, 프로덕션 음성 AI 운영 관점에서 리뷰합니다."><meta property="og:url" content="https://jhwanseok.github.io/articles/sommelier-full-duplex-audio-preprocessing/"><meta property="og:site_name" content="정환석"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-08-06T00:00:00.000Z"><meta property="article:author" content="정환석"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Sommelier: Full-Duplex 음성 대화 모델을 위한 데이터 전처리 파이프라인 · 정환석"><meta name="twitter:description" content="화자 겹침을 지우는 대신 학습 신호로 보존하는 Sommelier의 7단계 오디오 전처리 파이프라인을, 프로덕션 음성 AI 운영 관점에서 리뷰합니다."><link rel="stylesheet" href="/_astro/BaseLayout.BPPl8Xvw.css"><link rel="stylesheet" href="/_astro/audiolm-hierarchical-generation.CxtPKPUW.css"></head><body class="flex min-h-screen flex-col bg-white text-slate-800 antialiased"><header class="border-b border-slate-200"><div class="mx-auto max-w-3xl px-6 py-5"><div class="flex items-center justify-between"><a href="/" class="shrink-0 font-semibold whitespace-nowrap text-slate-900">AI Engineering Notes</a><nav class="hidden md:block"><ul class="flex gap-6 text-sm"><li><a href="/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Home</a></li><li><a href="/about/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">About</a></li><li><a href="/projects/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Projects</a></li><li><a href="/articles/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Articles</a></li><li><a href="/resume/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Resume</a></li><li><a href="/contact/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Contact</a></li></ul></nav><button id="nav-toggle" type="button" class="-mr-2 shrink-0 p-2 text-slate-600 hover:text-slate-900 md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="메뉴 열기"><svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg><svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><nav id="mobile-nav" class="hidden md:hidden"><ul class="flex flex-col gap-1 pt-4 text-sm"><li><a href="/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Home</a></li><li><a href="/about/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">About</a></li><li><a href="/projects/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Projects</a></li><li><a href="/articles/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Articles</a></li><li><a href="/resume/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Resume</a></li><li><a href="/contact/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Contact</a></li></ul></nav></div></header><script type="module">var e=document.getElementById(`nav-toggle`),t=document.getElementById(`mobile-nav`),n=document.getElementById(`nav-icon-open`),r=document.getElementById(`nav-icon-close`);e?.addEventListener(`click`,()=>{let i=t?.classList.contains(`hidden`);t?.classList.toggle(`hidden`,!i),e.setAttribute(`aria-expanded`,String(i)),n?.classList.toggle(`hidden`,i),r?.classList.toggle(`hidden`,!i)});</script><main class="mx-auto w-full max-w-3xl flex-1 px-6 py-12"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sommelier: Full-Duplex 음성 대화 모델을 위한 데이터 전처리 파이프라인","description":"화자 겹침을 지우는 대신 학습 신호로 보존하는 Sommelier의 7단계 오디오 전처리 파이프라인을, 프로덕션 음성 AI 운영 관점에서 리뷰합니다.","datePublished":"2026-08-06T00:00:00.000Z","url":"https://jhwanseok.github.io/articles/sommelier-full-duplex-audio-preprocessing/","author":{"@type":"Person","name":"정환석"}}</script><h1 class="text-3xl font-semibold tracking-tight text-slate-900" data-astro-cid-62dzsm7q>Sommelier: Full-Duplex 음성 대화 모델을 위한 데이터 전처리 파이프라인</h1><div class="mt-2 flex flex-wrap items-center gap-2" data-astro-cid-62dzsm7q><span class="text-sm text-slate-500" data-astro-cid-62dzsm7q>2026년 8월 6일</span><span id="view-counter-page" class="text-sm text-slate-500 tabular-nums">조회수 집계 중…</span><script>(function(){const elementId = "view-counter-page";
+const endpoint = "https://jhwanseok.goatcounter.com/counter/%2Farticles%2Fsommelier-full-duplex-audio-preprocessing%2F.json";
+const label = "조회수";
+
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		})();</script><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>Voice AI</span><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>System Architecture</span><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>Production Engineering</span></div><div class="content-body mt-8" data-astro-cid-62dzsm7q><p>리뷰 대상</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2603.25750">Sommelier: Scalable Open Multi-turn Audio Pre-processing for Full-duplex Speech Language Models (arXiv)</a></li>
+<li><a href="https://clova.ai/tech-blog/%EB%8C%80%ED%99%94%EB%8A%94-%EC%88%9C%EC%84%9C%EB%A5%BC-%EA%B8%B0%EB%8B%A4%EB%A6%AC%EC%A7%80-%EC%95%8A%EB%8A%94%EB%8B%A4-%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%9D%8C%EC%84%B1-%EB%8C%80%ED%99%94-ai%EB%A5%BC">NAVER Cloud 기술 블로그: “대화는 순서를 기다리지 않는다”</a></li>
+<li><a href="https://github.com/naver-ai/sommelier">GitHub: naver-ai/sommelier</a></li>
+</ul>
+<h2 id="데이터가-없어서가-아니라-지워지고-있었다">데이터가 없어서가 아니라, 지워지고 있었다</h2>
+<p>여러분이 full-duplex 음성 대화 모델을 만들어야 한다고 해봅시다. 반가운 소식이 하나 있습니다. 쓸 만한 모델 아키텍처는 이미 여러 개 공개돼 있습니다. <abbr title="Kyutai가 공개한 실시간 음성 대화 파운데이션 모델" tabindex="0">Moshi</abbr>나 GPT-4o 같은 시스템은 half-duplex, 곧 사용자가 말하면 듣고 있다가 사용자가 멈춰야 그제서야 답하는 구조를 벗어나, 사람끼리 대화하듯 듣기와 말하기를 동시에 합니다. 상대가 말하는 중에 “네”, “맞아요” 하고 맞장구를 넣고, 필요하면 말 중간에 끼어들고, 상대의 말이 끝나는 지점을 예측해 자연스럽게 발언권을 넘겨받습니다.</p>
+<p>그런데 이 능력을 실제로 가르치려고 하면 곧바로 다음 벽에 부딪힙니다. 학습시킬 데이터가 마땅치 않습니다. 구하기 어려운 정도가 아니라, 직접 만들려고 해도 잘 안 되는 종류의 데이터입니다.</p>
+<p>무엇이 문제일까요. full-duplex 모델을 가르치려면 두 사람이 동시에 말하는 순간이 데이터에 반드시 담겨 있어야 합니다. 그런데 기존 자원은 이 조건을 채워주지 못합니다. <abbr title="2000년대 초 수집된 영어 전화 통화 대화 코퍼스(LDC 배포)" tabindex="0">Fisher</abbr>, <abbr title="전화 통화 기반의 초기 대규모 음성 대화 코퍼스" tabindex="0">Switchboard</abbr> 같은 멀티스피커 대화 코퍼스는 8kHz 전화망 음질에 수천 시간 규모라, 요즘 음성 언어모델을 파인튜닝하는 데 필요한 스케일에 한참 못 미칩니다. <abbr title="1만 시간 규모의 다중 도메인 중국어 ASR 코퍼스" tabindex="0">WenetSpeech</abbr>나 <abbr title="다국어 대규모 음성 생성용 오픈 데이터셋" tabindex="0">Emilia</abbr>처럼 최근 나온 web-scale 데이터셋은 규모는 해결했지만, 애초에 단일 화자 음성 인식을 전제로 만들어진 전처리 파이프라인을 그대로 씁니다. 그 파이프라인 입장에서 두 사람이 겹쳐 말하는 구간은 그저 “처리해야 할 오류”입니다. 그래서 잘라내거나, 한쪽 화자에게 억지로 몰아줍니다. 문제는 그렇게 지워지는 겹침 구간이야말로 full-duplex 모델이 배워야 할 신호 그 자체라는 점입니다.</p>
+<p>정리하면 이렇습니다. 규모 문제를 푼 데이터셋은 겹침을 지웠고, 겹침을 살린 데이터셋은 규모가 작았습니다. 두 조건을 동시에 만족하는 전처리 파이프라인이 그동안 없었습니다.</p>
+<p>NAVER Cloud와 KAIST AI가 공개한 <strong>Sommelier</strong>는 바로 이 지점을 뒤집습니다. 겹친 발화를 지우거나 한쪽에 몰아주는 대신, 화자 분리(diarization)부터 겹침 분리(overlap separation), 배경음 제거, 앙상블 ASR로 이어지는 7단계 파이프라인으로 “누가, 언제, 무엇 위에 겹쳐 말했는가”를 그대로 학습 신호로 남깁니다. <mark>데이터를 새로 모으는 대신, 이미 세상에 있는 오디오(팟캐스트, 라디오, 인터뷰)에서 지금까지 버려지던 부분을 되살리는 방식입니다.</mark></p>
+<p><img src="/images/articles/sommelier-pipeline.svg" alt="Sommelier 파이프라인: raw audio부터 겹침을 보존한 화자 분리, 앙상블 ASR을 거쳐 Full-Duplex 모델 학습까지 이어지는 7단계 흐름"></p>
+<p>효과는 실험으로 확인됐습니다. Moshi를 Sommelier로 처리한 83시간 분량 데이터로 파인튜닝하자, <abbr title="Full-duplex 대화 모델의 턴 테이킹 능력을 측정하는 벤치마크" tabindex="0">Full-Duplex-Bench</abbr> 1.0의 세 지표가 눈에 띄게 좋아졌습니다. 셋 다 턴을 주고받는 자연스러움을 재는 지표입니다.</p>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>Moshi (base)</th>
+<th>Moshi + Sommelier</th>
+<th>무엇을 재는가</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>백채널 구간 TOR(takeover rate, 낮을수록 좋음)</td>
+<td>1.000</td>
+<td>0.291</td>
+<td>짧은 맞장구를 넣어야 할 구간에서 모델이 맞장구 대신 완전한 발화로 넘어가는 비율</td>
+</tr>
+<tr>
+<td>짧은 맞장구 생성 빈도(높을수록 좋음)</td>
+<td>0.001</td>
+<td>0.052</td>
+<td>모델이 “네”, “맞아요” 같은 짧은 반응을 넣는 정도</td>
+</tr>
+<tr>
+<td>끼어들기 응답 관련성, GPT-4o 평가(높을수록 좋음)</td>
+<td>0.765</td>
+<td>3.684</td>
+<td>모델이 끼어들 때 내놓는 말이 맥락에 맞는 정도</td>
+</tr>
+</tbody>
+</table>
+<p>짧은 맞장구 빈도는 52배로 늘었고, 끼어들 때 내놓는 응답의 맥락 적합성은 4.8배가 됐습니다. 파이프라인은 GitHub에 MIT 라이선스로 공개돼 있어서, 데이터가 없어서 못 만든다는 말은 이제 하기 어려워졌습니다.</p>
+<p>그러면 이 파이프라인은 구체적으로 무엇을 다르게 했을까요. 그리고 그 선택들은 실제로 음성 서비스를 운영하는 입장에서 어떤 의미를 가질까요.</p>
+<h2 id="겹침을-살리기로-한-순간-문제가-줄줄이-따라온다">겹침을 살리기로 한 순간, 문제가 줄줄이 따라온다</h2>
+<p>겹침을 지우지 않고 살리기로 정하고 나면, 그 결정 하나로 처리해야 할 일이 줄줄이 늘어납니다.</p>
+<p>실제 대화 녹음은 diarization이 자주 틀리고, ASR이 무음이나 저음량, 노이즈 구간에서 “Yeah, Yeah, Yeah…“처럼 같은 단어를 반복 생성합니다(hallucination). 이 오류가 그대로 학습 데이터에 들어가면 모델이 그 병리적 패턴까지 배웁니다. 팟캐스트나 라디오에는 음악과 효과음이 섞여 있어서 음성만 남기는 필터링과 정규화가 따로 필요하고, 이 모든 처리를 web-scale 오디오에 감당 가능한 컴퓨팅 예산 안에서 돌려야 합니다.</p>
+<p>Sommelier는 이 네 가지, 곧 소규모 고품질 코퍼스의 부족, web-scale 데이터셋의 구조적 결함, in-the-wild 오디오의 잡음, 산업 규모 처리량을 한 번에 풀겠다고 내놓은 파이프라인입니다.</p>
+<h2 id="기본값을-하나씩-다시-따져봤다">기본값을 하나씩 다시 따져봤다</h2>
+<p>Sommelier의 7단계를 뜯어보면 공통점이 하나 보입니다. 각 단계에서 “다들 이걸 쓰니까” 하고 기본값을 그대로 가져다 쓴 곳이 거의 없습니다. 대부분 벤치마크나 자체 실험으로 한 번 더 확인한 뒤에 골랐습니다. 청킹처럼 실용적 타협으로 넘어간 부분도 있습니다. diarization 모델이 긴 오디오에서 메모리 부족으로 죽는 것을 막으려고 무음 구간을 기준으로 5분 단위로 자르되, 대화 맥락이 끊기지 않도록 경계를 잡았습니다.</p>
+<h4 id="화자-분리-모델-업계-기본값-pyannote를-재검증했다">화자 분리 모델: 업계 기본값 Pyannote를 재검증했다</h4>
+<p>“네”, “음” 같은 짧은 백채널과 빠른 턴 전환을 잡아내는 것이 이 파이프라인의 핵심 요구사항입니다. 그래서 저자들은 가장 널리 쓰이는 <abbr title="가장 널리 쓰이는 오픈소스 화자 분리 라이브러리" tabindex="0">Pyannote</abbr> 3.1을 그냥 채택하지 않고, <abbr title="화자 분리 성능 평가용 벤치마크 데이터셋" tabindex="0">VoxConverse</abbr> 벤치마크에서 <abbr title="Diarization Error Rate: 화자 분리 오류율, 낮을수록 정확" tabindex="0">DER</abbr> 기준으로 <abbr title="NVIDIA가 공개한 화자 분리 모델" tabindex="0">NVIDIA Sortformer</abbr>와 직접 비교했습니다.</p>
+<table>
+<thead>
+<tr>
+<th>DER 지표</th>
+<th>Pyannote 3.1</th>
+<th>Sortformer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>전체 DER</td>
+<td>8.40%</td>
+<td>7.16%</td>
+</tr>
+<tr>
+<td>1초 이하 발화 DER</td>
+<td>20.21%</td>
+<td>16.87%</td>
+</tr>
+<tr>
+<td>턴 전환 구간 DER</td>
+<td>0.051%</td>
+<td>0.006%</td>
+</tr>
+</tbody>
+</table>
+<p>전체 DER 격차는 크지 않지만, 1초 이하 짧은 발화와 턴 전환 구간에서는 격차가 훨씬 크게 벌어집니다. 턴 전환 구간 DER이 0.051%에서 0.006%로 줄어드는 이 차이가, 백채널과 끼어들기를 학습해야 하는 이 파이프라인에서는 전체 평균보다 훨씬 중요합니다. 저자들은 이 수치를 근거로 Sortformer를 택했습니다.</p>
+<h4 id="겹침-구간을-지우지-않고-분리해서-양쪽에-남긴다">겹침 구간을 지우지 않고 분리해서 양쪽에 남긴다</h4>
+<p>논문은 겹친 두 화자의 발화를 다루는 방식을 네 가지로 나눕니다. 겹침 지점에서 잘라 비겹침 부분만 남기기(정보 손실), 겹침 구간을 한쪽 화자에게 주는 두 가지 방식(발화가 섞이거나 전사가 실패할 위험), 그리고 겹침을 양쪽 화자의 세그먼트에 모두 포함시키기입니다. Sommelier는 마지막 방식을 기준선으로 삼고, 여기에 2-화자 음성 분리 모델을 붙여 정보 보존과 ASR 안정성 사이의 균형을 잡습니다.</p>
+<p>분리 자체에도 디테일이 있습니다. 겹친 구간을 분리 모델(<abbr title="겹친 음성을 화자별로 분리하는 음성 분리 모델" tabindex="0">SepReformer</abbr>)에 넣으면 후보 음성 두 개가 나오는데, 이 각각을 비겹침 구간에서 미리 뽑아둔 화자 임베딩과 코사인 유사도로 비교해서 어느 화자 것인지 정합니다. 그리고 겹친 전체 구간이 아니라 실제로 겹치는 부분만 분리 모델에 넣는 편이 결과가 더 좋다는 것도 실험으로 확인했습니다.</p>
+<h4 id="배경음-제거와-asr은-덜-하고-여러-번-확인하는-쪽이다">배경음 제거와 ASR은 “덜 하고, 여러 번 확인하는” 쪽이다</h4>
+<p>배경음 제거는 항상 켜두지 않습니다. <abbr title="Pre-trained Audio Neural Networks: 오디오 이벤트 인식용 사전학습 모델" tabindex="0">PANNs</abbr>로 세그먼트별 음악 존재 확률을 추정하고, 임계값 0.3을 넘는 구간에만 <abbr title="Meta가 공개한 음원 분리 딥러닝 모델" tabindex="0">Demucs</abbr>를 적용합니다. 음악 제거가 음성 품질을 떨어뜨릴 수 있다는 것을 알기 때문에, 필요한 곳에만 손대는 결정입니다. 처리 단위도 짧은 세그먼트가 아니라 2분 단위 청크 전체를 Demucs에 넣고 필요한 부분만 잘라내는 편이 분리가 더 잘 됩니다. 대안으로 SAM-Audio도 검토했지만, A100 기준 <abbr title="Real-Time Factor: 처리 시간을 오디오 길이로 나눈 값, 낮을수록 빠름" tabindex="0">RTF</abbr> 0.73으로 지연이 커서 대규모 처리에는 맞지 않는다고 보고 뺐습니다. 성능이 아니라 확장성을 이유로 대안을 명시적으로 기각한 사례입니다.</p>
+<p>ASR은 단일 모델을 믿지 않습니다. Whisper, Canary, Parakeet 세 모델의 결과를 단어 단위로 정렬한 뒤, 두 개 이상이 일치하면 그 단어를 채택하고 아니면 기본 백본인 Whisper를 우선합니다(<abbr title="Recognizer Output Voting Error Reduction: 여러 ASR 결과를 투표로 합치는 후처리 기법" tabindex="0">ROVER</abbr> 앙상블). 여기에 같은 n-gram(n=15)이 5회 이상 반복되면 걸러내는 필터를 더해 hallucination 잔여물을 제거합니다. LibriSpeech test-other 기준 <abbr title="Word Error Rate: 음성 인식 오류율, 낮을수록 정확" tabindex="0">WER</abbr>이 6.26%에서 3.92%로 떨어졌고, 노이즈나 저음량 구간에서 격차가 특히 컸습니다.</p>
+<p>마지막으로, 무엇을 학습에 넣을지 정하는 규칙 자체도 설계의 일부였습니다. 저자들은 한 화자가 1분 넘게 발화를 독점하는 구간이 학습 손실을 불안정하게 줄어들게 하고 모델을 무응답 상태로 몰고 간다는 것을 발견했습니다. 그래서 턴 길이 10초 이하, 최소 3개 연속 턴으로 이뤄진 구간만 골라 학습에 썼습니다. 파이프라인이 뽑아낸 데이터의 품질만큼이나, 그중 무엇을 남길지가 결과를 좌우합니다.</p>
+<h2 id="그래서-무엇을-대가로-냈나">그래서 무엇을 대가로 냈나</h2>
+<p>이만한 결과에는 값이 붙습니다. Sommelier가 지불하는 비용은 크게 세 갈래입니다.</p>
+<h4 id="처리가-무겁고-느리다">처리가 무겁고, 느리다</h4>
+<p>7단계 모듈형 파이프라인은 유연하지만 단일 스트림 파이프라인보다 확실히 무겁습니다. 120초 오디오를 A100 한 장으로 처리할 때 RTF는 0.1746이고, 병목은 세 모델을 동시에 돌리는 ASR 앙상블입니다(Canary가 가장 느립니다). 8×A100으로 1만 시간을 처리하는 데 약 55시간이 걸린다는 수치는 “산업 규모에서 현실적”이라는 저자들의 주장을 뒷받침하지만, 그렇다고 싼 것은 아닙니다.</p>
+<p>정확도와 지연의 교환도 분명합니다. ASR 앙상블은 단일 Whisper보다 약 3배 느린 대신 WER을 37% 낮춥니다. 배치로 도는 오프라인 데이터 큐레이션 단계에서는 남는 장사지만, 이 구조를 그대로 실시간 서빙 파이프라인에 옮길 수는 없습니다. <mark>Sommelier는 학습 데이터를 만드는 도구이지 추론 파이프라인이 아니라는 전제를 분명히 해둬야 합니다.</mark></p>
+<h4 id="분리한-음질에는-상한이-있고-이득도-화자마다-다르다">분리한 음질에는 상한이 있고, 이득도 화자마다 다르다</h4>
+<p>겹침 분리 결과는 Oracle, 곧 원래부터 채널이 나뉜 녹음에 가깝지만 미세하게 열등합니다. 인위적으로 분리한 음성은 원본 다채널 녹음보다 약간의 음향 아티팩트를 남긴다는 것을 저자들도 Limitations에서 인정합니다.</p>
+<p>게다가 이득이 고르지 않습니다. Appendix B의 실험을 보면 개선 폭은 신호가 약한 쪽 화자, 곧 끼어드는 화자(Speaker 2)에서 훨씬 크고 주 화자(Speaker 1)에서는 작습니다. 0dB SIR에 겹침 1.0 조건에서 Speaker 2의 WER은 0.444에서 0.138로 좋아지는 반면, Speaker 1의 개선은 훨씬 작습니다. 이 파이프라인은 균등한 품질 향상이 아니라 겹침 속에서 밀리는 화자를 복원하는 데 특히 강합니다.</p>
+<h4 id="데이터로는-넘지-못한-벽도-있다">데이터로는 넘지 못한 벽도 있다</h4>
+<p>Full-Duplex-Bench 1.0의 지표 중 Pause Handling만 유일하게 제자리입니다. 저자들은 이를 Moshi 아키텍처 자체의 한계이거나, prompt audio가 없어서(Personaplex가 제안한 방식) 생긴 문제로 추정합니다. 데이터 품질만으로는 넘을 수 없는 벽이 있다는 것을 숨기지 않고 인정한 대목입니다. 파이프라인이 음성 전용이라 non-speech acoustic event나 일반 사운드 신은 다루지 않는다는 점도 함께 명시돼 있습니다.</p>
+<h2 id="모델을-바꾸기-전에-데이터를-의심하라">모델을 바꾸기 전에 데이터를 의심하라</h2>
+<h4 id="아키텍처보다-데이터-파이프라인이-먼저-병목이다">아키텍처보다 데이터 파이프라인이 먼저 병목이다</h4>
+<p>Moshi 같은 full-duplex 모델은 이미 공개돼 있었습니다. 그런데 이걸 실제로 쓸 만하게 만든 것은 결국 데이터 파이프라인이었습니다. 프로덕션 조직이 모델을 새로 고르거나 아키텍처를 손대는 데 투자하기 전에, 데이터 준비 인프라에 먼저 투자하는 편이 더 높은 ROI를 낼 수 있다는 이야기입니다. 벤치마크에서 이미 검증된 모델을 파인튜닝만으로 크게 끌어올렸다는 결과는, “더 좋은 모델을 찾는다”보다 “지금 있는 모델을 제대로 된 데이터로 학습시킨다”가 더 싸고 즉각적인 지렛대일 수 있다는 것을 보여줍니다.</p>
+<p>모든 모듈을 켜고 끌 수 있다는 점은 곧 운영 유연성입니다. 팟캐스트처럼 배경음이 흔한 도메인과 콜센터 녹취처럼 배경음이 거의 없는 도메인은 같은 파이프라인이라도 다른 설정으로 처리해야 합니다. 하나의 고정된 처리 방식을 강제하지 않고 다운스트림 요구에 맞춰 재구성할 수 있게 만든 설계는, 여러 도메인의 오디오를 동시에 다루는 환경에서 특히 쓸모가 있습니다.</p>
+<h4 id="비용을-숫자로-공개한-문서다">비용을 숫자로 공개한 문서다</h4>
+<p>RTF 수치와 GPU당 동시 프로세스 수까지 제시한 점이 눈에 띕니다. 피크 메모리 23GB 기준으로 GPU 하나에 3개 프로세스를 붙일 수 있고, 그러면 GPU당 RTF는 0.0443까지 내려갑니다. 이건 논문 검증을 넘어 산업 배포 견적에 가깝습니다. 이런 수치가 있어야 이 파이프라인을 자기 인프라에 얹어보려는 엔지니어가 예산을 얼마나 잡아야 할지 계산할 수 있습니다. 다만 파이프라인을 그대로 내부에 들이려면 Sortformer, Demucs, SepReformer, PANNs 같은 개별 의존 모델의 라이선스와 유지보수 상태를 따로 확인해야 합니다. LLM 진영에는 Dolma, RedPajama, FineWeb처럼 데이터 레시피를 투명하게 공개하는 문화가 자리 잡았지만 음성 쪽은 아직 그렇지 않다는 것이 저자들의 문제의식이고, Sommelier는 그 격차를 메우려는 시도입니다.</p>
+<h4 id="상류의-오류는-하류에서-증폭된다">상류의 오류는 하류에서 증폭된다</h4>
+<p>앙상블 ASR과 n-gram 필터의 밑바탕에는 두 가지 전제가 있습니다. 단일 SOTA 모델도 그대로 믿을 수 없다는 것, 그리고 학습 데이터에 hallucination이 섞이면 모델이 그 병리적 패턴까지 배운다는 것입니다. <mark>상류 라벨링 단계의 오류가 하류 모델에서 증폭된다는 원칙은 음성에만 해당하지 않습니다.</mark> 텍스트든 이미지든 모든 데이터 파이프라인에 적용됩니다. 라벨링 비용을 아끼려고 단일 모델에 의존하는 파이프라인이 있다면 재검토 대상입니다.</p>
+<p>지표 해석에 대한 시사점도 있습니다. 파인튜닝 뒤 모델의 응답 latency는 오히려 늘었습니다. 저자들은 base 모델이 애초에 백채널이나 끼어들기를 처리하지 않고 무조건 말을 이어갔기 때문에 latency가 짧았을 뿐이고, 파인튜닝된 모델은 사용자 입력을 실제로 처리하고 응답을 준비하느라 늘어난 것이라고 해석합니다. latency 하나만 보고 품질을 판단했다면 정반대 결론에 이르렀을 겁니다. 어떤 지표든 그것이 무엇을 대리하는지와 함께 읽어야 합니다.</p>
+<h2 id="내가-가져가는-것">내가 가져가는 것</h2>
+<p>겹침을 “노이즈니까 지운다”는 기본값을 그대로 따르지 않고, 그 기본값이 원래 무엇을 위한 전제였는지, 곧 half-duplex 데이터 정제를 위한 것이었음을 되짚어서 다른 목적인 full-duplex 학습에는 맞지 않는다고 다시 정의한 태도가 저는 가장 인상적이었습니다. 새 모듈을 추가하기 전에 문제를 다시 정의하는 일이 먼저였다는 점을 기억해두고 싶습니다.</p>
+<p>ASR 앙상블과 n-gram 필터처럼 “이 오류가 하류 모델에서 어떻게 증폭되는가”를 설계 근거에 대놓고 써넣은 방식도 실용적이었습니다. 앞으로 데이터 파이프라인을 설계할 때 단순히 정확도를 높이는 방법을 찾는 데서 그치지 않고, 이 오류가 다음 단계에서 어떤 형태로 커지는지를 먼저 따져보는 습관을 들이려 합니다.</p>
+<p>latency 증가를 성능 저하가 아니라 개선 신호로 다시 읽은 대목에서는, 지표 하나만 보고 판단하지 않고 그 지표가 측정하는 행동의 맥락을 함께 보는 태도를 배웠습니다. 제가 만드는 시스템에서도 어떤 수치가 좋아졌다거나 나빠졌다고 단정하기 전에, 이 지표가 무엇을 대리하고 있는지 한 번 더 물어보려 합니다. 이 파이프라인을 보고 난 뒤로 저는 “지워도 되는 데이터”라는 판단 자체를 다시 의심하게 됐습니다.</p>
+</div><nav class="mt-16 grid grid-cols-2 gap-4 border-t border-slate-200 pt-6" aria-label="글 목록 이동" data-astro-cid-62dzsm7q><div data-astro-cid-62dzsm7q></div><div class="text-right" data-astro-cid-62dzsm7q><a href="/articles/prologue-why-speech-language-model/" class="group block" data-astro-cid-62dzsm7q><span class="text-xs text-slate-500" data-astro-cid-62dzsm7q>다음 글 →</span><span class="mt-1 block text-sm font-medium text-slate-900 group-hover:underline" data-astro-cid-62dzsm7q>[기계가 대화를 배우는 법 #1] 프롤로그: 왜 음성에 언어모델이 필요한가</span></a></div></nav><section class="mt-16 border-t border-slate-200 pt-10"><script src="https://giscus.app/client.js" data-repo="jhwanseok/jhwanseok.github.io" data-repo-id="R_kgDOTrBGUQ" data-category="Comments" data-category-id="DIC_kwDOTrBGUc4DC8Av" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="ko" crossorigin="anonymous" async></script></section></main><footer class="border-t border-slate-200"><div class="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2 px-6 py-8 text-sm text-slate-500"><p>&copy; 2026 정환석. 공개 엔지니어링 증거로 만들어갑니다.</p><span id="view-counter-total" class="text-sm text-slate-500 tabular-nums">전체 방문 집계 중…</span><script>(function(){const elementId = "view-counter-total";
+const endpoint = "https://jhwanseok.goatcounter.com/counter/TOTAL.json";
+const label = "전체 방문";
+
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		})();</script></div></footer><script data-goatcounter="https://jhwanseok.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

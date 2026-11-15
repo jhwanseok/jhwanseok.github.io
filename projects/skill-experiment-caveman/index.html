@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.1.6"><meta name="description" content="저자 스스로 '출력이 짧은 작업에서는 손해'라고 밝힌 caveman의 주장을 두 archetype에서 그대로 재현해본 기록"><link rel="canonical" href="https://jhwanseok.github.io/projects/skill-experiment-caveman/"><title>[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까: caveman을 큰 작업과 작은 작업에 나눠 시험하다 · 정환석</title><meta property="og:type" content="article"><meta property="og:title" content="[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까: caveman을 큰 작업과 작은 작업에 나눠 시험하다 · 정환석"><meta property="og:description" content="저자 스스로 '출력이 짧은 작업에서는 손해'라고 밝힌 caveman의 주장을 두 archetype에서 그대로 재현해본 기록"><meta property="og:url" content="https://jhwanseok.github.io/projects/skill-experiment-caveman/"><meta property="og:site_name" content="정환석"><meta property="og:locale" content="ko_KR"><meta property="article:published_time" content="2026-08-12T12:00:00.000Z"><meta property="article:author" content="정환석"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까: caveman을 큰 작업과 작은 작업에 나눠 시험하다 · 정환석"><meta name="twitter:description" content="저자 스스로 '출력이 짧은 작업에서는 손해'라고 밝힌 caveman의 주장을 두 archetype에서 그대로 재현해본 기록"><link rel="stylesheet" href="/_astro/BaseLayout.BPPl8Xvw.css"><link rel="stylesheet" href="/_astro/audiolm-hierarchical-generation.CxtPKPUW.css"></head><body class="flex min-h-screen flex-col bg-white text-slate-800 antialiased"><header class="border-b border-slate-200"><div class="mx-auto max-w-3xl px-6 py-5"><div class="flex items-center justify-between"><a href="/" class="shrink-0 font-semibold whitespace-nowrap text-slate-900">AI Engineering Notes</a><nav class="hidden md:block"><ul class="flex gap-6 text-sm"><li><a href="/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Home</a></li><li><a href="/about/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">About</a></li><li><a href="/projects/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Projects</a></li><li><a href="/articles/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Articles</a></li><li><a href="/resume/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Resume</a></li><li><a href="/contact/" class="text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Contact</a></li></ul></nav><button id="nav-toggle" type="button" class="-mr-2 shrink-0 p-2 text-slate-600 hover:text-slate-900 md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="메뉴 열기"><svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg><svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg></button></div><nav id="mobile-nav" class="hidden md:hidden"><ul class="flex flex-col gap-1 pt-4 text-sm"><li><a href="/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Home</a></li><li><a href="/about/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">About</a></li><li><a href="/projects/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Projects</a></li><li><a href="/articles/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Articles</a></li><li><a href="/resume/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Resume</a></li><li><a href="/contact/" class="block py-2 text-slate-600 hover:text-slate-900 aria-[current=page]:text-slate-900 aria-[current=page]:font-medium">Contact</a></li></ul></nav></div></header><script type="module">var e=document.getElementById(`nav-toggle`),t=document.getElementById(`mobile-nav`),n=document.getElementById(`nav-icon-open`),r=document.getElementById(`nav-icon-close`);e?.addEventListener(`click`,()=>{let i=t?.classList.contains(`hidden`);t?.classList.toggle(`hidden`,!i),e.setAttribute(`aria-expanded`,String(i)),n?.classList.toggle(`hidden`,i),r?.classList.toggle(`hidden`,!i)});</script><main class="mx-auto w-full max-w-3xl flex-1 px-6 py-12"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까: caveman을 큰 작업과 작은 작업에 나눠 시험하다","description":"저자 스스로 '출력이 짧은 작업에서는 손해'라고 밝힌 caveman의 주장을 두 archetype에서 그대로 재현해본 기록","datePublished":"2026-08-12T12:00:00.000Z","url":"https://jhwanseok.github.io/projects/skill-experiment-caveman/","author":{"@type":"Person","name":"정환석"}}</script><h1 class="text-3xl font-semibold tracking-tight text-slate-900" data-astro-cid-62dzsm7q>[스킬은 켜봐야 안다 #3] 말을 짧게 하면 정말 돈이 굳을까: caveman을 큰 작업과 작은 작업에 나눠 시험하다</h1><div class="mt-2 flex flex-wrap items-center gap-2" data-astro-cid-62dzsm7q><span class="text-sm text-slate-500" data-astro-cid-62dzsm7q>2026년 8월 12일</span><span id="view-counter-page" class="text-sm text-slate-500 tabular-nums">조회수 집계 중…</span><script>(function(){const elementId = "view-counter-page";
+const endpoint = "https://jhwanseok.goatcounter.com/counter/%2Fprojects%2Fskill-experiment-caveman%2F.json";
+const label = "조회수";
+
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		})();</script><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>Engineering Experiments</span><span class="inline-flex items-center rounded-full border border-slate-200 px-2.5 py-0.5 text-xs text-slate-600" data-astro-cid-62dzsm7q>AI Engineering</span></div><div class="content-body mt-8" data-astro-cid-62dzsm7q><p>저장소</p>
+<ul>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab">GitHub: jhwanseok/skill-experiment-lab</a></li>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab/blob/main/experiments/design/caveman.md">실험 설계</a></li>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab/blob/main/experiments/results/caveman.md">실행 결과</a></li>
+<li><a href="https://github.com/jhwanseok/skill-experiment-lab/blob/main/experiments/results/caveman-report.md">정리된 리포트</a></li>
+</ul>
+<h2 id="저자가-스스로-밝힌-한계를-그대로-재현해보기로-했다">저자가 스스로 밝힌 한계를 그대로 재현해보기로 했다</h2>
+<p><a href="https://github.com/juliusbrussee/caveman">caveman</a>은 응답을 “이 소리 조각 다른 조각 비교, 카테고리 판단” 같은 간결한 문체로 압축하는 스킬입니다. 앞선 두 실험과 달리 이번엔 화려한 벤치마크 숫자로 시작하지 않습니다. caveman 저장소의 <code>HONEST-NUMBERS.md</code>는 첫 줄부터 “마케팅 없음. 당신의 작업에서 caveman이 손해라면, 이 페이지가 그렇게 말해줄 것”이라고 적어뒀습니다. 출력 토큰은 평균 65% 정도 준다고 밝히면서도, 입력 토큰(프롬프트, 컨텍스트, 파일)은 전혀 줄지 않고, SKILL.md를 매번 로드하는 고정 비용이 있어서 세션 전체로 보면 출력이 많은 작업에서만 14~21% 순절감이고 짧은 코딩 Q&amp;A에서는 오히려 손해라고 저자 스스로 분명히 밝혀뒀습니다. 마케팅 문구가 아니라 저자 자신의 경고를 그대로 검증해볼 수 있는 드문 기회였습니다.</p>
+<p><img src="/images/projects/skill-experiment-caveman-verdict.svg" alt="caveman 실험 결론 요약: 출력이 긴 작업에서는 세션 비용이 15.1% 줄었고, 출력이 짧은 작업에서는 오히려 9.9% 늘어 출력이 긴 작업에서만 켜기로 했다"></p>
+<p>먼저 판정을 밝히면, <mark>저는 이 스킬을 조건부로 씁니다.</mark> 저자가 예고한 대로 방향이 정확히 갈렸습니다. 출력이 긴 작업에서는 세션 비용이 15.1% 줄었고, 출력이 짧은 작업에서는 9.9% 늘었습니다. 새 픽스처를 만드는 대신 이미 검증된 두 상황을 그대로 재사용해 확인했습니다.</p>
+<h2 id="새-픽스처-없이-이미-검증된-두-상황을-재사용했다">새 픽스처 없이, 이미 검증된 두 상황을 재사용했다</h2>
+<p>caveman은 특정 archetype에 묶여 있지 않으니, 새 버그나 티켓을 또 만드는 대신 이미 확인된 두 상황을 그대로 재사용하기로 했습니다. 하나는 <a href="/projects/skill-experiment-ponytail/">ponytail 실험</a>의 태그와 필터링 티켓(출력이 긴 기능 추가 작업), 다른 하나는 <a href="/projects/skill-experiment-superpowers/">superpowers 실험</a>의 대소문자 정렬 버그(출력이 짧은 디버깅 작업)입니다. <code>Agent(isolation: "worktree")</code> 경로에서 스킬이 아예 안 잡히는 것도 superpowers 실험과 같은 양상이라, 이번에도 처음부터 headless <code>claude -p</code> 세션으로 진행했습니다. 기능 추가 쪽은 metric 체계가 달라서(이전엔 <code>subagent_tokens</code>, 이번엔 <code>cost_usd</code>) OFF와 ON을 새로 6세션 돌렸고, 디버깅 쪽은 superpowers 실험의 OFF 데이터를 그대로 재사용하고 ON만 3세션 추가했습니다.</p>
+<h2 id="저자의-경고가-그대로-재현됐다">저자의 경고가 그대로 재현됐다</h2>
+<table>
+<thead>
+<tr>
+<th>Archetype</th>
+<th>지표</th>
+<th>OFF</th>
+<th>ON</th>
+<th>차이</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (기능 추가, 긴 출력)</td>
+<td>cost_usd</td>
+<td>0.8127</td>
+<td>0.6896</td>
+<td><strong>−15.1%</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>응답 길이</td>
+<td>932자</td>
+<td>582자</td>
+<td>−37.6%</td>
+</tr>
+<tr>
+<td>2 (버그 수정, 짧은 출력)</td>
+<td>cost_usd</td>
+<td>0.3416</td>
+<td>0.3753</td>
+<td><strong>+9.9%</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>응답 길이</td>
+<td>785자</td>
+<td>376자</td>
+<td>−52.1%</td>
+</tr>
+</tbody>
+</table>
+<p>출력 자체는 두 상황 모두 확실히 짧아졌습니다(응답 길이 −37.6%, −52.1%). 문체를 압축한다는 caveman의 핵심 기능은 예외 없이 작동했습니다. <mark>그런데 그 압축이 세션 전체 비용으로 이어지는지는 정반대로 갈렸습니다.</mark> 원래 출력이 15,000토큰을 넘던 기능 추가 작업(archetype 1)에서는 압축분이 SKILL.md 로딩 비용을 훌쩍 넘어서 −15.1%의 순절감으로 남았고, 원래 출력이 3,500토큰 안팎이던 디버깅 작업(archetype 2)에서는 절대적인 압축량 자체가 작아서 로딩 비용을 감당하지 못하고 +9.9%로 뒤집혔습니다. 저자가 밝힌 breakeven 지점(출력 1,500~2,000토큰 안팎)과 방향이 그대로 맞아떨어졌습니다.</p>
+<p>품질 저하는 두 상황 모두에서 보이지 않았습니다. 기능 추가 쪽은 OFF와 ON 6세션 모두 테스트가 통과했고(다만 ON 세션이 평균적으로 테스트를 더 적게 작성했습니다, 6.7개 대 8.7개), 디버깅 쪽은 OFF와 ON 6세션 모두 근본 원인(<code>COLLATE NOCASE</code>)을 정확히 고쳤습니다. caveman 자신이 “부정어와 정확한 값은 절대 생략하지 않는다”고 정한 규칙도 12세션 전체에서 어긴 흔적이 없었습니다.</p>
+<p>한계도 명시해둡니다. archetype과 조건별로 n=3이라 breakeven 지점은 방향만 확인했을 뿐 정밀 검증은 아니고, 두 archetype의 절대 비용은 작업 종류 자체가 달라 서로 비교할 수 없습니다. 응답 길이 지표는 채팅 최종 메시지만 잰 것이라 커밋 메시지, 코드, 도구 호출 서술은 포함하지 않는데, 이건 caveman 자신이 “채팅 밖에 남는 것(코드, 코멘트, 커밋)은 평소 문체로 쓴다”고 명시한 범위와 일치합니다. archetype 2의 OFF 데이터는 superpowers 실험에서 재사용한 것이라 이 실험 시점에 활성화 여부를 별도로 진단하지는 않았습니다(다만 응답에서 caveman 특유의 문체는 육안으로도 확인되지 않았습니다).</p>
+<h2 id="언제-켜고-언제-끌지가-분명해졌다">언제 켜고 언제 끌지가 분명해졌다</h2>
+<p>방향 자체는 저자의 경고와 정확히 일치했지만, 제 작업에 적용하려면 한 가지를 더 생각해야 했습니다. caveman은 “채팅 밖에 남는 것(코드, 코멘트, 커밋)은 압축하지 않는다”고 스스로 범위를 그어뒀습니다. 제가 주로 하는 작업 중 이 블로그 글쓰기는 결과물이 그대로 파일에 저장되는 산출물이라, 글 자체는 caveman이 건드리는 대상이 아닙니다. caveman이 실제로 줄이는 것은 그 글을 쓰는 과정에서 오가는 대화형 설명이나 요약 같은 휘발성 응답입니다. 그래서 <mark>이 시리즈처럼 여러 번 되짚으며 피드백을 주고받는 긴 세션에서는 켜둘 만하고, 결과물이 파일 하나로 바로 끝나는 짧은 작업에서는 로딩 비용만 지는 셈이라 꺼둡니다.</mark></p>
+<p>가장 흥미로웠던 것은 실험 자체보다 검증 방식이었습니다. 이번엔 의심할 벤치마크가 없었습니다. 저자가 이미 정직하게 한계를 공개해뒀고, 제가 한 일은 그 공개된 한계가 실제로 재현되는지 확인하는 것뿐이었습니다. 세 실험을 통틀어, 숫자를 의심하는 것 못지않게 “이 숫자가 성립하는 조건이 무엇인가”를 먼저 찾는 습관이 가장 오래 남을 것 같습니다.</p>
+</div><nav class="mt-16 grid grid-cols-2 gap-4 border-t border-slate-200 pt-6" aria-label="글 목록 이동" data-astro-cid-62dzsm7q><div data-astro-cid-62dzsm7q><a href="/projects/skill-experiment-superpowers/" class="group block" data-astro-cid-62dzsm7q><span class="text-xs text-slate-500" data-astro-cid-62dzsm7q>← 이전 글</span><span class="mt-1 block text-sm font-medium text-slate-900 group-hover:underline" data-astro-cid-62dzsm7q>[스킬은 켜봐야 안다 #2] 디버깅 과정이 정말 달라지는가: superpowers를 자연스러운 버그 리포트로 시험하다</span></a></div><div class="text-right" data-astro-cid-62dzsm7q><a href="/projects/skill-experiment-claude-mem/" class="group block" data-astro-cid-62dzsm7q><span class="text-xs text-slate-500" data-astro-cid-62dzsm7q>다음 글 →</span><span class="mt-1 block text-sm font-medium text-slate-900 group-hover:underline" data-astro-cid-62dzsm7q>[스킬은 켜봐야 안다 #4] 기억이 남는다는 스킬, 켜는 것부터 비용이었다: claude-mem을 검증하다</span></a></div></nav><section class="mt-16 border-t border-slate-200 pt-10"><script src="https://giscus.app/client.js" data-repo="jhwanseok/jhwanseok.github.io" data-repo-id="R_kgDOTrBGUQ" data-category="Comments" data-category-id="DIC_kwDOTrBGUc4DC8Av" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="light" data-lang="ko" crossorigin="anonymous" async></script></section></main><footer class="border-t border-slate-200"><div class="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-2 px-6 py-8 text-sm text-slate-500"><p>&copy; 2026 정환석. 공개 엔지니어링 증거로 만들어갑니다.</p><span id="view-counter-total" class="text-sm text-slate-500 tabular-nums">전체 방문 집계 중…</span><script>(function(){const elementId = "view-counter-total";
+const endpoint = "https://jhwanseok.goatcounter.com/counter/TOTAL.json";
+const label = "전체 방문";
+
+			(async () => {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				try {
+					const res = await fetch(endpoint);
+					// GoatCounter returns 404 (with a valid zero-count body) for a path
+					// that hasn't recorded a hit yet — that's a real "0 views", not a
+					// failure, so only bail out on other error statuses.
+					if (!res.ok && res.status !== 404) throw new Error('goatcounter request failed');
+					const data = await res.json();
+					const digits = String(data.count ?? '').replace(/\D/g, '');
+					el.textContent = digits ? `${label} ${Number(digits).toLocaleString('ko-KR')}` : '';
+				} catch {
+					el.textContent = '';
+				}
+			})();
+		})();</script></div></footer><script data-goatcounter="https://jhwanseok.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

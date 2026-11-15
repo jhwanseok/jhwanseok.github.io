@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">claude-md-management 실험 결론: 도입</title>
+  <desc id="desc">CLAUDE.md는 세션 시작 시 항상 로드되어 별도 검색 단계가 없고, 환경 함정을 정확히 경고하는 비율이 0에서 3분의 3으로 오르면서 동시에 세션2 비용이 35.9퍼센트 줄어 도입하기로 했습니다.</desc>
+
+  <rect x="0" y="0" width="880" height="340" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <!-- Verdict (hero — the one thing to notice) -->
+  <rect x="40" y="30" width="800" height="100" rx="16" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="440" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#ffffff">도입</text>
+  <text x="440" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#ffd9cf">정확도와 비용이 함께 개선된 유일한 사례</text>
+
+  <!-- Arrows: supporting facts feed up into the verdict -->
+  <line x1="230" y1="208" x2="230" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+  <line x1="650" y1="208" x2="650" y2="132" stroke="#b3a08c" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- Fact 1: mechanism reason (pale emerald) -->
+  <rect x="40" y="210" width="380" height="90" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="230" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#059669">검색 단계가 아예 없다</text>
+  <text x="230" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">CLAUDE.md는 세션 시작 시 항상 로드</text>
+
+  <!-- Fact 2: result (solid emerald) -->
+  <rect x="460" y="210" width="380" height="90" rx="14" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="650" y="246" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">정확도·비용 둘 다 개선</text>
+  <text x="650" y="270" text-anchor="middle" font-size="13" font-weight="500" fill="#ecfdf5">환경 함정 경고 0/3→3/3, 비용 −35.9%</text>
+
+  <text x="440" y="325" text-anchor="middle" font-size="12" fill="#a89f92">claude-mem 대비 세션2 비용 −35.9% 대 +30.3%. 단, 캡처 범위는 환경·툴링 함정으로 좁음</text>
+</svg>

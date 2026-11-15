@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">PersonaPlex 하이브리드 시스템 프롬프트의 시간 구성</title>
+  <desc id="desc">Moshi 가중치에서 시작한 PersonaPlex의 세 스트림(사용자 음성, 에이전트 텍스트, 에이전트 음성)이 세 구간을 차례로 지난다. 첫째 음성 프롬프트 구간에는 에이전트 음성 채널에 목소리 샘플이 들어가고 텍스트 채널은 패딩된다. 둘째 텍스트 프롬프트 구간에는 에이전트 텍스트 채널에 역할 텍스트가 들어가고 음성 채널은 침묵한다. 두 구간 동안 사용자 채널은 440Hz 정현파로 채워지고, 구분자 뒤에 실제 대화가 시작된다</desc>
+
+  <rect x="0" y="0" width="900" height="430" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+  </defs>
+
+  <text x="450" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">PersonaPlex: 같은 스트림을 시간으로 나눠 쓴다</text>
+  <text x="450" y="48" text-anchor="middle" font-size="13" fill="#8a7f72">Moshi 가중치에서 시작해, 대화 전에 목소리와 역할을 차례로 흘려보낸다</text>
+
+  <!-- Segment headers -->
+  <circle cx="226" cy="84" r="11" fill="#10b981" />
+  <text x="226" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1</text>
+  <text x="244" y="89" font-size="14" font-weight="700" fill="#059669">음성 프롬프트</text>
+
+  <circle cx="436" cy="84" r="11" fill="#e34a33" />
+  <text x="436" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2</text>
+  <text x="454" y="89" font-size="14" font-weight="700" fill="#c13a26">텍스트 프롬프트</text>
+
+  <text x="720" y="89" text-anchor="middle" font-size="14" font-weight="700" fill="#292524">실제 대화</text>
+
+  <!-- Lane labels -->
+  <text x="30" y="140" font-size="14" font-weight="700" fill="#292524">사용자 음성</text>
+  <text x="30" y="210" font-size="14" font-weight="700" fill="#292524">에이전트 텍스트</text>
+  <text x="30" y="280" font-size="14" font-weight="700" fill="#292524">에이전트 음성</text>
+
+  <!-- Lane 1: user audio -->
+  <rect x="210" y="112" width="410" height="44" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="415" y="139" text-anchor="middle" font-size="12.5" font-weight="500" fill="#8a7f72">440Hz 정현파로 대체 (안정화)</text>
+  <rect x="640" y="112" width="230" height="44" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="755" y="139" text-anchor="middle" font-size="12.5" font-weight="500" fill="#57534e">사용자 발화</text>
+
+  <!-- Lane 2: agent text -->
+  <rect x="210" y="182" width="200" height="44" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="310" y="209" text-anchor="middle" font-size="12.5" font-weight="500" fill="#a89f92">PAD</text>
+  <rect x="420" y="182" width="200" height="44" rx="10" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="520" y="203" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">역할 텍스트</text>
+  <text x="520" y="218" text-anchor="middle" font-size="11" font-weight="500" fill="#fff1ee">"너는 OO은행 상담원이다"</text>
+  <rect x="640" y="182" width="230" height="44" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="755" y="209" text-anchor="middle" font-size="12.5" font-weight="500" fill="#57534e">Inner Monologue 텍스트</text>
+
+  <!-- Lane 3: agent audio -->
+  <rect x="210" y="252" width="200" height="44" rx="10" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="310" y="273" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">목소리 샘플</text>
+  <text x="310" y="288" text-anchor="middle" font-size="11" font-weight="500" fill="#ecfdf5">짧은 음성으로 화자 지정</text>
+  <rect x="420" y="252" width="200" height="44" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="520" y="279" text-anchor="middle" font-size="12.5" font-weight="500" fill="#a89f92">침묵</text>
+  <rect x="640" y="252" width="230" height="44" rx="10" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <text x="755" y="279" text-anchor="middle" font-size="12.5" font-weight="500" fill="#57534e">에이전트 발화</text>
+
+  <!-- Delimiter -->
+  <line x1="630" y1="104" x2="630" y2="306" stroke="#c13a26" stroke-width="1.5" stroke-dasharray="3 3" />
+  <text x="630" y="322" text-anchor="middle" font-size="11.5" font-weight="600" fill="#c13a26">구분자 토큰</text>
+
+  <!-- Time axis -->
+  <line x1="210" y1="340" x2="866" y2="340" stroke="#b3a08c" stroke-width="1.2" marker-end="url(#arrow)" />
+  <text x="880" y="344" text-anchor="middle" font-size="12" fill="#8a7f72">시간</text>
+
+  <text x="450" y="378" text-anchor="middle" font-size="13.5" font-weight="500" fill="#292524">고정된 목소리를 앞에 두면 그 구간을 미리 계산(prefill)해 두고, 요청마다 역할 텍스트만 새로 처리하면 된다.</text>
+  <text x="450" y="406" text-anchor="middle" font-size="12" fill="#a89f92">PersonaPlex (Roy et al., 2026) 재구성</text>
+</svg>

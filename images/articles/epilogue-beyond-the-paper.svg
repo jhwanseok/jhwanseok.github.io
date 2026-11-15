@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">스트리밍 서빙이 지켜야 하는 두 가지 시한</title>
+  <desc id="desc">요청을 보낸 시점부터 첫 오디오 청크가 도착하기까지의 시간(TTFA)은 짧을수록 좋다. 그 뒤의 청크는 앞 청크의 재생이 끝나는 마감 시각 안에만 도착하면 된다. 청크 2와 3은 마감 전에 도착해 여유가 남고, 청크 4는 마감을 넘겨 재생이 끊긴다. 서빙 시스템은 여유가 남은 스트림을 뒤로 미루고 마감이 임박한 요청에 자원을 먼저 준다.</desc>
+
+  <rect x="0" y="0" width="1000" height="540" fill="#fdf6ec" />
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b3a08c" />
+    </marker>
+    <marker id="arrowc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e34a33" />
+    </marker>
+  </defs>
+
+  <text x="500" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#292524">스트리밍 서빙이 지켜야 하는 두 가지 시한</text>
+  <text x="500" y="52" text-anchor="middle" font-size="13.5" fill="#8a7f72">첫 소리는 빨리, 그 뒤로는 앞 조각의 재생이 끝나기 전에만 도착하면 된다</text>
+
+  <!-- Lane labels -->
+  <text x="20" y="121" font-size="14" font-weight="700" fill="#292524">도착 시각</text>
+  <text x="20" y="139" font-size="12" font-weight="500" fill="#8a7f72">서버가 청크를 보냄</text>
+  <text x="20" y="237" font-size="14" font-weight="700" fill="#292524">재생</text>
+  <text x="20" y="255" font-size="12" font-weight="500" fill="#8a7f72">사용자가 듣는 소리</text>
+
+  <!-- Arrival track -->
+  <line x1="150" y1="125" x2="940" y2="125" stroke="#e7dfd3" stroke-width="1.5" />
+
+  <!-- Request time line -->
+  <line x1="150" y1="100" x2="150" y2="268" stroke="#b3a08c" stroke-width="1.5" stroke-dasharray="4 4" />
+  <text x="150" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">요청 제출</text>
+
+  <!-- Deadlines (end of playback of previous chunk) -->
+  <line x1="440" y1="100" x2="440" y2="268" stroke="#b3a08c" stroke-width="1.5" stroke-dasharray="4 4" />
+  <line x1="580" y1="100" x2="580" y2="268" stroke="#b3a08c" stroke-width="1.5" stroke-dasharray="4 4" />
+  <line x1="720" y1="100" x2="720" y2="268" stroke="#b3a08c" stroke-width="1.5" stroke-dasharray="4 4" />
+  <text x="440" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#8a7f72">② 마감</text>
+  <text x="580" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">마감</text>
+  <text x="720" y="90" text-anchor="middle" font-size="12" font-weight="500" fill="#8a7f72">마감</text>
+
+  <!-- TTFA bracket -->
+  <line x1="152" y1="198" x2="298" y2="198" stroke="#e34a33" stroke-width="2" marker-start="url(#arrowc)" marker-end="url(#arrowc)" />
+  <text x="225" y="188" text-anchor="middle" font-size="14" font-weight="700" fill="#c13a26">① TTFA</text>
+
+  <!-- Arrival markers -->
+  <circle cx="300" cy="125" r="13" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="300" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">1</text>
+  <circle cx="395" cy="125" r="13" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="395" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">2</text>
+  <circle cx="540" cy="125" r="13" fill="#10b981" stroke="#059669" stroke-width="1.5" />
+  <text x="540" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">3</text>
+  <circle cx="785" cy="125" r="13" fill="#fef3c7" stroke="#d97706" stroke-width="1.5" />
+  <text x="785" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#92400e">4</text>
+
+  <!-- Slack brackets -->
+  <path d="M 395 147 L 395 157 M 395 152 L 440 152 M 440 147 L 440 157" fill="none" stroke="#10b981" stroke-width="1.5" />
+  <text x="417" y="174" text-anchor="middle" font-size="12" font-weight="700" fill="#059669">여유</text>
+  <path d="M 540 147 L 540 157 M 540 152 L 580 152 M 580 147 L 580 157" fill="none" stroke="#10b981" stroke-width="1.5" />
+  <text x="534" y="174" text-anchor="middle" font-size="13" font-weight="700" fill="#059669">③ 여유</text>
+  <path d="M 720 147 L 720 157 M 720 152 L 785 152 M 785 147 L 785 157" fill="none" stroke="#d97706" stroke-width="1.5" />
+  <text x="752" y="174" text-anchor="middle" font-size="12.5" font-weight="700" fill="#92400e">지각</text>
+
+  <!-- Playback bars -->
+  <rect x="302" y="212" width="136" height="48" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="370" y="241" text-anchor="middle" font-size="14" font-weight="700" fill="#059669">청크 1</text>
+  <rect x="442" y="212" width="136" height="48" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="510" y="241" text-anchor="middle" font-size="14" font-weight="700" fill="#059669">청크 2</text>
+  <rect x="582" y="212" width="136" height="48" rx="10" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="650" y="241" text-anchor="middle" font-size="14" font-weight="700" fill="#059669">청크 3</text>
+  <rect x="722" y="212" width="63" height="48" rx="8" fill="none" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3" />
+  <text x="753" y="241" text-anchor="middle" font-size="12.5" font-weight="700" fill="#92400e">무음</text>
+  <rect x="787" y="212" width="136" height="48" rx="10" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="855" y="241" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">청크 4</text>
+
+  <!-- Legend -->
+  <rect x="150" y="283" width="12" height="12" rx="3" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="170" y="294" font-size="12.5" font-weight="500" fill="#8a7f72">마감 안에 도착한 청크</text>
+  <rect x="360" y="283" width="12" height="12" rx="3" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="380" y="294" font-size="12.5" font-weight="500" fill="#8a7f72">마감을 넘긴 청크: 재생이 끊김</text>
+  <circle cx="650" cy="289" r="6" fill="#e34a33" stroke="#c13a26" stroke-width="1" />
+  <text x="664" y="294" font-size="12.5" font-weight="500" fill="#8a7f72">원: 청크가 도착한 시각</text>
+
+  <!-- Cards -->
+  <rect x="20" y="322" width="300" height="112" rx="14" fill="#ffe4de" stroke="#ffab91" stroke-width="1.5" />
+  <text x="170" y="360" text-anchor="middle" font-size="16" font-weight="700" fill="#c13a26">① 처음에는 빨리</text>
+  <text x="170" y="386" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">TTFA: 요청부터 첫 소리까지의 시간</text>
+  <text x="170" y="406" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">작을수록 좋은 연속 지표</text>
+
+  <rect x="350" y="322" width="300" height="112" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="500" y="360" text-anchor="middle" font-size="16" font-weight="700" fill="#059669">② 그 뒤에는 마감만</text>
+  <text x="500" y="386" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">다음 청크가 앞 청크 재생이 끝나기</text>
+  <text x="500" y="406" text-anchor="middle" font-size="13.5" font-weight="500" fill="#8a7f72">전에 오면 충분한 이진 지표</text>
+
+  <rect x="680" y="322" width="300" height="112" rx="14" fill="#e34a33" stroke="#c13a26" stroke-width="1.5" />
+  <text x="830" y="360" text-anchor="middle" font-size="16" font-weight="700" fill="#fff8f5">③ 그래서 여유를 미룬다</text>
+  <text x="830" y="386" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffd9cf">여유가 큰 스트림은 뒤로 미루고</text>
+  <text x="830" y="406" text-anchor="middle" font-size="13.5" font-weight="500" fill="#ffd9cf">마감이 임박한 요청에 GPU를 먼저 준다</text>
+
+  <!-- Scope note -->
+  <rect x="20" y="452" width="960" height="52" rx="14" fill="#fffaf4" stroke="#c9bfae" stroke-width="1.5" stroke-dasharray="4 4" />
+  <text x="500" y="474" text-anchor="middle" font-size="13.5" font-weight="700" fill="#292524">VoxServe가 평가한 설정: 요청 하나가 들어오면 응답 오디오를 조각내어 내보낸다</text>
+  <text x="500" y="493" text-anchor="middle" font-size="13" font-weight="500" fill="#8a7f72">입력이 계속 열려 있는 Moshi 같은 full-duplex 모델은 지원과 평가 대상에 없다</text>
+
+  <text x="500" y="526" text-anchor="middle" font-size="12" fill="#a89f92">VoxServe (Kamahori et al., 2026)의 streaming viability 조건을 재구성한 개념도. 시각은 설명용 예시</text>
+</svg>

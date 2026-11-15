@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc" font-family="ui-sans-serif, system-ui, -apple-system, sans-serif">
+  <title id="title">논문이 센 여섯 가지 특징과 점검 도구가 보는 범위</title>
+  <desc id="desc">읽는 사람이 걸리는 여섯 가지 문장 특징을 카드로 정리했다. 흔치 않은 단어 조합, 긴 의존 거리, 목적어 관계절, 명사 연쇄, 명사에서 만든 동사, 사물 주어에 붙은 사람 동사다. 이 글의 점검 도구는 긴 의존 거리, 목적어 관계절, 명사 연쇄, 사물 주어를 어림해서 보고, 흔치 않은 단어 조합과 명사에서 만든 동사는 보지 못한다.</desc>
+
+  <rect x="0" y="0" width="1000" height="600" fill="#fdf6ec" />
+
+  <text x="30" y="38" font-size="17" font-weight="700" fill="#292524">논문이 센 여섯 가지: 읽는 사람이 걸리는 자리</text>
+
+  <!-- Row 1 -->
+  <rect x="30" y="60" width="300" height="220" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <circle cx="62" cy="92" r="16" fill="#e34a33" />
+  <text x="62" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">1</text>
+  <text x="88" y="98" font-size="17" font-weight="700" fill="#292524">흔치 않은 단어 조합</text>
+  <text x="50" y="136" font-size="14" font-weight="600" fill="#292524">다른 글에서 거의 안 쓰는</text>
+  <text x="50" y="158" font-size="14" font-weight="600" fill="#292524">단어 쌍이라 예측하기 어렵다</text>
+  <text x="50" y="190" font-size="13.5" font-weight="500" fill="#8a7f72">예: 신뢰 예산을 태운다</text>
+  <rect x="50" y="218" width="210" height="34" rx="17" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="155" y="240" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">점검 도구가 보지 못함</text>
+
+  <rect x="350" y="60" width="300" height="220" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <circle cx="382" cy="92" r="16" fill="#e34a33" />
+  <text x="382" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">2</text>
+  <text x="408" y="98" font-size="17" font-weight="700" fill="#292524">긴 의존 거리</text>
+  <text x="370" y="136" font-size="14" font-weight="600" fill="#292524">이어지는 말이 멀리 떨어져</text>
+  <text x="370" y="158" font-size="14" font-weight="600" fill="#292524">앞말을 오래 기억해야 한다</text>
+  <text x="370" y="190" font-size="13.5" font-weight="500" fill="#8a7f72">예: 주어와 동사 사이에 긴 설명</text>
+  <rect x="370" y="218" width="200" height="34" rx="17" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="470" y="240" text-anchor="middle" font-size="13.5" font-weight="700" fill="#059669">문장 길이로 어림함</text>
+
+  <rect x="670" y="60" width="300" height="220" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <circle cx="702" cy="92" r="16" fill="#e34a33" />
+  <text x="702" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">3</text>
+  <text x="728" y="98" font-size="17" font-weight="700" fill="#292524">목적어 관계절</text>
+  <text x="690" y="136" font-size="14" font-weight="600" fill="#292524">꾸미는 절이 앞에 쌓인다</text>
+  <text x="690" y="158" font-size="14" font-weight="600" fill="#292524">영어는 that을 빼서 더 어렵다</text>
+  <text x="690" y="190" font-size="13.5" font-weight="500" fill="#8a7f72">한국어에서는 앞 꾸밈말이 겹칠 때</text>
+  <rect x="690" y="218" width="250" height="34" rx="17" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="815" y="240" text-anchor="middle" font-size="13.5" font-weight="700" fill="#059669">명사 앞 꾸밈말 수로 어림함</text>
+
+  <!-- Row 2 -->
+  <rect x="30" y="310" width="300" height="220" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <circle cx="62" cy="342" r="16" fill="#e34a33" />
+  <text x="62" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">4</text>
+  <text x="88" y="348" font-size="17" font-weight="700" fill="#292524">명사 연쇄</text>
+  <text x="50" y="386" font-size="14" font-weight="600" fill="#292524">명사 셋 이상이 붙어서</text>
+  <text x="50" y="408" font-size="14" font-weight="600" fill="#292524">어디서 끊을지 애매하다</text>
+  <text x="50" y="440" font-size="13.5" font-weight="500" fill="#8a7f72">예: 최종 종점 서버 오디오 지연</text>
+  <rect x="50" y="468" width="190" height="34" rx="17" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="145" y="490" text-anchor="middle" font-size="13.5" font-weight="700" fill="#059669">점검 도구가 봄</text>
+
+  <rect x="350" y="310" width="300" height="220" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <circle cx="382" cy="342" r="16" fill="#e34a33" />
+  <text x="382" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">5</text>
+  <text x="408" y="348" font-size="17" font-weight="700" fill="#292524">명사에서 만든 동사</text>
+  <text x="370" y="386" font-size="14" font-weight="600" fill="#292524">명사를 즉석에서 동사로 쓴다</text>
+  <text x="370" y="408" font-size="14" font-weight="600" fill="#292524">독자가 품사를 다시 해석한다</text>
+  <text x="370" y="440" font-size="13.5" font-weight="500" fill="#8a7f72">영어 예: calendar it</text>
+  <rect x="370" y="468" width="210" height="34" rx="17" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" />
+  <text x="475" y="490" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">점검 도구가 보지 못함</text>
+
+  <rect x="670" y="310" width="300" height="220" rx="14" fill="#fffaf4" stroke="#e7dfd3" stroke-width="1.5" />
+  <circle cx="702" cy="342" r="16" fill="#e34a33" />
+  <text x="702" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">6</text>
+  <text x="728" y="348" font-size="17" font-weight="700" fill="#292524">사물 주어에 사람 동사</text>
+  <text x="690" y="386" font-size="14" font-weight="600" fill="#292524">사물이 사람처럼 움직여서</text>
+  <text x="690" y="408" font-size="14" font-weight="600" fill="#292524">뜻을 한 번 더 풀어야 한다</text>
+  <text x="690" y="440" font-size="13.5" font-weight="500" fill="#8a7f72">예: 함수가 오류를 삼킨다</text>
+  <rect x="690" y="468" width="190" height="34" rx="17" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" />
+  <text x="785" y="490" text-anchor="middle" font-size="13.5" font-weight="700" fill="#059669">후보 동사로 어림함</text>
+
+  <text x="30" y="570" font-size="13.5" font-weight="500" fill="#8a7f72">초록 표시는 이 글의 점검 도구가 보는 것, 노랑 표시는 보지 못하는 것입니다. 한국어 예시는 직접 만들었습니다.</text>
+</svg>
